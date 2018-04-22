@@ -1,13 +1,26 @@
+<!--
+	Sistema de Gestión de Cheques
+	Miércoles, 28 de Marzo del 2018
+	9:30 PM
+	Gemis Daniel Guevara Villeda
+	-
+	Proyecto de semestre, sistema para la genereación/eliminación/aprobación
+	de cheques.
+	Base de datos II
+	Jose Rodolfo Sandoval Pineda
+	UMG - Morales Izabal
+	-
+-->
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Atenas, S. A.</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 			<!-- vinculo a bootstrap -->
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+			<link rel="stylesheet" href="css/bootstrap.css">
 			<!-- Temas-->
-			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+			<link rel="stylesheet" href="css/bootstrap-theme.min.css">
 			<!-- se vincula al hoja de estilo para definir el aspecto del formulario de login-->  
 			<link rel="stylesheet" type="text/css" href="text/estilo.css">
 		</head>
@@ -20,11 +33,11 @@
 				<span class="glyphicon glyphicon-user"></span>
 			</div>
 			
-			<div class="ContentForm">
+			<div class="form-group">
 				<form name="FormEntrar" action="index.php" method="post">
 					<div class="input-group input-group-lg">
-						<span class="input-group-addon id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
-						<input type="email" class="form-control" name="usuario" placeholder="Correo" id="Correo" aria-describedby="sizing-addon1" required>
+						<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
+						<input type="text" class="form-control" name="usuario" placeholder="Usuario" id="Usuario" aria-describedby="sizing-addon1" required>
 					</div>
 					<br>
 					<div class="input-group input-group-lg">
@@ -37,14 +50,16 @@
 				</form>
 			</div>
 		</div>
-		
 		<?php
 			include_once "Seguridad/conexion.php";
 			if (isset($_POST['enviar'])) {
 			if ($_POST['usuario'] == '' or $_POST['password'] == '') {
-				echo "<script languaje='javascript'>
-						alert('Los campos no pueden ir vacios');
-						</script>";
+				?>
+				<div class="alert alert-warning"> Los campos no pueden ir vacios </div>
+				<?php
+				//echo "<script languaje='javascript'>
+				//	alert('Los campos no pueden ir vacios');
+				//	</script>";
 			}
 			else {
 				// Guardamos el nombre del usuario un una variable
@@ -64,7 +79,10 @@
 				}
 				
 				if ($resultado->num_rows == 0) {
-					echo "Usuario no registrado";
+					?>
+					<div class="alert alert-danger"> Usuario no Registrado </div>
+					<?php
+					//echo "Usuario no registrado";
 					exit;
 				}
 				
@@ -78,10 +96,16 @@
 						header("location:principal.php");
 					}
 					else{
-						echo "Contraseña Erronea";
+						?>
+						<div class="alert alert-warning"> Contraseña erronea </div>
+						<?php
+						//echo "Contraseña Erronea";
 					}
 				}
 				else{
+					?>
+					<div class="alert alert-warning"> Usuario erroneo </div>
+					<?php
 						echo "Usuario erroneo";
 					}
 			}
