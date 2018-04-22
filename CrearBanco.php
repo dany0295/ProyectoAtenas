@@ -1,7 +1,7 @@
 <!--
-	Módulo Principal
-	Martes, 17 de abril el 2018
-	9:00 PM
+	Módulo de creación de Bancos
+	Jueves, 19 de abril el 2018
+	11:35 PM
 	Gemis Daniel Guevara Villeda
 	UMG - Morales Izabal
 -->
@@ -15,13 +15,9 @@
 
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet">
+<!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
+<link rel="stylesheet" type="text/css" href="text/estilo.css"> 
 
-<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
 	<?php
 		//include_once 'Seguridad/conexion.php';
@@ -41,11 +37,11 @@
 					<div class="collapse navbar-collapse" id="defaultNavbar1">
 					  <ul class="nav navbar-nav">
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bancos<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="CrearBanco.php">Crear banco</a></li>
-							<li><a href="#">Eliminar banco</a></li>
-							<li><a href="#">Editar banco</a></li>
-						  </ul>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="#">Crear banco</a></li>
+								<li><a href="#">Eliminar banco</a></li>
+								<li><a href="#">Editar banco</a></li>
+							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
@@ -67,10 +63,11 @@
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="CrearCuenta.php">Crear Cuenta</a></li>
+							<li><a href="#">Cuentas</a></li>
 							<li><a href="#">Mantenimiento de Cuentas</a></li>
 						  </ul>
 						</li>
+						
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="#">Liberar un cheque</a></li>
@@ -104,54 +101,70 @@
 				  </div>
 				  <!-- /.container-fluid --> 
 				</nav>
-				<div class="container-fluid">
-				  <div class="row">
-					<div class="col-md-6 col-md-offset-3">
-					  <h1 class="text-center">Atenas S. A.</h1>
-					</div>
-				  </div>
-				</div>
 				<div class="container">
 				  <div class="row text-center">
-					<div class="col-md-10 col-md-offset-1">Página principal de administración del sistema del proyecto Atenas, S. A. de curso Base de datos II.</div>
-				  </div>
-				  <!--
-				  <div class="row">
-					<div class="text-justify col-sm-4"> Click here to select this<strong> column.</strong> Always place your content within a column. Columns are indicated by a dashed blue line. </div>
-					<div class="col-sm-4 text-justify"> You can <strong>resize a column</strong> using the handle on the right. Drag it to increase or reduce the number of columns.</div>
-					<div class="col-sm-4 text-justify"> You can <strong>offset a column</strong> using the handle on the left. Drag it to increase or reduce the offset. </div>
-				  </div>
-				  <hr>
-				  <div class="row">
-					<div class="text-center col-md-12">
-					  <div class="well"><strong> Easily build your page using the Bootstrap components from the Insert panel.</strong></div>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xs-6 col-xs-offset-3">
+							<h1 class="text-center">Registro de banco</h1>
+							</div>
+						</div>
+						<!-- Contenedor del ícono -->
+						
+							<div class="Icon">
+								<!-- Icono de home -->
+								<span class="glyphicon glyphicon-home"></span>
+							</div>
+						
+					<!-- Nombre del banco -->
+					<div class="row">
+						<div class="col-xs-10 col-xs-offset-1">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
+								<input type="text" class="form-control" name="NombreBanco" placeholder="Nombre" id="NombreBanco" aria-describedby="sizing-addon1" required>
+							</div>
+						</div>
 					</div>
-				  </div>
-				  <div class="row">
-					<div class="col-sm-4 text-center">
-					  <h4>Adding <strong>Buttons</strong></h4>
-					  <p>Quickly add buttons to your page by using the button component in the insert panel. </p>
-					  <button type="button" class="btn btn-info btn-sm">Info Button</button>
-					  <button type="button" class="btn btn-success btn-sm">Success Button</button>
+					<br>
+					<!-- Teléfono del usuario -->
+					<div class="row">
+						<div class="col-xs-10 col-xs-offset-1">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-earphone"></i></span>
+								<input type="tel" class="form-control" name="TelefonoBanco" placeholder="Teléfono" id="TelefonoBanco" aria-describedby="sizing-addon1" required>
+							</div>
+						</div>
 					</div>
-					<div class="text-center col-sm-4">
-					  <h4>Adding <strong>Labels</strong></h4>
-					  <p>Using the insert panel, add labels to your page by using the label component.</p>
-					  <span class="label label-warning">Info Label</span><span class="label label-danger">Danger Label</span> </div>
-					<div class="text-center col-sm-4">
-					  <h4>Adding <strong>Glyphicons</strong></h4>
-					  <p>You can also add glyphicons to your page from within the insert panel.</p>
-					  <div class="row">
-						<div class="col-xs-4"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></div>
-						<div class="col-xs-4"><span class="glyphicon glyphicon-home" aria-hidden="true"> </span> </div>
-						<div class="col-xs-4"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></div>
-					  </div>
+					<br>
+					<!-- Dirección del usuario -->
+					<div class="row">
+						<div class="col-xs-10 col-xs-offset-1">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
+								<input type="text" class="form-control" name="DireccionBanco" placeholder="Dirección" id="DireccionBanco" aria-describedby="sizing-addon1" required>
+							</div>
+						</div>
 					</div>
-				  </div>
+					<br>
+					<!-- Resgistrar -->
+					<div class="row">
+						<div class="col-xs-12 col-xs-offset-1">
+							<div class="input-group input-group-lg">
+								<div clss="btn-group">
+									<button type="button" class="btn btn-primary">Registrar</button>
+									<button type="button" class="btn btn-danger">Cancelar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br>
+				</div>
+				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
+				<script src="js/jquery-1.11.3.min.js"></script>
 
-				  <hr>
-				  -->
-				  <!-- Pie de página, se utilizará el mismo para todos. -->
+				<!-- Include all compiled plugins (below), or include individual files as needed --> 
+				<script src="js/bootstrap.js"></script>
+				<!-- Pie de página, se utilizará el mismo para todos. -->
 				<footer>
 					<hr>
 					<div class="row">
@@ -161,13 +174,7 @@
 						</div>
 					</div>
 					<hr>
-				</footer>
-				</div>
-				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
-				<script src="js/jquery-1.11.3.min.js"></script>
-
-				<!-- Include all compiled plugins (below), or include individual files as needed --> 
-				<script src="js/bootstrap.js"></script>
+				</footer> 
 			</body>
 	<?php
 		// De lo contrario lo redirigimos al inicio de sesión
