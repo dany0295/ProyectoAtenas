@@ -8,7 +8,7 @@
 -- Gustavo Rodolfo Arriaza
 -- 4890-13-12004
 -- Oscar Danilo Pérez
--- 4890-12-
+-- 4890-12-13782
 -- Oseas Lima
 -- 4890-06-16709
 -- Miércoles 09 de Mayo del 2018
@@ -30,8 +30,8 @@ CREATE OR REPLACE TABLE Puesto(
 CREATE OR REPLACE TABLE Rango(
 	idRango				TINYINT			NOT NULL			PRIMARY KEY			AUTO_INCREMENT,
 	CodigoRango			VARCHAR(10)		NOT NULL,
-	RangoMinimo			DECIMAL			NOT NULL,
-	RangoMaximo			DECIMAL			NOT NULL
+	RangoMinimo			FLOAT			NOT NULL,
+	RangoMaximo			FLOAT			NOT NULL
 );
 
 -- Creación de la tabla que contiene el grupo al que pertene el usuario

@@ -69,7 +69,7 @@
 				
 				// Consulta SQL, seleccionamos todos los datos de la tabla y obtenemos solo
 				// la fila que tiene el usario especificado
-				$query = "SELECT * FROM usuario WHERE usuario='".$Usuario."'";
+				$query = "SELECT * FROM usuario WHERE NombreInicioSesionUsuario='".$Usuario."'";
 				if(!$resultado = $mysqli->query($query)){
 					echo "Error: La ejecución de la consulta falló debido a: \n";
 					echo "Query: " . $query . "\n";
@@ -87,12 +87,12 @@
 				}
 				
 				$ResultadoConsulta = $resultado->fetch_assoc();
-				if($ResultadoConsulta['Usuario'] = $Usuario){
-					if($ResultadoConsulta['PasswordUsuario'] == $password){
+				if($ResultadoConsulta['NombreInicioSesionUsuario'] = $Usuario){
+					if($ResultadoConsulta['ContraseniaUsuario'] == $password){
 						session_start();
 						$_SESSION['NombreUsuario'] = $Usuario;
 						$_SESSION['ContrasenaUsuario'] = $password;
-						$_SESSION['PrivilegioUsuario'] = $ResultadoConsulta['PrivilegioUsuario'];
+						$_SESSION['PrivilegioUsuario'] = $ResultadoConsulta['idRol'];
 						header("location:principal.php");
 					}
 					else{

@@ -24,7 +24,7 @@
 		// Incluimos el archivo que valida si hay una sesión activa
 		include_once "Seguridad/seguro.php";
 		// Si en la sesión activa tiene privilegios de administrador puede ver el formulario
-		if($_SESSION["PrivilegioUsuario"] == 'administrador'){
+		if($_SESSION["PrivilegioUsuario"] == 1){
 		?>
 			<body>
 				<nav class="navbar navbar-default">
