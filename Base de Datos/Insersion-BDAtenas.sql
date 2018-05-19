@@ -26,10 +26,6 @@ INSERT INTO Puesto (CodigoPuesto, NombrePuesto)
 -- Insersión del primer Rango, en este Caso Administrador
 INSERT INTO Rango (CodigoRango, RangoMinimo, RangoMaximo)
 			VALUES('0001', 999999.99, 999999.99);
-			
--- Insersión del primer Grupo, en este caso Administradores
-INSERT INTO Grupo (CodigoGrupo, NombreGrupo, idRango, idPuesto)
-			VALUES('0001', 'Administradores', 1, 1);
 
 -- Insersión del primer Permiso, en este cado Administrador
 INSERT INTO Permiso (TipoPermiso)
@@ -42,24 +38,24 @@ INSERT INTO Rol(NombreRol, idPermiso)
 -- Insersión de los usuarios adminstradores del sistema.
 INSERT INTO Usuario (NombreUsuario, ApellidoUsuario, TelefonoUsuario,
                      DireccionUsuario, CorreoUsuario, NombreInicioSesionUsuario,
-					 ContraseniaUsuario, idPuesto, idRol, idGrupo, idRango)
+					 ContraseniaUsuario, idPuesto, idRol, idRango)
               VALUES('Gemis Daniel', 'Guevara Villeda', '1234-5678', 'Ciudad',
-                     'admin@site.com', 'gguevara', 'e60c177bc95bb0d56e2f95ac372bde51', 1, 1, 1, 1);
+                     'admin@site.com', 'gguevara', 'e60c177bc95bb0d56e2f95ac372bde51', 1, 1, 1);
 
 INSERT INTO Usuario (NombreUsuario, ApellidoUsuario, TelefonoUsuario,
                      DireccionUsuario, CorreoUsuario, NombreInicioSesionUsuario,
-					 ContraseniaUsuario, idPuesto, idRol, idGrupo, idRango)
+					 ContraseniaUsuario, idPuesto, idRol, idRango)
               VALUES('Gustavo Rodolfo', 'Arriaza', '1234-5678', 'Ciudad',
-                     'admin@site.com', 'garriaza', '0b97363041ab9c0a7e8a8e9a6e1394ac', 1, 1, 1, 1);
+                     'admin@site.com', 'garriaza', '0b97363041ab9c0a7e8a8e9a6e1394ac', 1, 1, 1);
 					
 INSERT INTO Usuario (NombreUsuario, ApellidoUsuario, TelefonoUsuario,
                      DireccionUsuario, CorreoUsuario, NombreInicioSesionUsuario,
-					 ContraseniaUsuario, idPuesto, idRol, idGrupo, idRango)
+					 ContraseniaUsuario, idPuesto, idRol, idRango)
               VALUES('Oscar Danilo', 'Pérez Juárez', '1234-5678', 'Ciudad',
-                     'admin@site.com', 'operez', 'ddf300630c30a126a7ac2c759342dd1a', 1, 1, 1, 1);
+                     'admin@site.com', 'operez', 'ddf300630c30a126a7ac2c759342dd1a', 1, 1, 1);
 					 
 INSERT INTO Usuario (NombreUsuario, ApellidoUsuario, TelefonoUsuario,
                      DireccionUsuario, CorreoUsuario, NombreInicioSesionUsuario,
-					 ContraseniaUsuario, idPuesto, idRol, idGrupo, idRango)
+					 ContraseniaUsuario, idPuesto, idRol, idRango)
               VALUES('Oseas Eli', 'Lima Juárez', '1234-5678', 'Ciudad',
-                     'admin@site.com', 'olima', 'befefca1f3e124665f72f6ec168acfff', 1, 1, 1, 1);
+                     'admin@site.com', 'olima', 'befefca1f3e124665f72f6ec168acfff', 1, 1, 1);

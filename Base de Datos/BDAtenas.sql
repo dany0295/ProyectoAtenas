@@ -34,25 +34,6 @@ CREATE OR REPLACE TABLE Rango(
 	RangoMaximo			FLOAT			NOT NULL
 );
 
--- Creación de la tabla que contiene el grupo al que pertene el usuario
-CREATE OR REPLACE TABLE Grupo(
-	idGrupo				TINYINT			NOT NULL			PRIMARY KEY			AUTO_INCREMENT,
-	CodigoGrupo			VARCHAR(10)		NOT NULL,
-	NombreGrupo			VARCHAR(40)		NOT NULL,
-	idRango				TINYINT			NOT NULL,
-	idPuesto			TINYINT			NOT NULL,
-	INDEX (idRango),
-	FOREIGN	KEY	(idRango)
-        REFERENCES Rango(idRango)
-        ON DELETE CASCADE
-        ON UPDATE NO ACTION,
-	INDEX (idPuesto),
-	FOREIGN	KEY	(idPuesto)
-        REFERENCES Puesto(idPuesto)
-        ON DELETE CASCADE
-        ON UPDATE NO ACTION
-);
-
 -- Creación de la tabla que contiene los permisos que tendra el usuario
 CREATE OR REPLACE TABLE Permiso(
 	idPermiso			TINYINT			NOT NULL			PRIMARY KEY			AUTO_INCREMENT,
@@ -83,7 +64,6 @@ CREATE OR REPLACE TABLE Usuario(
 	ContraseniaUsuario	TEXT			NOT NULL,
 	idPuesto			TINYINT			NOT NULL,
 	idRol				TINYINT			NOT NULL,
-	idGrupo				TINYINT			NOT NULL,
 	idRango				TINYINT			NOT NULL,
 	INDEX (idPuesto),
 	FOREIGN	KEY	(idPuesto)
@@ -93,11 +73,6 @@ CREATE OR REPLACE TABLE Usuario(
 	INDEX (idRol),
 	FOREIGN	KEY	(idRol)
         REFERENCES Rol(idRol)
-        ON DELETE CASCADE
-        ON UPDATE NO ACTION,
-	INDEX (idGrupo),
-	FOREIGN	KEY	(idGrupo)
-        REFERENCES Grupo(idGrupo)
         ON DELETE CASCADE
         ON UPDATE NO ACTION,
 	INDEX (idRango),
@@ -140,6 +115,8 @@ CREATE OR REPLACE TABLE Chequera(
 	CodigoChequera		VARCHAR(10)		NOT NULL,
 	NombreChequera		VARCHAR(50)		NOT NULL,
 	idCuenta			TINYINT			NOT NULL,
+	RangoMinimoChequera	SMALLINT		NOT NULL,
+	RangoMaximoChequera	SMALLINT		NOT NULL,
 	INDEX (idCuenta),
 	FOREIGN	KEY	(idCuenta)
         REFERENCES Cuenta(idCuenta)
