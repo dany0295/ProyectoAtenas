@@ -39,14 +39,20 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bancos<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="CrearBanco.php">Crear banco</a></li>
-								<li><a href="#">Eliminar banco</a></li>
-								<li><a href="#">Editar banco</a></li>
+								<li><a href="Banco.php">Lista de bancos</a></li>
+								
 							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Crear chequera</a></li>
-							<li><a href="#">Mantenimiento de chequeras</a></li>
+							<li><a href="CrearChequera.php">Crear chequera</a></li>
+							<li><a href="Chequera.php">Lista de chequeras</a></li>
+						  </ul>
+						</li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
+						  <ul class="dropdown-menu" role="menu">
+							<li><a href="#">Crear cheque</a></li>
+							<li><a href="Listacheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administración de Niveles<span class="caret"></span></a>
@@ -63,20 +69,19 @@
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Cuentas</a></li>
-							<li><a href="#">Mantenimiento de Cuentas</a></li>
+							<li><a href="#">Crear cuenta</a></li>
+							<li><a href="#">Listado de cuentas</a></li>
 						  </ul>
 						</li>
 						
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Liberar un cheque</a></li>
-							<li><a href="#">Cheques en cola</a></li>
-						  </ul>
+							<li><a href="LiberarCheque.php">Liberar un cheque</a></li>
+							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Impresión de Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Ceques en cola</a></li>
+							<li><a href="Listacheque.php">Lista de cheques en cola</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
@@ -85,9 +90,8 @@
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión de Usuarios<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Crear usuario</a></li>
-							<li><a href="#">Eliminar Usuario</a></li>
-							<li><a href="#">Editar usuario</a></li>
+							<li><a href="CrearUsuario.php">Crear usuario</a></li>
+							<li><a href="Usuario.php">Lista de Usuarios</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cerrar Sesión<span class="caret"></span></a>
@@ -110,26 +114,85 @@
 							<h1 class="text-center">Creación de cheques</h1>
 							</div>
 						</div>
+
+
+				
 						<!-- Contenedor del ícono del Usuario -->
-						
+						<!--
 							<div class="Icon">
 								<!-- Icono de usuario -->
+						<!--		
 								<span class="glyphicon glyphicon-plus"></span>
 							</div>
+						-->
 						
-					<!-- Nombre del usuario -->
+	
+				<!--Titulo de cheque -->		
+		<!--		<div class="container">
+				  <div class="row text-center">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xs-3 col-xs-offset-1">
+							<h3 class="text-center">Banco Industrial</h3>
+							</div>
+						</div>
+						<br>
+		-->				
 					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
+						<div class="col-xs-7 col-xs-offset-1">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon" id="sizing-addon5">Tipo Banco</span>
+								<input type="text" class="form-control" name="TipoBanco" placeholder="Seleccione el Banco" id="TipoBanco" aria-describedby="sizing-addon1" required>
+							</div>
+						</div>
+						<p>Numero</p>
+					</div>
+						<br>
+						
+				<!-- Lugar y fecha -->
+					<div class="row">
+						<div class="col-xs-7 col-xs-offset-1">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon" id="sizing-addon1">Lugar y Fecha</span>
+								<input type="text" class="form-control" name="LugarFecha" placeholder="Lugar y Fecha" id="NLugarFecha" aria-describedby="sizing-addon1" required>
+							<br>
+							</div>
+						</div>
+				<!-- Monto -->
+					<div class="row">
+						<div class="col-xs-3 col-xs-offset+1">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon" id="sizing-addon1">Monto</span>
+								<input type="text" class="form-control" name="Monto" placeholder="Monto" id="Monto" aria-describedby="sizing-addon1" required>
+							</div>
+						</div>
+					</div>
+					</br>
+					<!-- Pago a la orden -->
+					<div class="row">
+						<div class="col-xs-10 col-xs-offset+1 col-xs-offset-1">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon" id="sizing-addon1">Pagar a la Orden de:</span>
+								<input type="text" class="form-control" name="Pago" placeholder="Pagar a la orden de:" id="Pago" aria-describedby="sizing-addon1" required>
+							</div>
+						</div>
+					</div>
+					<br>
+					
+					<!-- Nombre del usuario -->
+					<!--
+					<div class="row">
+						<div class="col-xs-5 col-xs-offset-1">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
 								<input type="text" class="form-control" name="NombreUsuario" placeholder="Nombre" id="NombreUsuario" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
-					</div>
-					<br>
+					-->
 					<!-- Apellido del usuario -->
+					<!--
 					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
+						<div class="col-xs-5 col-xs-offset+1">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
 								<input type="text" class="form-control" name="ApellidoUsuario" placeholder="Apellido" id="ApellidoUsuario" aria-describedby="sizing-addon1" required>
@@ -137,7 +200,9 @@
 						</div>
 					</div>
 					<br>
+					-->
 					<!-- Teléfono del usuario -->
+					<!--
 					<div class="row">
 						<div class="col-xs-10 col-xs-offset-1">
 							<div class="input-group input-group-lg">
@@ -147,7 +212,9 @@
 						</div>
 					</div>
 					<br>
+					-->
 					<!-- Dirección del usuario -->
+					<!--
 					<div class="row">
 						<div class="col-xs-10 col-xs-offset-1">
 							<div class="input-group input-group-lg">
@@ -157,7 +224,9 @@
 						</div>
 					</div>
 					<br>
+					-->
 					<!-- Correo del usuario -->
+					<!--
 					<div class="row">
 						<div class="col-xs-10 col-xs-offset-1">
 							<div class="input-group input-group-lg">
@@ -167,7 +236,9 @@
 						</div>
 					</div>
 					<br>
+					-->
 					<!-- Contraseña del usuario -->
+					<!--
 					<div class="row">
 						<div class="col-xs-10 col-xs-offset-1">
 							<div class="input-group input-group-lg">
@@ -177,7 +248,9 @@
 						</div>
 					</div>
 					<br>
+					-->
 					<!-- Repetición de contraseña del usuario -->
+					<!--
 					<div class="row">
 						<div class="col-xs-10 col-xs-offset-1">
 							<div class="input-group input-group-lg">
@@ -187,6 +260,7 @@
 						</div>
 					</div>
 					<br>
+					-->
 					<!-- Rol del usuario
 					<div class="row">
 						<div class="col-xs-10 col-xs-offset-1">
@@ -204,6 +278,7 @@
 					</div>
 					<br> -->
 					<!-- Puesto del usuario -->
+					<!--
 					<div class="row">
 						<div class="col-xs-10 col-xs-offset-1">
 							<div class="input-group input-group-lg">
@@ -225,6 +300,7 @@
 						</div>
 					</div>
 					<br>
+					-->
 					<!-- Resgistrar -->
 					<div class="row">
 						<div class="col-xs-12 col-xs-offset-1">

@@ -1,7 +1,7 @@
 <!--
-	Módulo de creación de Bancos
-	Jueves, 19 de abril el 2018
-	11:35 PM
+	Módulo de creación de Cuentas
+	Viernes, 19 de abril el 2018
+	12:51 PM
 	Gemis Daniel Guevara Villeda
 	UMG - Morales Izabal
 -->
@@ -16,7 +16,7 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet">
 <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
-<link rel="stylesheet" type="text/css" href="text/estilo.css">
+<link rel="stylesheet" type="text/css" href="text/estilo.css"> 
 
 </head>
 	<?php
@@ -28,7 +28,7 @@
 		?>
 			<body>
 				<nav class="navbar navbar-default">
-				  <div class="container-fluid">
+				  <div class="container-fluid"> 
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
 					  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
@@ -38,7 +38,7 @@
 					  <ul class="nav navbar-nav">
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bancos<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
-								<li><a href="#">Crear banco</a></li>
+								<li><a href="CrearBanco.php">Crear banco</a></li>
 								<li><a href="Banco.php">Lista de bancos</a></li>
 								
 							</ul>
@@ -70,7 +70,7 @@
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="Crearcuenta.php">Crear cuenta</a></li>
-							<li><a href="Cuenta.php">Listado de cuentas</a></li>
+							<li><a href="#">Listado de cuentas</a></li>
 						  </ul>
 						</li>
 						
@@ -101,82 +101,70 @@
 						</li>
 					  </ul>
 				</div>
-					<!-- /.navbar-collapse -->
+					<!-- /.navbar-collapse --> 
 				  </div>
-				  <!-- /.container-fluid -->
+				  <!-- /.container-fluid --> 
 				</nav>
-				<div class="form-group">
-					<form name="CrearBanco" action="CrearBanco.php" method="post">
 				<div class="container">
 				  <div class="row text-center">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-xs-6 col-xs-offset-3">
-							<h1 class="text-center">Registro de banco</h1>
+							<h1 class="text-center">Registro de cuenta</h1>
 							</div>
 						</div>
 						<!-- Contenedor del ícono -->
-
-							<div class="Icon">
-								<!-- Icono de home -->
-								<span class="glyphicon glyphicon-home"></span>
-							</div>
-					<!-- Codigo del banco -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="CodigoBanco" placeholder="Codigo" id="CodigoBanco" aria-describedby="sizing-addon1" required>
-							</div>
+						
+						<div class="Icon">
+							<!-- Icono de Dolar -->
+							<span class="glyphicon glyphicon-piggy-bank"></span>
 						</div>
-					</div>
-					<br>
-					<!-- Nombre del banco -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="NombreBanco" placeholder="Nombre" id="NombreBanco" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Dirección del usuario -->
+						
+					<!-- Tipo de Cuenta -->
 					<div class="row">
 						<div class="col-xs-10 col-xs-offset-1">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
-								<input type="text" class="form-control" name="DireccionBanco" placeholder="Dirección" id="DireccionBanco" aria-describedby="sizing-addon1" required>
+								<select class="form-control" name="BancoCuenta" id="BancoCuenta">
+								<option value="" disabled selected>Banco</option>
+									<option value="Industrial">Industrial</option>
+									<option value="Banrural">Banrural</option>
+									<option value="G&T">G&amp;T</option>
+								</select>
 							</div>
 						</div>
 					</div>
 					<br>
-					<!-- Correo del Banco -->
+					<!-- Número de cuenta -->
 					<div class="row">
 						<div class="col-xs-10 col-xs-offset-1">
 							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
-								<input type="email" class="form-control" name="CorreoBanco" placeholder="Correo" id="CorreoBanco" aria-describedby="sizing-addon1" required>
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-usd"></i></span>
+								<input type="text" class="form-control" name="NumeroCuenta" placeholder="Número de cuenta" id="NumeroCuenta" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
 					</div>
 					<br>
-					<!-- Sitio Web del Banco -->
+					<!-- Nombre de la cuenta -->
 					<div class="row">
 						<div class="col-xs-10 col-xs-offset-1">
 							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-globe"></i></span>
-								<input type="text" class="form-control" name="SitioWebBanco" placeholder="Sitio Web" id="SitioWebBanco" aria-describedby="sizing-addon1" required>
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+								<input type="text" class="form-control" name="NombreCuenta" placeholder="Nombre de la cuenta" id="NombreCuenta" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
 					</div>
 					<br>
-					<!-- Telefono del Banco -->
+					<!-- Tipo de Cuenta -->
 					<div class="row">
 						<div class="col-xs-10 col-xs-offset-1">
 							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-earphone"></i></span>
-								<input type="tel" class="form-control" name="TelefonoBanco" placeholder="Telefono" id="TelefonoBanco" aria-describedby="sizing-addon1" required>
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+								<select class="form-control" name="TipoCuenta" id="TipoCuenta">
+								<option value="" disabled selected>Seleccione el tipo de cuenta</option>
+									<option value="Monetario">Monetario</option>
+									<option value="Ahorro">Ahorro</option>
+								</select>
 							</div>
 						</div>
 					</div>
@@ -186,7 +174,7 @@
 						<div class="col-xs-12 col-xs-offset-1">
 							<div class="input-group input-group-lg">
 								<div clss="btn-group">
-									<button type="submit" class="btn btn-primary" id="CrearBanco" name="enviar">Registrar</button>
+									<button type="button" class="btn btn-primary">Registrar</button>
 									<button type="button" class="btn btn-danger">Cancelar</button>
 								</div>
 							</div>
@@ -194,44 +182,10 @@
 					</div>
 					<br>
 				</div>
-				</div>
-				</form>
-				</div>
-				
-				<?php
-					include_once "Seguridad/conexion.php";
-					if (isset($_POST['enviar'])) {
-						// Obtenemos los valores de todos los campos y los almacenamos en variables
-						$CodigoBanco=$_POST['CodigoBanco'];
-						$NombreBanco=$_POST['NombreBanco'];
-						$DireccionBanco=$_POST['DireccionBanco'];
-						$CorreoBanco=$_POST['CorreoBanco'];
-						$SitioWebBanco=$_POST['SitioWebBanco'];
-						$TelefonoBanco=$_POST['TelefonoBanco'];
-						
-						// Creamos la consulta para la insersión de los datos
-						$Consulta = "INSERT INTO Banco(CodigoBanco, NombreBanco, DireccionBanco, CorreoBanco, SitioWebBanco, TelefonoBanco) 
-						Values('".$CodigoBanco."','".$NombreBanco."', '".$DireccionBanco."', '".$CorreoBanco."', '".$SitioWebBanco."', '".$TelefonoBanco."');";
-							
-						if(!$resultado = $mysqli->query($Consulta)){
-							echo "Error: La ejecución de la consulta falló debido a: \n";
-							echo "Query: " . $Consulta . "\n";
-							echo "Error: " . $mysqli->errno . "\n";
-							exit;
-						}
-						else{
-						?>
-						<div class="alert alert-success">Banco registrado</div>
-						<?php
-						}
-					}
-				?>
-				
-				
-				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
 
-				<!-- Include all compiled plugins (below), or include individual files as needed -->
+				<!-- Include all compiled plugins (below), or include individual files as needed --> 
 				<script src="js/bootstrap.js"></script>
 				<!-- Pie de página, se utilizará el mismo para todos. -->
 				<footer>
@@ -243,11 +197,11 @@
 						</div>
 					</div>
 					<hr>
-				</footer>
+				</footer> 
 			</body>
 	<?php
 		// De lo contrario lo redirigimos al inicio de sesión
-			}
+			} 
 			else{
 				echo "usuario no valido";
 				header("location:index.php");

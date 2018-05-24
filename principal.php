@@ -41,16 +41,22 @@
 					<div class="collapse navbar-collapse" id="defaultNavbar1">
 					  <ul class="nav navbar-nav">
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bancos<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="CrearBanco.php">Crear banco</a></li>
-							<li><a href="#">Eliminar banco</a></li>
-							<li><a href="#">Editar banco</a></li>
-						  </ul>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="CrearBanco.php">Crear banco</a></li>
+								<li><a href="Banco.php">Lista de bancos</a></li>
+								
+							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Crear chequera</a></li>
-							<li><a href="#">Mantenimiento de chequeras</a></li>
+							<li><a href="CrearChequera.php">Crear chequera</a></li>
+							<li><a href="Chequera.php">Lista de chequeras</a></li>
+						  </ul>
+						</li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
+						  <ul class="dropdown-menu" role="menu">
+							<li><a href="Crearcheque.php">Crear cheque</a></li>
+							<li><a href="Listacheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administración de Niveles<span class="caret"></span></a>
@@ -67,19 +73,19 @@
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="CrearCuenta.php">Crear Cuenta</a></li>
-							<li><a href="#">Mantenimiento de Cuentas</a></li>
+							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
+							<li><a href="Cuenta.php">Listado de cuentas</a></li>
 						  </ul>
 						</li>
+						
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Liberar un cheque</a></li>
-							<li><a href="#">Cheques en cola</a></li>
-						  </ul>
+							<li><a href="LiberarCheque.php">Liberar un cheque</a></li>
+							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Impresión de Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Ceques en cola</a></li>
+							<li><a href="Listacheque.php">Lista de cheques en cola</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
@@ -89,8 +95,7 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión de Usuarios<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="CrearUsuario.php">Crear usuario</a></li>
-							<li><a href="#">Eliminar Usuario</a></li>
-							<li><a href="#">Editar usuario</a></li>
+							<li><a href="Usuario.php">Lista de Usuarios</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cerrar Sesión<span class="caret"></span></a>
