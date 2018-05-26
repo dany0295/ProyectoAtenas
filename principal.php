@@ -118,7 +118,7 @@
 				</div>
 				<div class="container">
 				  <div class="row text-center">
-					<div class="col-md-10 col-md-offset-1">Página principal de administración del sistema del proyecto Atenas, S. A. de curso Base de datos II.</div>
+					<div class="col-md-10 col-md-offset-1">Página principal de administración del sistema del proyecto Atenas, S. A. del curso Base de datos II.</div>
 				  </div>
 				  <!--
 				  <div class="row">

@@ -105,98 +105,94 @@
 				  </div>
 				  <!-- /.container-fluid -->
 				</nav>
+				
 				<div class="form-group">
-					<form name="CrearBanco" action="CrearBanco.php" method="post">
-				<div class="container">
-				  <div class="row text-center">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-6 col-xs-offset-3">
-							<h1 class="text-center">Registro de banco</h1>
-							</div>
-						</div>
-						<!-- Contenedor del ícono -->
-
-							<div class="Icon">
-								<!-- Icono de home -->
-								<span class="glyphicon glyphicon-home"></span>
-							</div>
-					<!-- Codigo del banco -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="CodigoBanco" placeholder="Codigo" id="CodigoBanco" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Nombre del banco -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="NombreBanco" placeholder="Nombre" id="NombreBanco" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Dirección del usuario -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
-								<input type="text" class="form-control" name="DireccionBanco" placeholder="Dirección" id="DireccionBanco" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Correo del Banco -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
-								<input type="email" class="form-control" name="CorreoBanco" placeholder="Correo" id="CorreoBanco" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Sitio Web del Banco -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-globe"></i></span>
-								<input type="text" class="form-control" name="SitioWebBanco" placeholder="Sitio Web" id="SitioWebBanco" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Telefono del Banco -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-earphone"></i></span>
-								<input type="tel" class="form-control" name="TelefonoBanco" placeholder="Telefono" id="TelefonoBanco" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Resgistrar -->
-					<div class="row">
-						<div class="col-xs-12 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<div clss="btn-group">
-									<button type="submit" class="btn btn-primary" id="CrearBanco" name="enviar">Registrar</button>
-									<button type="button" class="btn btn-danger">Cancelar</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<br>
-				</div>
-				</div>
-				</form>
-				</div>
+						<div class="container">
+							<div class="row text-center">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-xs-6 ">
+										<h1 class="text-center">Bancos registrados</h1>
+										</div>
+										<!-- Contenedor del ícono del Usuario -->
+										<div class="col-xs-6 Icon">
+											<!-- Icono de usuario -->
+											<span class="glyphicon glyphicon-home"></span>
+										</div>
+									</div>
+									<br>
+									<div class="table-responsive">          
+										<table class="table">
+											<!-- Título -->
+											<thead>
+												<!-- Contenido -->
+												<tr>
+													<th>#</th>
+													<th>Nombre</th>
+													<th>Apellido</th>
+													<th>Dirección</th>
+													<th>No. de DPI</th>
+													<th>No. de teléfono</th>
+													<th>Fecha de Nacimiento</th>
+													<th>Correo</th>
+													<th>Nombre de inicio de sesión</th>
+													<th>Privilegio</th>
+												</tr>
+											</thead>
+											<!-- Cuerpo de la tabla -->
+											<tbody>
+												<!-- Contenido de la tabla -->
+													<!-- Acá mostraremos los usuarios y seleccionaremos el que deseamos eliminar -->
+													<?php
+														// Primero hacemos la consulta en la tabla de persona
+														include_once "Seguridad/conexion.php";								
+														$VerPersonas = "SELECT * FROM persona";
+														// Hacemos la consulta
+														$resultado = $mysqli->query($VerPersonas);
+															while ($row = mysqli_fetch_array($resultado)){
+																// Obtenemos el nombre de usuario y privilegio de cada persona
+																// Primero haremos la consulta
+																$VerUsuario = "SELECT * FROM usuario WHERE idPersona='".$row['idPersona']."'";
+																// Ejecutamos la consulta
+																$ResultadoConsultaUsuario = $mysqli->query($VerUsuario);
+																// Guardamos la consulta en un array
+																$ResultadoConsulta = $ResultadoConsultaUsuario->fetch_assoc();
+																// Nombre de usuario
+																$NombreDeUsuario = $ResultadoConsulta['NombreUsuario'];
+																// Privilegio de usuario
+																$PrivilegioDeUsuario = $ResultadoConsulta['PrivilegioUsuario'];
+																?>
+																<tr>
+																<td><span id="idPersonaEliminar<?php echo $row['idPersona'];?>"><?php echo $row['idPersona'] ?></span></td>
+																<td><span id="NombreUsuario<?php echo $row['idPersona'];?>"><?php echo $row['NombrePersona'] ?></span></td>
+																<td><span id="ApellidoUsuario<?php echo $row['idPersona'];?>"><?php echo $row['ApellidoPersona'] ?></span></td>
+																<td><span id="DireccionUsuario<?php echo $row['idPersona'];?>"><?php echo $row['DireccionPersona'] ?></span></td>
+																<td><span id="DPIUsuario<?php echo $row['idPersona'];?>"><?php echo $row['DPIPersona'] ?></span></td>
+																<td><span id="TelefonoUsuario<?php echo $row['idPersona'];?>"><?php echo $row['TelefonoPersona'] ?></span></td>
+																<td><span id="FechaNacUsuario<?php echo $row['idPersona'];?>"><?php echo $row['FechaNacPersona'] ?></span></td>
+																<td><span id="CorreoUsuario<?php echo $row['idPersona'];?>"><?php echo $row['CorreoPersona'] ?></span></td>
+																<td><?php echo $NombreDeUsuario ?></td>
+																<td><span id="PrivilegioUsuario<?php echo $row['idPersona'];?>"><?php echo $PrivilegioDeUsuario ?></span></td>
+																<td>
+																	<!-- Edición -->
+																	<div>
+																		<div class="input-group input-group-lg">
+																			<button type="button" class="btn btn-success EditarUsuario" value="<?php echo $row['idPersona']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<!-- Eliminación -->
+																	<div>
+																		<div class="input-group input-group-lg">
+																			<button type="button" class="btn btn-danger EliminarUsuario" value="<?php echo $row['idPersona']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
+																		</div>
+																	</div>
+																</td>
+																</tr>
+													<?php
+															}
+													?>
 				
 				<?php
 					include_once "Seguridad/conexion.php";

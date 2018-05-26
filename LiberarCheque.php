@@ -111,7 +111,7 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-xs-6 col-xs-offset-3">
-							<h1 class="text-center">Creación de cheques</h1>
+							<h1 class="text-center">Liberar Cheques</h1>
 							</div>
 						</div>
 

@@ -111,7 +111,7 @@
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-xs-6 col-xs-offset-3">
-							<h1 class="text-center">Creación de cheques</h1>
+							<h1 class="text-center">Creación de chequeras</h1>
 							</div>
 						</div>
 
@@ -141,14 +141,33 @@
 					<div class="row">
 						<div class="col-xs-7 col-xs-offset-1">
 							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon5"><p>Tipo Banco</p></span>
+								<span class="input-group-addon" id="sizing-addon5"><p>Nombre Chequera</p></span>
 								<input type="text" class="form-control" name="TipoBanco" placeholder="Seleccione el Banco" id="TipoBanco" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
-						<p>Numero</p>
+						<p>Codigo</p>
 						
 						<br>
+				
+		        <!-- Propietario -->
+					<div class="row">
+						<div class="col-xs-7 col-xs-offset-1">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon" id="sizing-addon1"><p>Nombre Propietario</p></span>
+								<input type="text" class="form-control" name="LugarFecha" placeholder="Nombre" id="NLugarFecha" aria-describedby="sizing-addon1" required>
+							<br>
+							</div>
+						</div>
 						
+						<div class="row">
+						<div class="col-xs-3 col-xs-offset+1">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon" id="sizing-addon1"><p>Cantidad De Cheques</p></span>
+								<input type="text" class="form-control" name="Monto" placeholder="Monto" id="Monto" aria-describedby="sizing-addon1" required>
+							</div>
+						</div>
+					</div>
+				
 				<!-- Lugar y fecha -->
 					<div class="row">
 						<div class="col-xs-7 col-xs-offset-1">
