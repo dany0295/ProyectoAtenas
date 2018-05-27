@@ -23,6 +23,7 @@
 		//include_once 'Seguridad/conexion.php';
 		// Incluimos el archivo que valida si hay una sesión activa
 		include_once "Seguridad/seguro.php";
+		include_once "Seguridad/conexion.php";
 		// Si en la sesión activa tiene privilegios de administrador puede ver el formulario
 		if($_SESSION["PrivilegioUsuario"] == 1){
 		?>
@@ -55,17 +56,7 @@
 							<li><a href="Listacheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administración de Niveles<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
-						  </ul>
-						</li>
+						
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
@@ -114,219 +105,74 @@
 							<h1 class="text-center">Creación de chequeras</h1>
 							</div>
 						</div>
-
-
-				
-						<!-- Contenedor del ícono del Usuario -->
-						<!--
-							<div class="Icon">
-								<!-- Icono de usuario -->
-						<!--		
-								<span class="glyphicon glyphicon-plus"></span>
-							</div>
-						-->
-						
-	
-				<!--Titulo de cheque -->		
-		<!--		<div class="container">
-				  <div class="row text-center">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-3 col-xs-offset-1">
-							<h3 class="text-center">Banco Industrial</h3>
-							</div>
-						</div>
-						<br>
-		-->				
-					<div class="row">
-						<div class="col-xs-7 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon5"><p>Nombre Chequera</p></span>
-								<input type="text" class="form-control" name="TipoBanco" placeholder="Seleccione el Banco" id="TipoBanco" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-						<p>Codigo</p>
-						
-						<br>
-				
-		        <!-- Propietario -->
-					<div class="row">
-						<div class="col-xs-7 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><p>Nombre Propietario</p></span>
-								<input type="text" class="form-control" name="LugarFecha" placeholder="Nombre" id="NLugarFecha" aria-describedby="sizing-addon1" required>
-							<br>
-							</div>
-						</div>
-						
-						<div class="row">
-						<div class="col-xs-3 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><p>Cantidad De Cheques</p></span>
-								<input type="text" class="form-control" name="Monto" placeholder="Monto" id="Monto" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-				
-				<!-- Lugar y fecha -->
-					<div class="row">
-						<div class="col-xs-7 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><p>Lugar y Fecha</p></span>
-								<input type="text" class="form-control" name="LugarFecha" placeholder="Lugar y Fecha" id="NLugarFecha" aria-describedby="sizing-addon1" required>
-							<br>
-							</div>
-						</div>
-						
-						<div class="row">
-						<div class="col-xs-3 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><p>Monto</p></span>
-								<input type="text" class="form-control" name="Monto" placeholder="Monto" id="Monto" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					
-					
-								<!-- Pago a la orden -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><p>Pagar a la Orden de:</p></span>
-								<input type="text" class="form-control" name="Pago" placeholder="Pagar a la orden de:" id="Pago" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					
-					<!-- Nombre del usuario -->
-					<!--
+				<!--Codigo de Chequera-->	
 					<div class="row">
 						<div class="col-xs-5 col-xs-offset-1">
 							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-								<input type="text" class="form-control" name="NombreUsuario" placeholder="Nombre" id="NombreUsuario" aria-describedby="sizing-addon1" required>
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+								<input type="text" class="form-control" name="CodigoChequera" placeholder="Codigo de chequera" id="CodigoChequera" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
-					-->
-					<!-- Apellido del usuario -->
-					<!--
-					<div class="row">
+				<!--ID de la cuenta -->
 						<div class="col-xs-5 col-xs-offset+1">
 							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-								<input type="text" class="form-control" name="ApellidoUsuario" placeholder="Apellido" id="ApellidoUsuario" aria-describedby="sizing-addon1" required>
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+								<!-- Tipo de Banco -->
+											<select class="form-control" name="BancoCuenta" id="BancoCuenta">
+											<option value="" disabled selected>Seleccione Cuenta</option>
+												<!-- Contenido de la tabla -->
+													<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
+													<?php							
+														$VerCuenta = "SELECT * FROM Cuenta";
+														// Hacemos la consulta
+														$resultado = $mysqli->query($VerCuenta);			
+															while ($row = mysqli_fetch_array($resultado)){
+																?>
+																<option value="<?php echo $row['idCuenta'];?>"><?php echo $row['NombreCuenta'] ?></option>
+													<?php
+															}
+													?>
+													</select>
 							</div>
 						</div>
 					</div>
 					<br>
-					-->
-					<!-- Teléfono del usuario -->
-					<!--
+					<!--Nombre chequera-->
 					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
+						<div class="col-xs-5 col-xs-offset-1">
 							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-earphone"></i></span>
-								<input type="tel" class="form-control" name="TelefonoUsuario" placeholder="Teléfono" id="TelefonoUsuario" aria-describedby="sizing-addon1" required>
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+								<input type="text" class="form-control" name="NombreChequera" placeholder="Nombre Chequera" id="NombreChequera" aria-describedby="sizing-addon1" required>
+							</div>
+						</div>
+						
+						<!--Rango Inicial Chquera-->
+						<div class="col-xs-5 col-xs-offset+1">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+								<input type="text" class="form-control" name="RangoMinimoChequera" placeholder="Rango inicial chequera" id="NombreChequera" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
 					</div>
 					<br>
-					-->
-					<!-- Dirección del usuario -->
-					<!--
+					
+					<!--Rango Final Chequera-->
 					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
+						<div class="col-xs-5 col-xs-offset-1">
 							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
-								<input type="text" class="form-control" name="DireccionUsuario" placeholder="Dirección" id="DireccionUsuario" aria-describedby="sizing-addon1" required>
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+								<input type="text" class="form-control" name="RangoMaximoChequera" placeholder="Rango Final Chequera" id="RangoMaximoChequera" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
 					</div>
 					<br>
-					-->
-					<!-- Correo del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
-								<input type="email" class="form-control" name="CorreoUsuario" placeholder="Correo" id="CorreoUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Contraseña del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<input type="password" class="form-control" name="PasswordUsuario" placeholder="Contraseña" id="PaswordUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Repetición de contraseña del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<input type="password" class="form-control" name="RePasswordUsuario" placeholder="Ingrese nuevamente la contraseña" id="RePaswordUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Rol del usuario
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<select class="form-control" name="RolUsuario" id="RolUsuario">
-								<option value="" disabled selected>Selecciona el rol del usuario</option>
-									<option value="Administrador">Administrador</option>
-									<option value="Auditor">Auditor</option>
-									<option value="Gerente">Gerente</option>
-									<option value="Pagador">Pagador</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br> -->
-					<!-- Puesto del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<select class="form-control" name="PuestoUsuario" id="PuestoUsuario">
-								<option value="" disabled selected>Puesto</option>
-									<optgroup label="Gerencia">
-										<option value="GerenteGeneral">Gerente General</option>
-									</optgroup>
-									<optgroup label="Auditoría">
-										<option value="JefeAuditoría">Jefe de Auditoría</option>
-										<option value="AsistenteAuditoria">Asistente de Auditoría</option>
-									</optgroup>
-									<optgroup label="Pagos">
-										<option value="JefePagos">Jefe de Pagos</option>
-									</optgroup>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
+					
 					<!-- Resgistrar -->
 					<div class="row">
 						<div class="col-xs-12 col-xs-offset-1">
 							<div class="input-group input-group-lg">
 								<div clss="btn-group">
-									<button type="button" class="btn btn-primary">Registrar</button>
+									<button type="submit" class="btn btn-primary" id="CrearChequera" name="enviar">Registrar</button>
 									<button type="button" class="btn btn-danger">Cancelar</button>
 								</div>
 							</div>
@@ -334,6 +180,36 @@
 					</div>
 					<br>
 				</div>
+				<!--Registramos Chequera-->
+				<?php
+					
+					if (isset($_POST['enviar'])) {
+						// Obtenemos los valores de todos los campos y los almacenamos en variables
+						$CodigoChequera=$_POST['CodigoChequera'];
+						$NumeroCuenta=$_POST['NombreChequera'];
+						$RangoMinimoChequera=$_POST['RangoMinimoChequera'];
+						$RangoMaximoChequera=$_POST['RangoMaximoChequera'];
+												
+						// Creamos la consulta para la inserción de los datos
+						$Consulta = "INSERT INTO Chequera(CodigoChequera, NombreChequera, idCuenta, RangoMinimoChequera, RangoMaximoChequera) 
+						Values('".$CodigoChequera."', '".$NombreChequera."', '".$BancoCuenta."', '".$RangoMinimoChequera."', '".$RangoMaximoChequera."');";
+							
+						if(!$resultado = $mysqli->query($Consulta)){
+							echo "Error: La ejecución de la consulta falló debido a: \n";
+							echo "Query: " . $Consulta . "\n";
+							echo "Error: " . $mysqli->errno . "\n";
+							exit;
+						}
+						else{
+						?>
+						<div class="alert alert-success">Cuenta registrada</div>
+						<?php
+						}
+					}
+				?>
+				
+				
+				
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
 
