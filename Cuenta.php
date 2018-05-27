@@ -1,7 +1,7 @@
 <!--
-	Módulo de creación de Cuentas
-	Viernes, 19 de abril el 2018
-	12:51 PM
+	Módulo de creación de Usuarios
+	Martes, 27 de mayo del 2018
+	02:35 PM
 	Gemis Daniel Guevara Villeda
 	UMG - Morales Izabal
 -->
@@ -20,9 +20,10 @@
 
 </head>
 	<?php
-		//include_once 'Seguridad/conexion.php';
 		// Incluimos el archivo que valida si hay una sesión activa
 		include_once "Seguridad/seguro.php";
+		// Primero hacemos la consulta en la tabla de persona
+		include_once "Seguridad/conexion.php";
 		// Si en la sesión activa tiene privilegios de administrador puede ver el formulario
 		if($_SESSION["PrivilegioUsuario"] == 1){
 		?>
@@ -32,7 +33,7 @@
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
 					  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-					  <a class="navbar-brand" href="#">Administración</a></div>
+					  <a class="navbar-brand" href="principal.php">Administración</a></div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="defaultNavbar1">
 					  <ul class="nav navbar-nav">
@@ -70,7 +71,7 @@
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="Crearcuenta.php">Crear cuenta</a></li>
-							<li><a href="#">Listado de cuentas</a></li>
+							<li><a href="Cuenta.php">Listado de cuentas</a></li>
 						  </ul>
 						</li>
 						
@@ -90,7 +91,7 @@
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión de Usuarios<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="CrearUsuario.php">Crear usuario</a></li>
+							<li><a href="#">Crear usuario</a></li>
 							<li><a href="Usuario.php">Lista de Usuarios</a></li>
 						  </ul>
 						</li>
@@ -105,94 +106,266 @@
 				  </div>
 				  <!-- /.container-fluid --> 
 				</nav>
-				<div class="container">
-				  <div class="row text-center">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-6 col-xs-offset-3">
-							<h1 class="text-center">Registro de cuenta</h1>
-							</div>
-						</div>
-						<!-- Contenedor del ícono -->
-						
-						<div class="Icon">
-							<!-- Icono de Dolar -->
-							<span class="glyphicon glyphicon-piggy-bank"></span>
-						</div>
-						
-					<!-- Tipo de Cuenta -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
-								<select class="form-control" name="BancoCuenta" id="BancoCuenta">
-								<option value="" disabled selected>Banco</option>
-									<option value="Industrial">Industrial</option>
-									<option value="Banrural">Banrural</option>
-									<option value="G&T">G&amp;T</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Número de cuenta -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-usd"></i></span>
-								<input type="text" class="form-control" name="NumeroCuenta" placeholder="Número de cuenta" id="NumeroCuenta" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Nombre de la cuenta -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="NombreCuenta" placeholder="Nombre de la cuenta" id="NombreCuenta" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Tipo de Cuenta -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<select class="form-control" name="TipoCuenta" id="TipoCuenta">
-								<option value="" disabled selected>Seleccione el tipo de cuenta</option>
-									<option value="Monetario">Monetario</option>
-									<option value="Ahorro">Ahorro</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Resgistrar -->
-					<div class="row">
-						<div class="col-xs-12 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<div clss="btn-group">
-									<button type="button" class="btn btn-primary">Registrar</button>
-									<button type="button" class="btn btn-danger">Cancelar</button>
+				<br>
+				<br>
+				<br>
+				<div class="form-group">
+						<div class="container">
+							<div class="row text-center">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-xs-6 ">
+										<h1 class="text-center">Usuarios registrados</h1>
+										</div>
+										<!-- Contenedor del ícono del Usuario -->
+										<div class="col-xs-6 Icon">
+											<!-- Icono de usuario -->
+											<span class="glyphicon glyphicon-user"></span>
+										</div>
+									</div>
+									<br>
+									<div class="table-responsive">          
+										<table class="table">
+											<!-- Título -->
+											<thead>
+												<!-- Contenido -->
+												<tr>
+													<th>#</th>
+													<th>Codigo de cuenta</th>
+													<th>Numero de cuenta</th>
+													<th>Nombre de cuenta</th>
+													<th>Tipo de cuenta</th>
+													<th>Saldo disponible</th>
+													<th>Banco</th>
+												</tr>
+											</thead>
+											<!-- Cuerpo de la tabla -->
+											<tbody>
+												<!-- Contenido de la tabla -->
+													<!-- Acá mostraremos los usuarios y seleccionaremos el que deseamos eliminar -->
+													<?php				
+														$VerCuentas = "SELECT * FROM cuenta";
+														// Hacemos la consulta
+														$resultado = $mysqli->query($VerCuentas);
+															while ($row = mysqli_fetch_array($resultado)){
+																// Obtenemos el nombre de usuario y privilegio de cada persona
+																// Primero haremos la consulta
+																$VerBanco = "SELECT * FROM banco WHERE idBanco='".$row['idBanco']."'";
+																// Ejecutamos la consulta
+																$ResultadoConsultaBanco = $mysqli->query($VerBanco);
+																// Guardamos la consulta en un array
+																$ResultadoConsulta = $ResultadoConsultaBanco->fetch_assoc();
+																// Nombre del banco
+																$NombreBanco = $ResultadoConsulta['NombreBanco'];
+																?>
+																<tr>
+																<td><span id="idCuenta<?php echo $row['idCuenta'];?>"><?php echo $row['idCuenta'] ?></span></td>
+																<td><span id="CodigoCuenta<?php echo $row['idCuenta'];?>"><?php echo $row['CodigoCuenta'] ?></span></td>
+																<td><span id="NumeroCuenta<?php echo $row['idCuenta'];?>"><?php echo $row['NumeroCuenta'] ?></span></td>
+																<td><span id="NombreCuenta<?php echo $row['idCuenta'];?>"><?php echo $row['NombreCuenta'] ?></span></td>
+																<td><span id="TipoCuenta<?php echo $row['idCuenta'];?>"><?php echo $row['TipoCuenta'] ?></span></td>
+																<td><span id="SaldoCuenta<?php echo $row['idCuenta'];?>"><?php echo $row['SaldoCuenta'] ?></span></td>
+																<td><?php echo $NombreBanco ?></td>
+																<td>
+																	<!-- Edición -->
+																	<div>
+																		<div class="input-group input-group-lg">
+																			<button type="button" class="btn btn-success EditarCuenta" value="<?php echo $row['idCuenta']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<!-- Eliminación -->
+																	<div>
+																		<div class="input-group input-group-lg">
+																			<button type="button" class="btn btn-danger EliminarCuenta" value="<?php echo $row['idCuenta']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
+																		</div>
+																	</div>
+																</td>
+																</tr>
+													<?php
+															}
+													?>
+											</tbody>
+										</table>
+									</div>								
 								</div>
 							</div>
 						</div>
 					</div>
-					<br>
 				</div>
+				<!-- Edit Modal-->
+					<div class="modal fade" id="frmEliminarCuenta" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<center><h1 class="modal-title" id="myModalLabel">Eliminar usuario</h1></center>
+								</div>
+								<form method="post" action="Usuario.php" id="myForm">
+								<div class="modal-body">
+									<p class="lead">¿Está seguro que desea eliminar al siguiente usuario?</p>
+									<div class="form-group input-group">
+										<input type="text" name="idUsuarioEliminacion" style="width:350px; visibility:hidden;" class="form-control" id="idAEliminar">
+										<br>
+										<label id="NombresApellidos"></label>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<input type="submit" name="EliminarUsuario" class="btn btn-danger" value="Eliminar Usuario">
+									<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+								</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				<!-- /.modal -->
+				<?php
+					// Código que recibe la información de eliminar usuario
+					if (isset($_POST['EliminarUsuario'])) {
+						// Guardamos el id en una variable
+						$idUsuarioaEliminar = $_POST['idUsuarioEliminacion'];
+						// Preparamos la consulta
+						$query = "DELETE FROM persona WHERE idPersona=".$idUsuarioaEliminar.";";
+						// Ejecutamos la consulta
+						if(!$resultado = $mysqli->query($query)){
+    					echo "Error: La ejecución de la consulta falló debido a: \n";
+    					echo "Query: " . $query . "\n";
+    					echo "Errno: " . $mysqli->errno . "\n";
+    					echo "Error: " . $mysqli->error . "\n";
+    					exit;
+						}
+						else{
+    						?>
+    						<div class="alert alert-warning"> Usuario eliminado </div>
+    						<?php
+							// Recargamos la página
+    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=Usuario.php\">"; 
+    					}
+					}
+					// Termina código para eliminar usuario
+					// Código para editar un usuario
+					if (isset($_POST['EditarUsuario'])) {
+						// Guardamos La información proveniente del formulario
+						$idPersonaEditar = $_POST['idEditar'];
+						$NombreEditar = $_POST['NombreEditar'];
+						$ApellidoEditar = $_POST['ApellidoEditar'];
+						$DireccionEditar = $_POST['DireccionEditar'];
+						$DPIEditar = $_POST['DPIEditar'];
+						$TelefonoEditar = $_POST['TelefonoEditar'];
+						$FechaNacEditar = $_POST['FechaNacEditar'];
+						$CorreoEditar = $_POST['CorreoEditar'];
+						$PrivilegioEditar = $_POST['PrivilegioEditar'];
+						
+						// Preparamos las consultas
+						$EditarTablaPersona = "UPDATE persona
+								  SET NombrePersona = '" .$NombreEditar."',
+									  ApellidoPersona = '" .$ApellidoEditar."',
+									  DireccionPersona = '".$DireccionEditar."',
+									  DPIPersona = '".$DPIEditar."',
+									  TelefonoPersona = '".$TelefonoEditar."',
+									  FechaNacPersona = '".$FechaNacEditar."',
+									  CorreoPersona = '".$CorreoEditar."'
+								  WHERE idPersona=".$idPersonaEditar.";";
+						$EditarTablaUsuario = "UPDATE usuario
+								  SET PrivilegioUsuario = '".$PrivilegioEditar."'
+								  WHERE idPersona=".$idPersonaEditar.";";
+						
+						// Ejecutamos la consulta para la tabla de persona
+						if(!$resultado = $mysqli->query($EditarTablaPersona)){
+							echo "Error: La ejecución de la consulta falló debido a: \n";
+							echo "Query: " . $EditarTablaPersona . "\n";
+							echo "Errno: " . $mysqli->errno . "\n";
+							echo "Error: " . $mysqli->error . "\n";
+							exit;
+						}
+						
+						// Ejecutamos la consulta para la tabla de usuario
+						if(!$resultado2 = $mysqli->query($EditarTablaUsuario)){
+							echo "Error: La ejecución de la consulta falló debido a: \n";
+							echo "Query: " . $EditarTablaUsuario . "\n";
+							echo "Errno: " . $mysqli->errno . "\n";
+							echo "Error: " . $mysqli->error . "\n";
+							exit;
+						}
+						else{
+							// Recargamos la página
+    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=Usuario.php\">"; 
+							?>
+							<div class="alert alert-success" role="alert">
+							  <strong>Usuario actualizado</strong>
+							</div>
+    						<?php
+    					}
+					}
+				?>
+				<!-- Edit Modal-->
+					<div class="modal fade" id="frmEditarCuena" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<center><h4 class="modal-title" id="myModalLabel">Editar usuario</h4></center>
+								</div>
+								<form method="post" action="Usuario.php" id="frmEdit">
+									<div class="modal-body">
+									<div class="container-fluid">
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">ID</span>
+												<input type="text" style="width:350px;" class="form-control" name="idCuentaEditar" id="idCuentaEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Código de cuenta</span>
+												<input type="text" style="width:350px;" class="form-control" name="CodigoCuentaEditar" id="CodigoCuentaEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Número de cuenta</span>
+												<input type="text" style="width:350px;" class="form-control" name="NumeroCuentaEditar" id="NumeroCuentaEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Nombre de la cuenta</span>
+												<input type="text" style="width:350px;" class="form-control" name="NombreCuentaEditar" id="NombreCuentaEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Tipo de Cuenta</span>
+												<select class="form-control" style="width:350px;" name="TipoCuentaEditar" id="TipoCuentaEditar">
+													<option value="" disabled selected>Tipo de Cuenta</option>
+															<option value="Monetario">Monetario</option>
+															<option value="Ahorro">Ahorro</option>
+													</select>
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Saldo disponible</span>
+												<input type="tel" style="width:350px;" class="form-control" name="SaldoCuentaEditar" id="SaldoCuentaEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Banco</span>
+												<input type="date" style="width:350px;" class="form-control" name="BandoCuentaEditar" id="BandoCuentaEditar">
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+										<input type="submit" name="EditarCuenta" class="btn btn-warning" value="Editar Cuenta">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				<!-- /.modal -->
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
 
 				<!-- Include all compiled plugins (below), or include individual files as needed --> 
 				<script src="js/bootstrap.js"></script>
+				<!-- Incluimos el script que nos dará el nombre de la persona para mostrarlo en el modal -->
+				<script src="js/custom.js"></script>
 				<!-- Pie de página, se utilizará el mismo para todos. -->
 				<footer>
 					<hr>
 					<div class="row">
 						<div class="text-center col-md-6 col-md-offset-3">
-							<h4>Atenas S. A.</h4>
+							<h4>Sistema de gestión de inventario</h4>
 							<p>Copyright &copy; 2018 &middot; All Rights Reserved &middot; <a href="http://www.umg.edu.gt/" >www.umg.edu.gt</a></p>
 						</div>
 					</div>
