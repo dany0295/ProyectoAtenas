@@ -107,92 +107,144 @@
 				  </div>
 				  <!-- /.container-fluid --> 
 				</nav>
-				<div class="container">
-				  <div class="row text-center">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-6 col-xs-offset-3">
-							<h1 class="text-center">Registro de cuenta</h1>
-							</div>
-						</div>
-						<!-- Contenedor del ícono -->
-						
-						<div class="Icon">
-							<!-- Icono de Dolar -->
-							<span class="glyphicon glyphicon-piggy-bank"></span>
-						</div>
-						
-					<!-- Tipo de Cuenta -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
-								<select class="form-control" name="BancoCuenta" id="BancoCuenta">
-								<option value="" disabled selected>Banco</option>
-									<!-- Contenido de la tabla -->
-										<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
-										<?php							
-											$VerBanco = "SELECT * FROM banco";
-											// Hacemos la consulta
-											$resultado = $mysqli->query($VerBanco);			
-												while ($row = mysqli_fetch_array($resultado)){
-													?>
-													<option value="idBanco<?php echo $row['idBanco'];?>"><?php echo $row['NombreBanco'] ?></option>
-										<?php
-												}
-										?>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Número de cuenta -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-usd"></i></span>
-								<input type="text" class="form-control" name="NumeroCuenta" placeholder="Número de cuenta" id="NumeroCuenta" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Nombre de la cuenta -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="NombreCuenta" placeholder="Nombre de la cuenta" id="NombreCuenta" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Tipo de Cuenta -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<select class="form-control" name="TipoCuenta" id="TipoCuenta">
-								<option value="" disabled selected>Seleccione el tipo de cuenta</option>
-									<option value="Monetario">Monetario</option>
-									<option value="Ahorro">Ahorro</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Resgistrar -->
-					<div class="row">
-						<div class="col-xs-12 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<div clss="btn-group">
-									<button type="button" class="btn btn-primary">Registrar</button>
-									<button type="button" class="btn btn-danger">Cancelar</button>
+				<div class="form-group">
+					<form name="CrearCuenta" action="CrearCuenta.php" method="post">
+						<div class="container">
+						  <div class="row text-center">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-xs-6 col-xs-offset-3">
+									<h1 class="text-center">Registro de cuenta</h1>
+									</div>
+								</div>
+								<!-- Contenedor del ícono -->
+								
+								<div class="Icon">
+									<!-- Icono de Dolar -->
+									<span class="glyphicon glyphicon-piggy-bank"></span>
+								</div>
+							
+							<!-- Codigo de cuenta -->
+							<div class="row">
+								<div class="col-xs-10 col-xs-offset-1">
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+										<input type="text" class="form-control" name="CodigoCuenta" placeholder="Codigo de cuenta" id="CodigoCuenta" aria-describedby="sizing-addon1" required>
+									</div>
 								</div>
 							</div>
+							<br>
+							
+							<!-- Tipo de Cuenta -->
+							<div class="row">
+								<div class="col-xs-10 col-xs-offset-1">
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
+										<select class="form-control" name="BancoCuenta" id="BancoCuenta">
+										<option value="" disabled selected>Banco</option>
+											<!-- Contenido de la tabla -->
+												<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
+												<?php							
+													$VerBanco = "SELECT * FROM banco";
+													// Hacemos la consulta
+													$resultado = $mysqli->query($VerBanco);			
+														while ($row = mysqli_fetch_array($resultado)){
+															?>
+															<option value="<?php echo $row['idBanco'];?>"><?php echo $row['NombreBanco'] ?></option>
+												<?php
+														}
+												?>
+										</select>
+									</div>
+								</div>
+							</div>
+							<br>
+							<!-- Número de cuenta -->
+							<div class="row">
+								<div class="col-xs-10 col-xs-offset-1">
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-usd"></i></span>
+										<input type="text" class="form-control" name="NumeroCuenta" placeholder="Número de cuenta" id="NumeroCuenta" aria-describedby="sizing-addon1" required>
+									</div>
+								</div>
+							</div>
+							<br>
+							<!-- Nombre de la cuenta -->
+							<div class="row">
+								<div class="col-xs-10 col-xs-offset-1">
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+										<input type="text" class="form-control" name="NombreCuenta" placeholder="Nombre de la cuenta" id="NombreCuenta" aria-describedby="sizing-addon1" required>
+									</div>
+								</div>
+							</div>
+							<br>
+							<!-- Tipo de Cuenta -->
+							<div class="row">
+								<div class="col-xs-10 col-xs-offset-1">
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+										<select class="form-control" name="TipoCuenta" id="TipoCuenta">
+										<option value="" disabled selected>Seleccione el tipo de cuenta</option>
+											<option value="Monetario">Monetario</option>
+											<option value="Ahorro">Ahorro</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<br>
+							<!-- Monto de la cuenta -->
+							<div class="row">
+								<div class="col-xs-10 col-xs-offset-1">
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+										<input type="number" min="0.00" max="10000000.00" step="0.01" class="form-control" name="SaldoCuenta" placeholder="Saldo" id="SaldoCuenta" aria-describedby="sizing-addon1" required>
+									</div>
+								</div>
+							</div>
+							<br>
+							<!-- Resgistrar -->
+							<div class="row">
+								<div class="col-xs-12 col-xs-offset-1">
+									<div class="input-group input-group-lg">
+										<div clss="btn-group">
+											<input type="submit" name="CrearCuenta" class="btn btn-success" value="Crear cuenta">
+											<button type="button" class="btn btn-danger">Cancelar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br>
 						</div>
-					</div>
-					<br>
+						</div>
+						</div>
+					</form>
 				</div>
+				
+				<!-- Registramos la cuenta -->
+				<?php
+					if (isset($_POST['CrearCuenta'])) {
+						// Obtenemos los valores de todos los campos y los almacenamos en variables
+						$CodigoCuenta=$_POST['CodigoCuenta'];
+						$BancoCuenta=$_POST['BancoCuenta'];
+						$NumeroCuenta=$_POST['NumeroCuenta'];
+						$NombreCuenta=$_POST['NombreCuenta'];
+						$TipoCuenta=$_POST['TipoCuenta'];
+						$SaldoCuenta=$_POST['SaldoCuenta'];
+						
+						$InsertarCuenta = "INSERT INTO cuenta (CodigoCuenta, NumeroCuenta, NombreCuenta, TipoCuenta, SaldoCuenta, idBanco)
+														VALUES('".$CodigoCuenta."', '".$NumeroCuenta."', '".$NombreCuenta."', '".
+																$TipoCuenta."', '".$SaldoCuenta."', '".$BancoCuenta."');";
+																
+						if(!$resultado = $mysqli->query($InsertarCuenta)){
+							echo "Error: La ejecución de la consulta falló debido a: \n";
+							echo "Query: " . $InsertarCuenta . "\n";
+							echo "Error: " . $mysqli->errno . "\n";
+							exit;
+						}
+					}
+				?>
+				
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
 

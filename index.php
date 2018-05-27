@@ -36,7 +36,7 @@
 			<div class="form-group">
 				<form name="FormEntrar" action="index.php" method="post">
 					<div class="input-group input-group-lg">
-						<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
+						<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
 						<input type="text" class="form-control" name="usuario" placeholder="Usuario" id="Usuario" aria-describedby="sizing-addon1" required>
 					</div>
 					<br>
