@@ -15,8 +15,12 @@
 
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet">
+
 <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
 <link rel="stylesheet" type="text/css" href="text/estilo.css">
+
+<!-- Librería javascript para las notificaciones -->
+<script src="js/notify.js"></script>
 
 </head>
 	<?php

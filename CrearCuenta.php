@@ -23,6 +23,8 @@
 		//include_once 'Seguridad/conexion.php';
 		// Incluimos el archivo que valida si hay una sesión activa
 		include_once "Seguridad/seguro.php";
+		// Primero hacemos la consulta en la tabla de persona
+		include_once "Seguridad/conexion.php";	
 		// Si en la sesión activa tiene privilegios de administrador puede ver el formulario
 		if($_SESSION["PrivilegioUsuario"] == 1){
 		?>
@@ -127,9 +129,18 @@
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
 								<select class="form-control" name="BancoCuenta" id="BancoCuenta">
 								<option value="" disabled selected>Banco</option>
-									<option value="Industrial">Industrial</option>
-									<option value="Banrural">Banrural</option>
-									<option value="G&T">G&amp;T</option>
+									<!-- Contenido de la tabla -->
+										<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
+										<?php							
+											$VerBanco = "SELECT * FROM banco";
+											// Hacemos la consulta
+											$resultado = $mysqli->query($VerBanco);			
+												while ($row = mysqli_fetch_array($resultado)){
+													?>
+													<option value="idBanco<?php echo $row['idBanco'];?>"><?php echo $row['NombreBanco'] ?></option>
+										<?php
+												}
+										?>
 								</select>
 							</div>
 						</div>
