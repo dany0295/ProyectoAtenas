@@ -1,7 +1,7 @@
 <!--
-	Módulo de creación de Bancos
-	Jueves, 19 de abril el 2018
-	11:35 PM
+	Módulo de creación de Usuarios
+	Miércoles, 16 de mayo del 2018
+	11:20 PM
 	Gemis Daniel Guevara Villeda
 	UMG - Morales Izabal
 -->
@@ -16,30 +16,32 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet">
 <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
-<link rel="stylesheet" type="text/css" href="text/estilo.css">
+<link rel="stylesheet" type="text/css" href="text/estilo.css"> 
 
 </head>
 	<?php
 		//include_once 'Seguridad/conexion.php';
 		// Incluimos el archivo que valida si hay una sesión activa
 		include_once "Seguridad/seguro.php";
+		// Primero hacemos la consulta en la tabla de persona
+		include_once "Seguridad/conexion.php";
 		// Si en la sesión activa tiene privilegios de administrador puede ver el formulario
 		if($_SESSION["PrivilegioUsuario"] == 1){
 		?>
 			<body>
 				<nav class="navbar navbar-default">
-				  <div class="container-fluid">
+				  <div class="container-fluid"> 
 					<!-- Brand and toggle get grouped for better mobile display -->
 					<div class="navbar-header">
 					  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-					  <a class="navbar-brand" href="#">Administración</a></div>
+					  <a class="navbar-brand" href="principal.php">Administración</a></div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
 					<div class="collapse navbar-collapse" id="defaultNavbar1">
 					  <ul class="nav navbar-nav">
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bancos<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="CrearBanco.php">Crear banco</a></li>
-								<li><a href="#">Lista de bancos</a></li>
+								<li><a href="Banco.php">Lista de bancos</a></li>
 							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
@@ -50,15 +52,15 @@
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="Crearcheque.php">Crear cheque</a></li>
+							<li><a href="#">Crear cheque</a></li>
 							<li><a href="Listacheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="Crearcuenta.php">Crear cuenta</a></li>
-							<li><a href="Cuenta.php">Listado de cuentas</a></li>
+							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
+							<li><a href="Cuenta.php">Lista de cuentas</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
@@ -94,101 +96,63 @@
 						</li>
 					  </ul>
 				</div>
-					<!-- /.navbar-collapse -->
+					<!-- /.navbar-collapse --> 
 				  </div>
-				  <!-- /.container-fluid -->
+				  <!-- /.container-fluid --> 
 				</nav>
-				<br>
-				<br>
-				<br>
 				<div class="form-group">
-						<div class="container">
-							<div class="row text-center">
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-xs-6 ">
-										<h1 class="text-center">Bancos registrados</h1>
-										</div>
-										<!-- Contenedor del ícono del Usuario -->
-										<div class="col-xs-6 Icon">
-											<!-- Icono de usuario -->
-											<span class="glyphicon glyphicon-home"></span>
-										</div>
-									</div>
-									<br>
-									<div class="table-responsive">          
-										<table class="table">
-											<!-- Título -->
-											<thead>
-												<!-- Contenido -->
-												<tr>
-													<th>#</th>
-													<th>Codigo </th>
-													<th>Nombre </th>
-													<th>Dirección </th>
-													<th>Correo </th>
-													<th>Sitio Web </th>
-													<th>Telefono </th>
-													<th>Correo</th>
-												</tr>
-											</thead>
-											<!-- Cuerpo de la tabla -->
-											<tbody>
-												<!-- Contenido de la tabla -->
-													<!-- Acá mostraremos los usuarios y seleccionaremos el que deseamos eliminar -->
-													<?php
-														// Primero hacemos la consulta en la tabla de persona
-														include_once "Seguridad/conexion.php";								
-														$VerBancos = "SELECT * FROM Banco";
-														// Hacemos la consulta
-														$resultado = $mysqli->query($VerBancos);
-															while ($row = mysqli_fetch_array($resultado)){
-																?>
-																<tr>
-																<td><span id="idPersonaEliminar<?php echo $row['idPersona'];?>"><?php echo $row['idBanco'] ?></span></td>
-																<td><span id="NombreUsuario<?php echo $row['idPersona'];?>"><?php echo $row['CodigoBanco'] ?></span></td>
-																<td><span id="ApellidoUsuario<?php echo $row['idPersona'];?>"><?php echo $row['NombreBanco'] ?></span></td>
-																<td><span id="DireccionUsuario<?php echo $row['idPersona'];?>"><?php echo $row['DireccionBanco'] ?></span></td>
-																<td><span id="DPIUsuario<?php echo $row['idPersona'];?>"><?php echo $row['CorreoBanco'] ?></span></td>
-																<td><span id="TelefonoUsuario<?php echo $row['idPersona'];?>"><?php echo $row['SitioWebBanco'] ?></span></td>
-																<td><span id="FechaNacUsuario<?php echo $row['idPersona'];?>"><?php echo $row['TelefonoBanco'] ?></span></td>
-																<td><?php echo $NombreDeUsuario ?></td>
-																<td><span id="PrivilegioUsuario<?php echo $row['idPersona'];?>"><?php echo $PrivilegioDeUsuario ?></span></td>
-																<td>
-																	<!-- Edición -->
-																	<div>
-																		<div class="input-group input-group-lg">
-																			<button type="button" class="btn btn-success EditarUsuario" value="<?php echo $row['idPersona']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
-																		</div>
-																	</div>
-																</td>
-																<td>
-																	<!-- Eliminación -->
-																	<div>
-																		<div class="input-group input-group-lg">
-																			<button type="button" class="btn btn-danger EliminarUsuario" value="<?php echo $row['idPersona']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
-																		</div>
-																	</div>
-																</td>
-																</tr>
-													<?php
-															}
-													?>
+					<form name="CrearProveedor" action="CrearProveedor.php" method="post">
+				<div class="container">
+				  <div class="row text-center">
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-xs-6 col-xs-offset-3">
+							<h2 class="text-center">Creación de proveedor</h2>
+							</div>
+						</div>									
+				<!-- Codigo del Proveedor -->
+					<div class="row">
+						<div class="col-xs-3 col-xs-offset-1">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+								<input type="text" class="form-control" name="CodigoProveedor" placeholder="Codigo del Proveedor" id="CodigoProveedor" aria-describedby="sizing-addon1" required>
+							</div>
+						</div>
+				<!-- Nombre del Proveedor -->
+					<div class="row">
+						<div class="col-xs-7 col-xs-offset+1">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+								<input type="text" class="form-control" name="NombreProveedor" placeholder="Nombre del Proveedor" id="NombreProveedor" aria-describedby="sizing-addon1" required>
+							</div>
+						</div>
+					</div>
+					</br>
+					
+				<!-- Resgistrar -->
+					<div class="row">
+						<div class="col-xs-11 col-xs-offset-1">
+							<div class="input-group input-group-lg">
+								<div clss="btn-group">
+									<button type="submit" class="btn btn-primary" id="CrearProveedor" name="enviar">Registrar</button>
+									<button type="button" class="btn btn-danger">Cancelar</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<br>
+				</div>
 				
 				<?php
 					include_once "Seguridad/conexion.php";
 					if (isset($_POST['enviar'])) {
 						// Obtenemos los valores de todos los campos y los almacenamos en variables
-						$CodigoBanco=$_POST['CodigoBanco'];
-						$NombreBanco=$_POST['NombreBanco'];
-						$DireccionBanco=$_POST['DireccionBanco'];
-						$CorreoBanco=$_POST['CorreoBanco'];
-						$SitioWebBanco=$_POST['SitioWebBanco'];
-						$TelefonoBanco=$_POST['TelefonoBanco'];
-						
+						$CodigoProveedor=$_POST['CodigoProveedor'];
+						$NombreProveedor=$_POST['NombreProveedor'];
+												
 						// Creamos la consulta para la insersión de los datos
-						$Consulta = "INSERT INTO Banco(CodigoBanco, NombreBanco, DireccionBanco, CorreoBanco, SitioWebBanco, TelefonoBanco) 
-						Values('".$CodigoBanco."','".$NombreBanco."', '".$DireccionBanco."', '".$CorreoBanco."', '".$SitioWebBanco."', '".$TelefonoBanco."');";
+						$Consulta = "INSERT INTO Proveedor(CodigoProveedor, NombreProveedor) 
+						Values('".$CodigoProveedor."','".$NombreProveedor."');";
 							
 						if(!$resultado = $mysqli->query($Consulta)){
 							echo "Error: La ejecución de la consulta falló debido a: \n";
@@ -198,17 +162,17 @@
 						}
 						else{
 						?>
-						<div class="alert alert-success">Banco registrado</div>
+						<div class="alert alert-success">Proveedor registrado</div>
 						<?php
 						}
 					}
 				?>
 				
-				
-				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+								
+				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
 
-				<!-- Include all compiled plugins (below), or include individual files as needed -->
+				<!-- Include all compiled plugins (below), or include individual files as needed --> 
 				<script src="js/bootstrap.js"></script>
 				<!-- Pie de página, se utilizará el mismo para todos. -->
 				<footer>
@@ -220,11 +184,11 @@
 						</div>
 					</div>
 					<hr>
-				</footer>
+				</footer> 
 			</body>
 	<?php
 		// De lo contrario lo redirigimos al inicio de sesión
-			}
+			} 
 			else{
 				echo "usuario no valido";
 				header("location:index.php");

@@ -44,7 +44,6 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="#">Crear banco</a></li>
 								<li><a href="Banco.php">Lista de bancos</a></li>
-								
 							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
@@ -59,17 +58,6 @@
 							<li><a href="Listacheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administración de Niveles<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
-						  </ul>
-						</li>
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
@@ -77,7 +65,6 @@
 							<li><a href="Cuenta.php">Listado de cuentas</a></li>
 						  </ul>
 						</li>
-						
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="LiberarCheque.php">Liberar un cheque</a></li>
@@ -120,7 +107,6 @@
 							</div>
 						</div>
 						<!-- Contenedor del ícono -->
-
 							<div class="Icon">
 								<!-- Icono de home -->
 								<span class="glyphicon glyphicon-home"></span>
@@ -130,7 +116,7 @@
 						<div class="col-xs-10 col-xs-offset-1">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="CodigoBanco" placeholder="Codigo" id="CodigoBanco" aria-describedby="sizing-addon1" required>
+								<input type="text" class="form-control" name="CodigoBanco" placeholder="Codigo de banco" id="CodigoBanco" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
 					</div>
@@ -185,7 +171,7 @@
 						</div>
 					</div>
 					<br>
-					<!-- Resgistrar -->
+					<!-- Registrar -->
 					<div class="row">
 						<div class="col-xs-12 col-xs-offset-1">
 							<div class="input-group input-group-lg">

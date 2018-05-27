@@ -23,6 +23,7 @@
 		//include_once 'Seguridad/conexion.php';
 		// Incluimos el archivo que valida si hay una sesión activa
 		include_once "Seguridad/seguro.php";
+		include_once "Seguridad/conexion.php";
 		// Si en la sesión activa tiene privilegios de administrador puede ver el formulario
 		if($_SESSION["PrivilegioUsuario"] == 1){
 		?>
@@ -40,7 +41,6 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="CrearBanco.php">Crear banco</a></li>
 								<li><a href="Banco.php">Lista de bancos</a></li>
-								
 							</ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
@@ -55,25 +55,18 @@
 							<li><a href="Listacheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administración de Niveles<span class="caret"></span></a>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
+							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
+							<li><a href="Cuenta.php">Lista de cuentas</a></li>
 						  </ul>
 						</li>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Crear cuenta</a></li>
-							<li><a href="#">Listado de cuentas</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="CrearProveedor.php">Crear Proveedor</a></li>
+							<li><a href="Proveedor.php">Lista de Proveedores</a></li>
 						  </ul>
 						</li>
-						
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="LiberarCheque.php">Liberar un cheque</a></li>
@@ -105,208 +98,131 @@
 				  </div>
 				  <!-- /.container-fluid --> 
 				</nav>
-
+				<div class="form-group">
+					<form name="CrearCheque" action="CrearCheque.php" method="post">
 				<div class="container">
 				  <div class="row text-center">
 					<div class="container-fluid">
 						<div class="row">
 							<div class="col-xs-6 col-xs-offset-3">
-							<h1 class="text-center">Creación de cheques</h1>
+							<h2 class="text-center">Creación de cheques</h2>
+							<br>
 							</div>
 						</div>
-
-
-				
-						<!-- Contenedor del ícono del Usuario -->
-						<!--
-							<div class="Icon">
-								<!-- Icono de usuario -->
-						<!--		
-								<span class="glyphicon glyphicon-plus"></span>
-							</div>
-						-->
-						
-	
-				<!--Titulo de cheque -->		
-		<!--		<div class="container">
-				  <div class="row text-center">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-3 col-xs-offset-1">
-							<h3 class="text-center">Banco Industrial</h3>
-							</div>
+				<div class="row">
+					<div class="col-xs-5 col-xs-offset+1">
+						<div class="input-group input-group-lg">
+							<!--<span class="input-group-addon" id="sizing-addon5">Banco</span> -->
+							<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-piggy-bank"></i></span>
+								<!--<span class="glyphicons glyphicons-bank"></span>
+								
+								<!-- Tipo de Banco -->
+								<select class="form-control" name="BancoCuenta" id="BancoCuenta">
+									<option value="" disabled selected>Seleccione Banco</option>
+									<!-- Contenido de la tabla -->
+										<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
+										<?php							
+											$VerBanco = "SELECT * FROM banco";
+											// Hacemos la consulta
+											$resultado = $mysqli->query($VerBanco);			
+												while ($row = mysqli_fetch_array($resultado)){
+													?>
+													<option value="idBanco<?php echo $row['idBanco'];?>"><?php echo $row['NombreBanco'] ?></option>
+										<?php
+												}
+										?>
+								</select>	
 						</div>
-						<br>
-		-->				
+					</div>	
+
+					<!-- Codigo del banco -->
 					<div class="row">
-						<div class="col-xs-7 col-xs-offset-1">
+						<div class="col-xs-10 col-xs-offset-1">
 							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon5">Tipo Banco</span>
-								<input type="text" class="form-control" name="TipoBanco" placeholder="Seleccione el Banco" id="TipoBanco" aria-describedby="sizing-addon1" required>
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+								<input type="text" class="form-control" name="CodigoBanco" placeholder="Codigo de banco" id="CodigoBanco" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
-						<p>Numero</p>
 					</div>
-						<br>
-						
-				<!-- Lugar y fecha -->
+					<br>
+
+					<!-- Pago a la orden -->
 					<div class="row">
-						<div class="col-xs-7 col-xs-offset-1">
+						<div class="col-xs-6 col-xs-offset+1">
 							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1">Lugar y Fecha</span>
-								<input type="text" class="form-control" name="LugarFecha" placeholder="Lugar y Fecha" id="NLugarFecha" aria-describedby="sizing-addon1" required>
+								<!--<span class="input-group-addon" id="sizing-addon1">Pagar a la Orden de:</span>-->
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
+								<!--<input type="text" class="form-control" name="Pago" placeholder="Pagar a la orden de:" id="Pago" aria-describedby="sizing-addon1" required>-->
+									<!-- Tipo de Proveedor -->
+								<select class="form-control" name="BancoCuenta" id="BancoCuenta">
+								<option value="" disabled selected>Seleccione proveedor</option>
+									<!-- Contenido de la tabla -->
+									<!-- Acá mostraremos los proveedores -->
+								<?php							
+									$VerProveedor = "SELECT * FROM proveedor";
+									// Hacemos la consulta
+									$resultado1 = $mysqli->query($VerProveedor);			
+									while ($row = mysqli_fetch_array($resultado1)){
+											?>
+													<option value="idproveedor<?php echo $row['idproveedor'];?>"><?php echo $row['NombreProveedor'] ?></option>
+										<?php
+												}
+										?>	
+								</select>		
+							</div>
+						</div>
+					</div>
+				</div>
+				</br>
+
+
+
+						
+				<!-- Lugar -->
+					<div class="row">
+						<div class="col-xs-5 col-xs-offset+1">
+							<div class="input-group input-group-lg">
+								<!--<span class="input-group-addon" id="sizing-addon1">Lugar</span>-->
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
+								<input type="text" class="form-control" name="Lugar" placeholder="Lugar" id="NLugar" aria-describedby="sizing-addon1" required>
+							</div>
+						</div>
+				<!-- Fecha --> 
+						<div class="col-xs-3 col-xs-offset+1">
+							<div class="input-group input-group-lg">
+								<!--<span class="input-group-addon" id="sizing-addon1">Fecha</span>-->
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-calendar"></i></span>
+								<input type="date" class="form-control" name="Fecha" placeholder="Fecha" id="Fecha" aria-describedby="sizing-addon1" required>
 							<br>
 							</div>
 						</div>
 				<!-- Monto -->
-					<div class="row">
 						<div class="col-xs-3 col-xs-offset+1">
 							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1">Monto</span>
-								<input type="text" class="form-control" name="Monto" placeholder="Monto" id="Monto" aria-describedby="sizing-addon1" required>
+								<span class="input-group-addon" id="sizing-addon1">QTZ</span>
+								<!--<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-usd"></i></span>-->
+								<input type="money_format" class="form-control" name="Monto" placeholder="Monto" id="Monto" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
 					</div>
 					</br>
-					<!-- Pago a la orden -->
+				<!-- Comentarios -->
 					<div class="row">
-						<div class="col-xs-10 col-xs-offset+1 col-xs-offset-1">
+						<div class="col-xs-11 col-xs-offset+1 <!--col-xs-offset+1-->">
 							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1">Pagar a la Orden de:</span>
-								<input type="text" class="form-control" name="Pago" placeholder="Pagar a la orden de:" id="Pago" aria-describedby="sizing-addon1" required>
+								<!--<span class="input-group-addon" id="sizing-addon1">Descripcion</span>-->
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-comment"></i></span>
+								<input type="text" class="form-control" name="Pago" placeholder="Descripcion" id="Pago" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
 					</div>
 					<br>
-					
-					<!-- Nombre del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-5 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-								<input type="text" class="form-control" name="NombreUsuario" placeholder="Nombre" id="NombreUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					-->
-					<!-- Apellido del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-5 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-								<input type="text" class="form-control" name="ApellidoUsuario" placeholder="Apellido" id="ApellidoUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Teléfono del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-earphone"></i></span>
-								<input type="tel" class="form-control" name="TelefonoUsuario" placeholder="Teléfono" id="TelefonoUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Dirección del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
-								<input type="text" class="form-control" name="DireccionUsuario" placeholder="Dirección" id="DireccionUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Correo del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
-								<input type="email" class="form-control" name="CorreoUsuario" placeholder="Correo" id="CorreoUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Contraseña del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<input type="password" class="form-control" name="PasswordUsuario" placeholder="Contraseña" id="PaswordUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Repetición de contraseña del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<input type="password" class="form-control" name="RePasswordUsuario" placeholder="Ingrese nuevamente la contraseña" id="RePaswordUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Rol del usuario
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<select class="form-control" name="RolUsuario" id="RolUsuario">
-								<option value="" disabled selected>Selecciona el rol del usuario</option>
-									<option value="Administrador">Administrador</option>
-									<option value="Auditor">Auditor</option>
-									<option value="Gerente">Gerente</option>
-									<option value="Pagador">Pagador</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br> -->
-					<!-- Puesto del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<select class="form-control" name="PuestoUsuario" id="PuestoUsuario">
-								<option value="" disabled selected>Puesto</option>
-									<optgroup label="Gerencia">
-										<option value="GerenteGeneral">Gerente General</option>
-									</optgroup>
-									<optgroup label="Auditoría">
-										<option value="JefeAuditoría">Jefe de Auditoría</option>
-										<option value="AsistenteAuditoria">Asistente de Auditoría</option>
-									</optgroup>
-									<optgroup label="Pagos">
-										<option value="JefePagos">Jefe de Pagos</option>
-									</optgroup>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Resgistrar -->
+					<!-- Registrar -->
 					<div class="row">
 						<div class="col-xs-12 col-xs-offset-1">
 							<div class="input-group input-group-lg">
 								<div clss="btn-group">
-									<button type="button" class="btn btn-primary">Registrar</button>
+									<input type="submit" name="CrearCuenta" class="btn btn-success" value="Crear cheque">
 									<button type="button" class="btn btn-danger">Cancelar</button>
 								</div>
 							</div>
@@ -314,6 +230,35 @@
 					</div>
 					<br>
 				</div>
+				<?php
+					include_once "Seguridad/conexion.php";
+					if (isset($_POST['enviar'])) {
+						// Obtenemos los valores de todos los campos y los almacenamos en variables
+						$Codigocheque=$_POST['CodigoCheque'];
+						$NumeroCheque=$_POST['NumeroCheque'];
+						$LugarCheque=$_POST['LugarCheque'];
+						$FechaCheque=$_POST['FechaCheque'];
+						$ComentarioCheque=$_POST['ComentarioCheque'];
+						$MontoCheque=$_POST['MontoCheque'];
+						
+						// Creamos la consulta para la insersión de los datos
+						$Consulta = "INSERT INTO cheque(CodigoCheque, NumeroCheque, LugarCheque, FechaCheque, ComentarioCheque, MontoCheque) 
+						Values('".$CodigoCheque."','".$NumeroCheque."', '".$LugarCheque."', '".$FechaCheque."', '".$ComentarioCheque."', '".$MontoCheque."');";
+							
+						if(!$resultado = $mysqli->query($Consulta)){
+							echo "Error: La ejecución de la consulta falló debido a: \n";
+							echo "Query: " . $Consulta . "\n";
+							echo "Error: " . $mysqli->errno . "\n";
+							exit;
+						}
+						else{
+						?>
+						<div class="alert alert-success">Cheque registrado</div>
+						<?php
+						}
+					}
+				?>
+				
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
 
