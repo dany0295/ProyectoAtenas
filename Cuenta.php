@@ -71,7 +71,7 @@
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="Crearcuenta.php">Crear cuenta</a></li>
-							<li><a href="Cuenta.php">Listado de cuentas</a></li>
+							<li><a href="Cuenta.php">Lista de cuentas</a></li>
 						  </ul>
 						</li>
 						
@@ -165,7 +165,7 @@
 																<td><span id="NombreCuenta<?php echo $row['idCuenta'];?>"><?php echo $row['NombreCuenta'] ?></span></td>
 																<td><span id="TipoCuenta<?php echo $row['idCuenta'];?>"><?php echo $row['TipoCuenta'] ?></span></td>
 																<td><span id="SaldoCuenta<?php echo $row['idCuenta'];?>"><?php echo $row['SaldoCuenta'] ?></span></td>
-																<td><?php echo $NombreBanco ?></td>
+																<td><span id="NombreBanco<?php echo $row['idCuenta'];?>"><?php echo $NombreBanco ?></span></td>
 																<td>
 																	<!-- Edición -->
 																	<div>
@@ -202,17 +202,17 @@
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 									<center><h1 class="modal-title" id="myModalLabel">Eliminar usuario</h1></center>
 								</div>
-								<form method="post" action="Usuario.php" id="myForm">
+								<form method="post" action="Cuenta.php" id="myForm">
 								<div class="modal-body">
-									<p class="lead">¿Está seguro que desea eliminar al siguiente usuario?</p>
+									<p class="lead">¿Está seguro que desea eliminar la siguiente cuenta?</p>
 									<div class="form-group input-group">
-										<input type="text" name="idUsuarioEliminacion" style="width:350px; visibility:hidden;" class="form-control" id="idAEliminar">
+										<input type="text" name="idCuentaAEliminar" style="width:350px; visibility:hidden;" class="form-control" id="idCuentaAEliminar">
 										<br>
-										<label id="NombresApellidos"></label>
+										<label id="NombreCuenta"></label>
 									</div>
 								</div>
 								<div class="modal-footer">
-									<input type="submit" name="EliminarUsuario" class="btn btn-danger" value="Eliminar Usuario">
+									<input type="submit" name="EliminarUsuario" class="btn btn-danger" value="Eliminar cuenta">
 									<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
 								</div>
 								</form>
@@ -221,12 +221,12 @@
 					</div>
 				<!-- /.modal -->
 				<?php
-					// Código que recibe la información de eliminar usuario
+					// Código que recibe la información de eliminar una cuenta
 					if (isset($_POST['EliminarUsuario'])) {
 						// Guardamos el id en una variable
-						$idUsuarioaEliminar = $_POST['idUsuarioEliminacion'];
+						$idCuentaEliminar = $_POST['idCuentaAEliminar'];
 						// Preparamos la consulta
-						$query = "DELETE FROM persona WHERE idPersona=".$idUsuarioaEliminar.";";
+						$query = "DELETE FROM cuenta WHERE idCuenta=".$idCuentaEliminar.";";
 						// Ejecutamos la consulta
 						if(!$resultado = $mysqli->query($query)){
     					echo "Error: La ejecución de la consulta falló debido a: \n";
@@ -237,67 +237,46 @@
 						}
 						else{
     						?>
-    						<div class="alert alert-warning"> Usuario eliminado </div>
+    						<div class="alert alert-warning"> Cuenta eliminada </div>
     						<?php
 							// Recargamos la página
-    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=Usuario.php\">"; 
+    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=Cuenta.php\">"; 
     					}
 					}
-					// Termina código para eliminar usuario
-					// Código para editar un usuario
-					if (isset($_POST['EditarUsuario'])) {
+					// Termina código para eliminar una cuenta
+					
+					// Código para editar una cuenta, solo se podrá editar el nombre y el tipo de cuenta
+					if (isset($_POST['EditarCuenta'])) {
 						// Guardamos La información proveniente del formulario
-						$idPersonaEditar = $_POST['idEditar'];
-						$NombreEditar = $_POST['NombreEditar'];
-						$ApellidoEditar = $_POST['ApellidoEditar'];
-						$DireccionEditar = $_POST['DireccionEditar'];
-						$DPIEditar = $_POST['DPIEditar'];
-						$TelefonoEditar = $_POST['TelefonoEditar'];
-						$FechaNacEditar = $_POST['FechaNacEditar'];
-						$CorreoEditar = $_POST['CorreoEditar'];
-						$PrivilegioEditar = $_POST['PrivilegioEditar'];
+						$idCuentaEditar = $_POST['idCuentaEditar'];
+						$NombreCuentaEditar = $_POST['NombreCuentaEditar'];
+						$TipoCuentaEditar = $_POST['TipoCuentaEditar'];
 						
 						// Preparamos las consultas
-						$EditarTablaPersona = "UPDATE persona
-								  SET NombrePersona = '" .$NombreEditar."',
-									  ApellidoPersona = '" .$ApellidoEditar."',
-									  DireccionPersona = '".$DireccionEditar."',
-									  DPIPersona = '".$DPIEditar."',
-									  TelefonoPersona = '".$TelefonoEditar."',
-									  FechaNacPersona = '".$FechaNacEditar."',
-									  CorreoPersona = '".$CorreoEditar."'
-								  WHERE idPersona=".$idPersonaEditar.";";
-						$EditarTablaUsuario = "UPDATE usuario
-								  SET PrivilegioUsuario = '".$PrivilegioEditar."'
-								  WHERE idPersona=".$idPersonaEditar.";";
+						$ConsultaEditarCuenta = "UPDATE cuenta
+								  SET NombreCuenta = '" .$NombreCuentaEditar."',
+									  TipoCuenta = '" .$TipoCuentaEditar."'
+								  WHERE idCuenta=".$idCuentaEditar.";";
 						
-						// Ejecutamos la consulta para la tabla de persona
-						if(!$resultado = $mysqli->query($EditarTablaPersona)){
+						// Ejecutamos la consulta para la tabla de cuenta
+						if(!$resultado = $mysqli->query($ConsultaEditarCuenta)){
 							echo "Error: La ejecución de la consulta falló debido a: \n";
-							echo "Query: " . $EditarTablaPersona . "\n";
-							echo "Errno: " . $mysqli->errno . "\n";
-							echo "Error: " . $mysqli->error . "\n";
-							exit;
-						}
-						
-						// Ejecutamos la consulta para la tabla de usuario
-						if(!$resultado2 = $mysqli->query($EditarTablaUsuario)){
-							echo "Error: La ejecución de la consulta falló debido a: \n";
-							echo "Query: " . $EditarTablaUsuario . "\n";
+							echo "Query: " . $ConsultaEditarCuenta . "\n";
 							echo "Errno: " . $mysqli->errno . "\n";
 							echo "Error: " . $mysqli->error . "\n";
 							exit;
 						}
 						else{
 							// Recargamos la página
-    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=Usuario.php\">"; 
+    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=Cuenta.php\">"; 
 							?>
 							<div class="alert alert-success" role="alert">
-							  <strong>Usuario actualizado</strong>
+							  <strong>Cuenta actualizada</strong>
 							</div>
     						<?php
     					}
 					}
+					// Termina código para editar una cuenta
 				?>
 				<!-- Edit Modal-->
 					<div class="modal fade" id="frmEditarCuena" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -307,27 +286,27 @@
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 									<center><h4 class="modal-title" id="myModalLabel">Editar usuario</h4></center>
 								</div>
-								<form method="post" action="Usuario.php" id="frmEdit">
+								<form method="post" action="Cuenta.php" id="frmEdit">
 									<div class="modal-body">
 									<div class="container-fluid">
 											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">ID</span>
+												<span class="input-group-addon" style="width:200px;">ID</span>
 												<input type="text" style="width:350px;" class="form-control" name="idCuentaEditar" id="idCuentaEditar">
 											</div>
 											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Código de cuenta</span>
-												<input type="text" style="width:350px;" class="form-control" name="CodigoCuentaEditar" id="CodigoCuentaEditar">
+												<span class="input-group-addon" style="width:200px;">Código de cuenta</span>
+												<input type="text" style="width:350px;" class="form-control" name="CodigoCuentaEditar" id="CodigoCuentaEditar" disabled>
 											</div>
 											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Número de cuenta</span>
-												<input type="text" style="width:350px;" class="form-control" name="NumeroCuentaEditar" id="NumeroCuentaEditar">
+												<span class="input-group-addon" style="width:200px;">Número de cuenta</span>
+												<input type="text" style="width:350px;" class="form-control" name="NumeroCuentaEditar" id="NumeroCuentaEditar" disabled>
 											</div>
 											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Nombre de la cuenta</span>
+												<span class="input-group-addon" style="width:200px;">Nombre de la cuenta</span>
 												<input type="text" style="width:350px;" class="form-control" name="NombreCuentaEditar" id="NombreCuentaEditar">
 											</div>
 											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Tipo de Cuenta</span>
+												<span class="input-group-addon" style="width:200px;">Tipo de Cuenta</span>
 												<select class="form-control" style="width:350px;" name="TipoCuentaEditar" id="TipoCuentaEditar">
 													<option value="" disabled selected>Tipo de Cuenta</option>
 															<option value="Monetario">Monetario</option>
@@ -335,12 +314,12 @@
 													</select>
 											</div>
 											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Saldo disponible</span>
-												<input type="tel" style="width:350px;" class="form-control" name="SaldoCuentaEditar" id="SaldoCuentaEditar">
+												<span class="input-group-addon" style="width:200px;">Saldo disponible</span>
+												<input type="tel" style="width:350px;" class="form-control" name="SaldoCuentaEditar" id="SaldoCuentaEditar" disabled>
 											</div>
 											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Banco</span>
-												<input type="date" style="width:350px;" class="form-control" name="BandoCuentaEditar" id="BandoCuentaEditar">
+												<span class="input-group-addon" style="width:200px;">Banco</span>
+												<input type="text" style="width:350px;" class="form-control" name="BancoCuentaEditar" id="BancoCuentaEditar" disabled>
 											</div>
 										</div>
 									</div>
