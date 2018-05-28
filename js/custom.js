@@ -1,4 +1,4 @@
-// Eliminación de usuario de la pantalla de usuarios
+﻿// Eliminación de usuario de la pantalla de usuarios
 $(document).ready(function(){
 	$(document).on('click', '.EliminarUsuario', function(){
 		var id=$(this).val();
@@ -72,5 +72,51 @@ $(document).ready(function(){
 		$('#frmEliminarCuenta').modal('show');
 		document.querySelector('#NombreCuenta').innerText = NombreCuenta;
 		$('#idCuentaAEliminar').val(Usuario);
+	});
+});
+
+// Edición de números de banco de la pantalla de bancos
+$(document).ready(function(){
+	$(document).on('click', '.EditarBanco', function(){
+		var id=$(this).val();
+		var idBanco=$('#idBanco'+id).text();
+		var CodigoBanco=$('#CodigoBanco'+id).text();
+		var NombreBanco=$('#NombreBanco'+id).text();
+		var DireccionBanco=$('#DireccionBanco'+id).text();
+		var CorreoBanco=$('#CorreoBanco'+id).text();
+		var SitioWebBanco=$('#SitioWebBanco'+id).text();
+		var TelefonoBanco=$('#TelefonoBanco'+id).text();
+	
+		$('#frmEditar').modal('show');
+		$('#idBancoEditar').val(idBanco);
+		$('#CodigoBancoEditar').val(CodigoBanco);
+		$('#NombreBancoEditar').val(NombreBanco);
+		$('#DireccionBancoEditar').val(DireccionBanco);
+		$('#CorreoBancoEditar').val(CorreoBanco);
+		$('#SitioWebBancoEditar').val(SitioWebBanco);
+		$('#TelefonoBancoEditar').val(TelefonoBanco);
+	});
+});
+
+// Eliminación de banco de la pantalla de bancos
+$(document).ready(function(){
+	$(document).on('click', '.EliminarBanco', function(){
+		var id=$(this).val();
+		var CodigoBanco=$('#CodigoBanco'+id).text();
+		var NombreBanco=$('#NombreBanco'+id).text();
+		var DireccionBanco=$('#DireccionBanco'+id).text();
+		var CorreoBanco=$('#CorreoBanco'+id).text();
+		var SitioWebBanco=$('#SitioWebBanco'+id).text();
+		var TelefonoBanco=$('#TelefonoBanco'+id).text();
+		var Usuario=$('#idCuenta'+id).text();
+	
+		$('#frmEliminarBanco').modal('show');
+		document.querySelector('#CodigoBanco').innerText = CodigoBanco;
+		document.querySelector('#NombreBanco').innerText = NombreBanco;
+		document.querySelector('#DireccionBanco').innerText = DireccionBanco;
+		document.querySelector('#CorreoBanco').innerText = CorreoBanco;
+		document.querySelector('#SitioWebBanco').innerText = DireccionBanco;
+		document.querySelector('#TelefonoBanco').innerText = TelefonoBanco;
+		$('#idBancoAEliminar').val(Usuario);
 	});
 });

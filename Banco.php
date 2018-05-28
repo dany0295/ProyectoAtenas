@@ -181,7 +181,7 @@
 					</div>
 				</div>
 				<!-- Edit Modal-->
-					<div class="modal fade" id="frmEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal fade" id="frmEliminarBanco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
@@ -192,12 +192,13 @@
 								<div class="modal-body">
 									<p class="lead">¿Está seguro que desea eliminar el siguiente Banco?</p>
 									<div class="form-group input-group">
-										<input type="text" name="idBancoEliminacion" style="width:350px; visibility:hidden;" class="form-control" id="idBEliminar">
+										<input type="text" name="idBancoAEliminar" style="width:350px; visibility:hidden;" class="form-control" id="idBancoAEliminar">
 										<br>
+										<label id="NombreBanco"></label>
 								</div>
 								</div>
 								<div class="modal-footer">
-									<input type="submit" name="EliminarBanco" class="btn btn-danger" value="Eliminar Banco">
+									<input type="submit" name="EliminarUsuario" class="btn btn-danger" value="Eliminar Banco">
 									<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
 								</div>
 								</form>
@@ -208,11 +209,11 @@
 				<?php
 				include_once "Seguridad/conexion.php";
 				// Código que recibe la información de eliminar banco
-					if (isset($_POST['EliminarBanco'])) {
+					if (isset($_POST['EliminarUsuario'])) {
 						// Guardamos el id en una variable
-						$idBancoaEliminar = $_POST['idBancoEliminacion'];
+						$idBancoEliminar = $_POST['idBancoAEliminar'];
 						// Preparamos la consulta
-						$query = "DELETE FROM banco WHERE idBanco=".$idBancoaEliminar.";";
+						$query = "DELETE FROM banco WHERE idBanco=".$idBancoEliminar.";";
 						// Ejecutamos la consulta
 						if(!$resultado = $mysqli->query($query)){
     					echo "Error: La ejecución de la consulta falló debido a: \n";
@@ -241,7 +242,7 @@
 						$SitioWebBancoEditar = $_POST['SitioWebBancoEditar'];
 						$TelefonoBancoEditar = $_POST['TelefonoBancoEditar'];
 				// Preparamos las consultas
-						$EditarTablaBanco = "UPDATE banco
+						$ConsultaEditarBanco = "UPDATE banco
 								  SET CodigoBanco = '" .$CodigoBancoEditar."',
 									  NombreBanco = '" .$NombreBancoEditar."',
 									  DireccionBanco = '".$DireccionBancoEditar."',
@@ -251,9 +252,9 @@
 									WHERE idBanco=".$idBancoEditar.";";
 						
 						// Ejecutamos la consulta para la tabla de persona
-						if(!$resultado = $mysqli->query($EditarTablaBanco)){
+						if(!$resultado = $mysqli->query($ConsultaEditarBanco)){
 							echo "Error: La ejecución de la consulta falló debido a: \n";
-							echo "Query: " . $EditarTablaBanco . "\n";
+							echo "Query: " . $ConsultaEditarBanco . "\n";
 							echo "Errno: " . $mysqli->errno . "\n";
 							echo "Error: " . $mysqli->error . "\n";
 							exit;
@@ -268,10 +269,10 @@
     						<?php
     					}
 					}
+					// Termina código para editar una cuenta
 				?>						
-				
 				<!-- Edit Modal-->
-					<div class="modal fade" id="frmEditar" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal fade" id="frmEditarBanco" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
