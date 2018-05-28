@@ -40,8 +40,14 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="CrearBanco.php">Crear banco</a></li>
 								<li><a href="Banco.php">Lista de bancos</a></li>
-								
 							</ul>
+						</li>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
+						  <ul class="dropdown-menu" role="menu">
+							<li><a href="Crearcuenta.php">Crear cuenta</a></li>
+							<li><a href="Cuenta.php">Listado de cuentas</a></li>
+						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
@@ -52,28 +58,15 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="Crearcheque.php">Crear cheque</a></li>
-							<li><a href="Listacheque.php">Lista de cheques</a></li>
+							<li><a href="Cheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administración de Niveles<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="CrearProveedor.php">Crear Proveedor</a></li>
+							<li><a href="Proveedor.php">Lista de Proveedores</a></li>
 						  </ul>
-						</li>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="Crearcuenta.php">Crear cuenta</a></li>
-							<li><a href="Cuenta.php">Listado de cuentas</a></li>
-						  </ul>
-						</li>
-						
+						</li>						
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="LiberarCheque.php">Liberar un cheque</a></li>
@@ -120,7 +113,6 @@
 								<!-- Icono de usuario -->
 								<span class="glyphicon glyphicon-user"></span>
 							</div>
-						
 					<!-- Nombre del usuario -->
 					<div class="row">
 						<div class="col-xs-5 col-xs-offset-1">
@@ -163,7 +155,7 @@
 								<input type="tel" class="form-control" name="TelefonoUsuario" placeholder="Teléfono" id="TelefonoUsuario" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
-						<!-- Repetición de contraseña del usuario -->
+					<!-- Repetición de contraseña del usuario -->
 						<div class="col-xs-5">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
@@ -180,7 +172,7 @@
 								<input type="text" class="form-control" name="DireccionUsuario" placeholder="Dirección" id="DireccionUsuario" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
-						<!-- Rol del usuario -->
+					<!-- Rol del usuario -->
 						<div class="col-xs-4">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
@@ -193,7 +185,7 @@
 								</select>
 							</div>
 						</div>
-						<!-- Button trigger modal -->
+					<!-- Button trigger modal -->
 						<div class="col-xs-1">
 							<div class="input-group input-group-lg">
 								<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#ModalCrearUsuario">+</button>
@@ -209,7 +201,7 @@
 								<input type="email" class="form-control" name="CorreoUsuario" placeholder="Correo" id="CorreoUsuario" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
-						<!-- Grupo del usuario -->
+					<!-- Grupo del usuario -->
 						<div class="col-xs-4">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
@@ -222,7 +214,7 @@
 								</select>
 							</div>
 						</div>
-						<!-- Button trigger modal -->
+					<!-- Button trigger modal -->
 						<div class="col-xs-1">
 							<div class="input-group input-group-lg">
 								<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#ModalCrearGrupo">+</button>
@@ -250,13 +242,13 @@
 								</select>
 							</div>
 						</div>
-						<!-- Button trigger modal -->
+					<!-- Button trigger modal -->
 						<div class="col-xs-1">
 							<div class="input-group input-group-lg">
 								<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#ModalCrearPuesto">+</button>
 							</div>
 						</div>
-						<!-- Rango de cheques que creará el usuario -->
+					<!-- Rango de cheques que creará el usuario -->
 						<div class="col-xs-4">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
@@ -269,7 +261,7 @@
 								</select>
 							</div>
 						</div>
-						<!-- Button trigger modal -->
+					<!-- Button trigger modal -->
 						<div class="col-xs-1">
 							<div class="input-group input-group-lg">
 								<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">+</button>

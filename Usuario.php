@@ -42,6 +42,13 @@
 								<li><a href="Banco.php">Lista de bancos</a></li>
 							</ul>
 						</li>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
+						  <ul class="dropdown-menu" role="menu">
+							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
+							<li><a href="Cuenta.php">Lista de cuentas</a></li>
+						  </ul>
+						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="CrearChequera.php">Crear chequera</a></li>
@@ -51,14 +58,7 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="Crearcheque.php">Crear cheque</a></li>
-							<li><a href="Listacheque.php">Lista de cheques</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
-							<li><a href="Cuenta.php">Lista de cuentas</a></li>
+							<li><a href="Cheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>

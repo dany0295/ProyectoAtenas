@@ -4,7 +4,7 @@
 	9:30 PM
 	Gemis Daniel Guevara Villeda
 	-
-	Proyecto de semestre, sistema para la genereación/eliminación/aprobación
+	Proyecto de semestre, sistema para la generación/eliminación/aprobación
 	de cheques.
 	Base de datos II
 	Jose Rodolfo Sandoval Pineda
@@ -32,7 +32,6 @@
 				<!-- Icono de usuario -->
 				<span class="glyphicon glyphicon-user"></span>
 			</div>
-			
 			<div class="form-group">
 				<form name="FormEntrar" action="index.php" method="post">
 					<div class="input-group input-group-lg">

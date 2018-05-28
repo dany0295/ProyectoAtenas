@@ -43,9 +43,14 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bancos<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="CrearBanco.php">Crear banco</a></li>
-								<li><a href="Banco.php">Lista de bancos</a></li>
-								
+								<li><a href="Banco.php">Lista de bancos</a></li>	
 							</ul>
+						</li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
+						  <ul class="dropdown-menu" role="menu">
+							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
+							<li><a href="Cuenta.php">Listado de cuentas</a></li>
+						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
@@ -56,28 +61,15 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="Crearcheque.php">Crear cheque</a></li>
-							<li><a href="Listacheque.php">Lista de cheques</a></li>
+							<li><a href="Cheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administración de Niveles<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="CrearProveedor.php">Crear Proveedor</a></li>
+							<li><a href="Proveedor.php">Lista de Proveedores</a></li>
 						  </ul>
 						</li>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
-							<li><a href="Cuenta.php">Listado de cuentas</a></li>
-						  </ul>
-						</li>
-						
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="LiberarCheque.php">Liberar un cheque</a></li>
@@ -120,42 +112,6 @@
 				  <div class="row text-center">
 					<div class="col-md-10 col-md-offset-1">Página principal de administración del sistema del proyecto Atenas, S. A. del curso Base de datos II.</div>
 				  </div>
-				  <!--
-				  <div class="row">
-					<div class="text-justify col-sm-4"> Click here to select this<strong> column.</strong> Always place your content within a column. Columns are indicated by a dashed blue line. </div>
-					<div class="col-sm-4 text-justify"> You can <strong>resize a column</strong> using the handle on the right. Drag it to increase or reduce the number of columns.</div>
-					<div class="col-sm-4 text-justify"> You can <strong>offset a column</strong> using the handle on the left. Drag it to increase or reduce the offset. </div>
-				  </div>
-				  <hr>
-				  <div class="row">
-					<div class="text-center col-md-12">
-					  <div class="well"><strong> Easily build your page using the Bootstrap components from the Insert panel.</strong></div>
-					</div>
-				  </div>
-				  <div class="row">
-					<div class="col-sm-4 text-center">
-					  <h4>Adding <strong>Buttons</strong></h4>
-					  <p>Quickly add buttons to your page by using the button component in the insert panel. </p>
-					  <button type="button" class="btn btn-info btn-sm">Info Button</button>
-					  <button type="button" class="btn btn-success btn-sm">Success Button</button>
-					</div>
-					<div class="text-center col-sm-4">
-					  <h4>Adding <strong>Labels</strong></h4>
-					  <p>Using the insert panel, add labels to your page by using the label component.</p>
-					  <span class="label label-warning">Info Label</span><span class="label label-danger">Danger Label</span> </div>
-					<div class="text-center col-sm-4">
-					  <h4>Adding <strong>Glyphicons</strong></h4>
-					  <p>You can also add glyphicons to your page from within the insert panel.</p>
-					  <div class="row">
-						<div class="col-xs-4"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></div>
-						<div class="col-xs-4"><span class="glyphicon glyphicon-home" aria-hidden="true"> </span> </div>
-						<div class="col-xs-4"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span></div>
-					  </div>
-					</div>
-				  </div>
-
-				  <hr>
-				  -->
 				  <!-- Pie de página, se utilizará el mismo para todos. -->
 				<footer>
 					<hr>

@@ -42,6 +42,13 @@
 								<li><a href="#">Lista de bancos</a></li>
 							</ul>
 						</li>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
+						  <ul class="dropdown-menu" role="menu">
+							<li><a href="Crearcuenta.php">Crear cuenta</a></li>
+							<li><a href="Cuenta.php">Lista de cuentas</a></li>
+						  </ul>
+						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="CrearChequera.php">Crear chequera</a></li>
@@ -51,19 +58,12 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="Crearcheque.php">Crear cheque</a></li>
-							<li><a href="Listacheque.php">Lista de cheques</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="Crearcuenta.php">Crear cuenta</a></li>
-							<li><a href="Cuenta.php">Listado de cuentas</a></li>
+							<li><a href="Cheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
 						<ul class="dropdown-menu" role="menu">
-							<li><a href="#">Crear Proveedor</a></li>
+							<li><a href="CrearProveedor.php">Crear Proveedor</a></li>
 							<li><a href="Proveedor.php">Lista de Proveedores</a></li>
 						  </ul>
 						</li>
@@ -129,15 +129,14 @@
 													<th>Correo </th>
 													<th>Sitio Web </th>
 													<th>Telefono </th>
-													<th>Correo</th>
 												</tr>
 											</thead>
 											<!-- Cuerpo de la tabla -->
 											<tbody>
 												<!-- Contenido de la tabla -->
-													<!-- Acá mostraremos los usuarios y seleccionaremos el que deseamos eliminar -->
+													<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
 													<?php
-														// Primero hacemos la consulta en la tabla de persona
+														// Primero hacemos la consulta en la tabla de banco
 														include_once "Seguridad/conexion.php";								
 														$VerBancos = "SELECT * FROM Banco";
 														// Hacemos la consulta
@@ -145,20 +144,18 @@
 															while ($row = mysqli_fetch_array($resultado)){
 																?>
 																<tr>
-																<td><span id="idPersonaEliminar<?php echo $row['idPersona'];?>"><?php echo $row['idBanco'] ?></span></td>
-																<td><span id="NombreUsuario<?php echo $row['idPersona'];?>"><?php echo $row['CodigoBanco'] ?></span></td>
-																<td><span id="ApellidoUsuario<?php echo $row['idPersona'];?>"><?php echo $row['NombreBanco'] ?></span></td>
-																<td><span id="DireccionUsuario<?php echo $row['idPersona'];?>"><?php echo $row['DireccionBanco'] ?></span></td>
-																<td><span id="DPIUsuario<?php echo $row['idPersona'];?>"><?php echo $row['CorreoBanco'] ?></span></td>
-																<td><span id="TelefonoUsuario<?php echo $row['idPersona'];?>"><?php echo $row['SitioWebBanco'] ?></span></td>
-																<td><span id="FechaNacUsuario<?php echo $row['idPersona'];?>"><?php echo $row['TelefonoBanco'] ?></span></td>
-																<td><?php echo $NombreDeUsuario ?></td>
-																<td><span id="PrivilegioUsuario<?php echo $row['idPersona'];?>"><?php echo $PrivilegioDeUsuario ?></span></td>
+																<td><span id="idBanco<?php echo $row['idBanco'];?>"><?php echo $row['idBanco'] ?></span></td>
+																<td><span id="CodigoBanco<?php echo $row['idBanco'];?>"><?php echo $row['CodigoBanco'] ?></span></td>
+																<td><span id="NombreBanco<?php echo $row['idBanco'];?>"><?php echo $row['NombreBanco'] ?></span></td>
+																<td><span id="DireccionBanco<?php echo $row['idBanco'];?>"><?php echo $row['DireccionBanco'] ?></span></td>
+																<td><span id="CorreoBanco<?php echo $row['idBanco'];?>"><?php echo $row['CorreoBanco'] ?></span></td>
+																<td><span id="SitioWebBanco<?php echo $row['idBanco'];?>"><?php echo $row['SitioWebBanco'] ?></span></td>
+																<td><span id="TelefonoBanco<?php echo $row['idBanco'];?>"><?php echo $row['TelefonoBanco'] ?></span></td>
 																<td>
 																	<!-- Edición -->
 																	<div>
 																		<div class="input-group input-group-lg">
-																			<button type="button" class="btn btn-success EditarUsuario" value="<?php echo $row['idPersona']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
+																			<button type="button" class="btn btn-success EditarBanco" value="<?php echo $row['idBanco']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
 																		</div>
 																	</div>
 																</td>
@@ -166,7 +163,7 @@
 																	<!-- Eliminación -->
 																	<div>
 																		<div class="input-group input-group-lg">
-																			<button type="button" class="btn btn-danger EliminarUsuario" value="<?php echo $row['idPersona']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
+																			<button type="button" class="btn btn-danger EliminarBanco" value="<?php echo $row['idBanco']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
 																		</div>
 																	</div>
 																</td>
@@ -174,37 +171,154 @@
 													<?php
 															}
 													?>
-				
+											</tbody>
+										</table>
+									</div>								
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- Edit Modal-->
+					<div class="modal fade" id="frmEliminar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<center><h1 class="modal-title" id="myModalLabel">Eliminar Banco</h1></center>
+								</div>
+								<form method="post" action="Banco.php" id="myForm">
+								<div class="modal-body">
+									<p class="lead">¿Está seguro que desea eliminar el siguiente Banco?</p>
+									<div class="form-group input-group">
+										<input type="text" name="idBancoEliminacion" style="width:350px; visibility:hidden;" class="form-control" id="idBEliminar">
+										<br>
+								</div>
+								</div>
+								<div class="modal-footer">
+									<input type="submit" name="EliminarBanco" class="btn btn-danger" value="Eliminar Banco">
+									<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+								</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				<!-- /.modal -->
 				<?php
-					include_once "Seguridad/conexion.php";
-					if (isset($_POST['enviar'])) {
-						// Obtenemos los valores de todos los campos y los almacenamos en variables
-						$CodigoBanco=$_POST['CodigoBanco'];
-						$NombreBanco=$_POST['NombreBanco'];
-						$DireccionBanco=$_POST['DireccionBanco'];
-						$CorreoBanco=$_POST['CorreoBanco'];
-						$SitioWebBanco=$_POST['SitioWebBanco'];
-						$TelefonoBanco=$_POST['TelefonoBanco'];
+				include_once "Seguridad/conexion.php";
+				// Código que recibe la información de eliminar banco
+					if (isset($_POST['EliminarBanco'])) {
+						// Guardamos el id en una variable
+						$idBancoaEliminar = $_POST['idBancoEliminacion'];
+						// Preparamos la consulta
+						$query = "DELETE FROM banco WHERE idBanco=".$idBancoaEliminar.";";
+						// Ejecutamos la consulta
+						if(!$resultado = $mysqli->query($query)){
+    					echo "Error: La ejecución de la consulta falló debido a: \n";
+    					echo "Query: " . $query . "\n";
+    					echo "Errno: " . $mysqli->errno . "\n";
+    					echo "Error: " . $mysqli->error . "\n";
+    					exit;
+						}
+						else{
+    						?>
+    						<div class="alert alert-warning"> Banco eliminado </div>
+    						<?php
+							// Recargamos la página
+    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=Banco.php\">"; 
+    					}
+					}
+				// Termina código para eliminar banco
+					// Código para editar un banco
+					if (isset($_POST['EditarBanco'])) {
+						// Guardamos La información proveniente del formulario
+						$idBancoEditar = $_POST['idEditar'];
+						$CodigoBancoEditar = $_POST['CodigoBancoEditar'];
+						$NombreBancoEditar = $_POST['NombreBancoEditar'];
+						$DireccionBancoEditar = $_POST['DireccionBancoEditar'];
+						$CorreoBancoEditar = $_POST['CorreoBancoEditar'];
+						$SitioWebBancoEditar = $_POST['SitioWebBancoEditar'];
+						$TelefonoBancoEditar = $_POST['TelefonoBancoEditar'];
+				// Preparamos las consultas
+						$EditarTablaBanco = "UPDATE banco
+								  SET CodigoBanco = '" .$CodigoBancoEditar."',
+									  NombreBanco = '" .$NombreBancoEditar."',
+									  DireccionBanco = '".$DireccionBancoEditar."',
+									  CorreoBanco = '".$CorreoBancoEditar."',
+									  SitioWebBanco = '".$SitioWebBancoEditar."',
+									  TelefonoBanco = '".$TelefonoBancoEditar."',
+									WHERE idBanco=".$idBancoEditar.";";
 						
-						// Creamos la consulta para la insersión de los datos
-						$Consulta = "INSERT INTO Banco(CodigoBanco, NombreBanco, DireccionBanco, CorreoBanco, SitioWebBanco, TelefonoBanco) 
-						Values('".$CodigoBanco."','".$NombreBanco."', '".$DireccionBanco."', '".$CorreoBanco."', '".$SitioWebBanco."', '".$TelefonoBanco."');";
-							
-						if(!$resultado = $mysqli->query($Consulta)){
+						// Ejecutamos la consulta para la tabla de persona
+						if(!$resultado = $mysqli->query($EditarTablaBanco)){
 							echo "Error: La ejecución de la consulta falló debido a: \n";
-							echo "Query: " . $Consulta . "\n";
-							echo "Error: " . $mysqli->errno . "\n";
+							echo "Query: " . $EditarTablaBanco . "\n";
+							echo "Errno: " . $mysqli->errno . "\n";
+							echo "Error: " . $mysqli->error . "\n";
 							exit;
 						}
 						else{
-						?>
-						<div class="alert alert-success">Banco registrado</div>
-						<?php
-						}
+							// Recargamos la página
+    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=Banco.php\">"; 
+							?>
+							<div class="alert alert-success" role="alert">
+							  <strong>Banco actualizado</strong>
+							</div>
+    						<?php
+    					}
 					}
-				?>
+				?>						
 				
-				
+				<!-- Edit Modal-->
+					<div class="modal fade" id="frmEditar" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<center><h4 class="modal-title" id="myModalLabel">Editar Banco</h4></center>
+								</div>
+								<form method="post" action="Banco.php" id="frmEdit">
+									<div class="modal-body">
+									<div class="container-fluid">
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">ID</span>
+												<input type="text" style="width:350px;" class="form-control" name="idBancoEditar" id="idBancoEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Código de Banco</span>
+												<input type="text" style="width:350px;" class="form-control" name="CodigoBancoEditar" id="CodigoBancoEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Nombre de Banco</span>
+												<input type="text" style="width:350px;" class="form-control" name="NombreBancoEditar" id="NombreBancoEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Direccion del Banco</span>
+												<input type="text" style="width:350px;" class="form-control" name="DireccionBancoEditar" id="DireccionBancoEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Correo del Banco</span>
+												<input type="tel" style="width:350px;" class="form-control" name="CorreoBancoEditar" id="CorreoBancoEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Sitio Web del Banco</span>
+												<input type="date" style="width:350px;" class="form-control" name="SitioWebBancoEditar" id="SitioWebBancoEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Telefono del Banco</span>
+												<input type="date" style="width:350px;" class="form-control" name="TelefonoBancoEditar" id="TelefonoBancoEditar">
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+										<input type="submit" name="EditarBanco" class="btn btn-warning" value="Editar Banco">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				<!-- /.modal -->
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 				<script src="js/jquery-1.11.3.min.js"></script>
 

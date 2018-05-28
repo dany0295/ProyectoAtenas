@@ -18,6 +18,9 @@
 <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
 <link rel="stylesheet" type="text/css" href="text/estilo.css"> 
 
+<!-- Librería javascript para las notificaciones -->
+<script src="js/notify.js"></script>
+
 </head>
 	<?php
 		//include_once 'Seguridad/conexion.php';
@@ -44,6 +47,13 @@
 								<li><a href="Banco.php">Lista de bancos</a></li>
 							</ul>
 						</li>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
+						  <ul class="dropdown-menu" role="menu">
+							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
+							<li><a href="Cuenta.php">Lista de cuentas</a></li>
+						  </ul>
+						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="CrearChequera.php">Crear chequera</a></li>
@@ -52,15 +62,8 @@
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Crear cheque</a></li>
-							<li><a href="Listacheque.php">Lista de cheques</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
-							<li><a href="Cuenta.php">Lista de cuentas</a></li>
+							<li><a href="CrearCheque.php">Crear cheque</a></li>
+							<li><a href="Cheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
@@ -128,7 +131,6 @@
 						</div>
 					</div>
 					</br>
-					
 				<!-- Resgistrar -->
 					<div class="row">
 						<div class="col-xs-11 col-xs-offset-1">

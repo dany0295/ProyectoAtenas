@@ -39,25 +39,26 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bancos<span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="CrearBanco.php">Crear banco</a></li>
-								<li><a href="Banco.php">Lista de bancos</a></li>
+								<li><a href="Banco.php">Lista de bancos</a></li>	
 							</ul>
 						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="Crearcuenta.php">Crear cuenta</a></li>
+							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
 							<li><a href="Cuenta.php">Listado de cuentas</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="CrearChequera.php">Crear chequera</a></li>
-							<li><a href="#">Lista de chequeras</a></li>
+							<li><a href="Chequera.php">Lista de chequeras</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="Crearcheque.php">Crear cheque</a></li>
-							<li><a href="Cheque.php">Lista de cheques</a></li>
+							<li><a href="#">Lista de cheques</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
@@ -106,12 +107,12 @@
 								<div class="container-fluid">
 									<div class="row">
 										<div class="col-xs-6 ">
-										<h1 class="text-center">Chequeras registradas</h1>
+										<h1 class="text-center">Cheques registrados</h1>
 										</div>
 										<!-- Contenedor del ícono del Usuario -->
-										<div class="col-xs-6  Icon">
+										<div class="col-xs-6 Icon">
 											<!-- Icono de usuario -->
-											<span class="glyphicon glyphicon-home"></span>
+											<span class="glyphicon glyphicon-pencil"></span>
 										</div>
 									</div>
 									<br>
@@ -122,46 +123,48 @@
 												<!-- Contenido -->
 												<tr>
 													<th>#</th>
-													<th>Codigo </th>
-													<th>Nombre </th>
-													<th>Rango Minimo </th>
-													<th>Rango Maximo </th>
-													<th>Cuenta </th>
+													<th>Codigo de Cheque</th>
+													<th>Banco</th>
+													<th>Nombre de Proveedor</th>
+													<th>Lugar</th>
+													<th>Fecha</th>
+													<th>Monto</th>
+													<th>Descripción</th>
 												</tr>
 											</thead>
 											<!-- Cuerpo de la tabla -->
 											<tbody>
 												<!-- Contenido de la tabla -->
 													<!-- Acá mostraremos los usuarios y seleccionaremos el que deseamos eliminar -->
-													<?php
-														// Primero hacemos la consulta en la tabla de persona
-														include_once "Seguridad/conexion.php";								
-														$VerChequera = "SELECT * FROM Chequera";
+													<?php				
+														$VerCheques = "SELECT * FROM cheque";
 														// Hacemos la consulta
-														$resultado = $mysqli->query($VerChequera);
+														$resultado = $mysqli->query($VerCheques);
 															while ($row = mysqli_fetch_array($resultado)){
 																// Obtenemos el nombre de usuario y privilegio de cada persona
 																// Primero haremos la consulta
-																$VerCuenta = "SELECT * FROM Cuenta WHERE idCuenta='".$row['idCuenta']."'";
+																$VerBanco = "SELECT * FROM banco WHERE idBanco='".$row['idBanco']."'";
 																// Ejecutamos la consulta
-																$ResultadoConsultaCuenta = $mysqli->query($VerCuenta);
+																$ResultadoConsultaBanco = $mysqli->query($VerBanco);
 																// Guardamos la consulta en un array
-																$ResultadoConsulta = $ResultadoConsultaCuenta->fetch_assoc();
+																$ResultadoConsulta = $ResultadoConsultaBanco->fetch_assoc();
 																// Nombre del banco
-																$NombreCuenta = $ResultadoConsulta['NombreCuenta'];
+																$NombreBanco = $ResultadoConsulta['NombreBanco'];
 																?>
 																<tr>
-																<td><span id="idChequera<?php echo $row['idChequera'];?>"><?php echo $row['idChequera'] ?></span></td>
-																<td><span id="CodigoBanco<?php echo $row['idChequera'];?>"><?php echo $row['CodigoChequera'] ?></span></td>
-																<td><span id="NombreBanco<?php echo $row['idChequera'];?>"><?php echo $row['NombreChequera'] ?></span></td>
-																<td><span id="CorreoBanco<?php echo $row['idChequera'];?>"><?php echo $row['RangoMinimoChequera'] ?></span></td>
-																<td><span id="SitioWebBanco<?php echo $row['idChequera'];?>"><?php echo $row['RangoMaximoChequera'] ?></span></td>
-																<td><?php echo $NombreCuenta ?></td>
+																<td><span id="idCheque<?php echo $row['idCheque'];?>"><?php echo $row['idCheque'] ?></span></td>
+																<td><span id="CodigoCheque<?php echo $row['idCheque'];?>"><?php echo $row['CodigoCheque'] ?></span></td>
+																<td><span id="NumeroCheque<?php echo $row['idCheque'];?>"><?php echo $row['NumeroCheque'] ?></span></td>
+																<td><span id="LugarCheque<?php echo $row['idCheque'];?>"><?php echo $row['LugarCheque'] ?></span></td>
+																<td><span id="FechaCheque<?php echo $row['idCheque'];?>"><?php echo $row['FechaCheque'] ?></span></td>
+																<td><span id="MontoCheque<?php echo $row['idCheque'];?>"><?php echo $row['MontoCheque'] ?></span></td>
+																<td><span id="ComentarioCheque<?php echo $row['idCheque'];?>"><?php echo $row['ComentarioCheque'] ?></span></td>
+																<td><?php echo $NombreBanco ?></td>
 																<td>
 																	<!-- Edición -->
 																	<div>
 																		<div class="input-group input-group-lg">
-																			<button type="button" class="btn btn-success EditarBanco" value="<?php echo $row['idBanco']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
+																			<button type="button" class="btn btn-success EditarCuenta" value="<?php echo $row['idCuenta']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
 																		</div>
 																	</div>
 																</td>
@@ -169,7 +172,7 @@
 																	<!-- Eliminación -->
 																	<div>
 																		<div class="input-group input-group-lg">
-																			<button type="button" class="btn btn-danger EliminarBanco" value="<?php echo $row['idBanco']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
+																			<button type="button" class="btn btn-danger EliminarCuenta" value="<?php echo $row['idCuenta']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
 																		</div>
 																	</div>
 																</td>
@@ -185,7 +188,6 @@
 						</div>
 					</div>
 				</div>
-					
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
 

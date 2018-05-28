@@ -43,6 +43,12 @@
 								<li><a href="Banco.php">Lista de bancos</a></li>
 							</ul>
 						</li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
+						  <ul class="dropdown-menu" role="menu">
+							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
+							<li><a href="Cuenta.php">Lista de cuentas</a></li>
+						  </ul>
+						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="CrearChequera.php">Crear chequera</a></li>
@@ -52,13 +58,13 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="#">Crear cheque</a></li>
-							<li><a href="Listacheque.php">Lista de cheques</a></li>
+							<li><a href="Cheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
-							<li><a href="Cuenta.php">Lista de cuentas</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="CrearProveedor.php">Crear Proveedor</a></li>
+							<li><a href="Proveedor.php">Lista de Proveedores</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
@@ -102,18 +108,26 @@
 					<form name="CrearCheque" action="CrearCheque.php" method="post">
 				<div class="container">
 				  <div class="row text-center">
-					<div class="container-fluid">
+				<div class="container-fluid">
 						<div class="row">
 							<div class="col-xs-6 col-xs-offset-3">
 							<h2 class="text-center">Creación de cheques</h2>
 							<br>
 							</div>
 						</div>
-				<div class="row">
-					<div class="col-xs-5 col-xs-offset+1">
-						<div class="input-group input-group-lg">
-							<!--<span class="input-group-addon" id="sizing-addon5">Banco</span> -->
-							<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-piggy-bank"></i></span>
+						<!-- Codigo del banco -->
+						<div class="row">
+						<div class="col-xs-2 col-xs-offset+1">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+								<input type="text" class="form-control" name="CodigoBanco" placeholder="Codigo de banco" id="CodigoBanco" aria-describedby="sizing-addon1" required>
+							</div>
+						</div>
+						<!--Seleccionar Banco-->
+						<div class="col-xs-4 col-xs-offset+1">
+							<div class="input-group input-group-lg">
+								<!--<span class="input-group-addon" id="sizing-addon5">Banco</span> -->
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-piggy-bank"></i></span>
 								<!--<span class="glyphicons glyphicons-bank"></span>
 								
 								<!-- Tipo de Banco -->
@@ -132,23 +146,11 @@
 												}
 										?>
 								</select>	
-						</div>
-					</div>	
-
-					<!-- Codigo del banco -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="CodigoBanco" placeholder="Codigo de banco" id="CodigoBanco" aria-describedby="sizing-addon1" required>
 							</div>
-						</div>
-					</div>
-					<br>
-
-					<!-- Pago a la orden -->
-					<div class="row">
-						<div class="col-xs-6 col-xs-offset+1">
+						</div>	
+						<!-- Pago a la orden -->
+						<div class="row">
+							<div class="col-xs-5 col-xs-offset+1">
 							<div class="input-group input-group-lg">
 								<!--<span class="input-group-addon" id="sizing-addon1">Pagar a la Orden de:</span>-->
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
@@ -170,14 +172,11 @@
 										?>	
 								</select>		
 							</div>
+							</div>
 						</div>
 					</div>
 				</div>
-				</br>
-
-
-
-						
+				</br>	
 				<!-- Lugar -->
 					<div class="row">
 						<div class="col-xs-5 col-xs-offset+1">

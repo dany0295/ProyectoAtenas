@@ -18,6 +18,9 @@
 <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
 <link rel="stylesheet" type="text/css" href="text/estilo.css"> 
 
+<!-- Librería javascript para las notificaciones -->
+<script src="js/notify.js"></script>
+
 </head>
 	<?php
 		//include_once 'Seguridad/conexion.php';
@@ -44,6 +47,13 @@
 								<li><a href="Banco.php">Lista de bancos</a></li>
 							</ul>
 						</li>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
+						  <ul class="dropdown-menu" role="menu">
+							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
+							<li><a href="Cuenta.php">Listado de cuentas</a></li>
+						  </ul>
+						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="CrearChequera.php">Crear chequera</a></li>
@@ -52,17 +62,14 @@
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Crear cheque</a></li>
-							<li><a href="Listacheque.php">Lista de cheques</a></li>
+							<li><a href="CrearCheque.php">Crear cheque</a></li>
+							<li><a href="Cheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administración de Niveles<span class="caret"></span></a>
-						</li>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Crear cuenta</a></li>
-							<li><a href="#">Listado de cuentas</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="CrearProveedor.php">Crear Proveedor</a></li>
+							<li><a href="#">Lista de Proveedores</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
@@ -96,97 +103,89 @@
 				  </div>
 				  <!-- /.container-fluid --> 
 				</nav>
-
-				<div class="container">
-				  <div class="row text-center">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-6 col-xs-offset-3">
-							<h2 class="text-center">Creación de proveedor</h2>
-							</div>
-						</div>
-		
-						<!-- Contenedor del ícono del Usuario -->
-						<!--
-							<div class="Icon">
-								<!-- Icono de usuario -->
-						<!--		
-								<span class="glyphicon glyphicon-plus"></span>
-							</div>
-						-->
-						
-	
-				<!--Titulo de cheque -->		
-		<!--		<div class="container">
-				  <div class="row text-center">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-3 col-xs-offset-1">
-							<h3 class="text-center">Banco Industrial</h3>
-							</div>
-						</div>
-						<br>
-		-->				
-														
-				<!-- Codigo del Proveedor -->
-					<div class="row">
-						<div class="col-xs-3 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="CodigoProveedor" placeholder="Codigo del Proveedor" id="CodigoProveedor" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-				<!-- Nombre del Proveedor -->
-					<div class="row">
-						<div class="col-xs-7 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="NombreProveedor" placeholder="Nombre del Proveedor" id="NombreProveedor" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					</br>
-					
-				<!-- Resgistrar -->
-					<div class="row">
-						<div class="col-xs-12 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<div clss="btn-group">
-									<button type="submit" class="btn btn-primary" id="CrearProveedor" name="enviar">Registrar</button>
-									<button type="button" class="btn btn-danger">Cancelar</button>
+				<br>
+				<br>
+				<br>
+				<div class="form-group">
+						<div class="container">
+							<div class="row text-center">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-xs-6 ">
+										<h1 class="text-center">Proveedores registrados</h1>
+										</div>
+										<!-- Contenedor del ícono del Usuario -->
+										<div class="col-xs-6 Icon">
+											<!-- Icono de usuario -->
+											<span class="glyphicon glyphicon-home"></span>
+										</div>
+									</div>
+									<br>
+									<div class="table-responsive">          
+										<table class="table">
+											<!-- Título -->
+											<thead>
+												<!-- Contenido -->
+												<tr>
+													<th>#</th>
+													<th>Codigo Proveedor </th>
+													<th>Nombre Proveedor</th>
+												</tr>
+											</thead>
+											<!-- Cuerpo de la tabla -->
+											<tbody>
+												<!-- Contenido de la tabla -->
+													<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
+													<?php
+														// Primero hacemos la consulta en la tabla de Proveedores
+														include_once "Seguridad/conexion.php";								
+														$VerProveedores = "SELECT * FROM Proveedor";
+														// Hacemos la consulta
+														$resultado = $mysqli->query($VerProveedores);
+															while ($row = mysqli_fetch_array($resultado)){
+																// Obtenemos el nombre de usuario y privilegio de cada proveedor
+																// Primero haremos la consulta
+																$VerProveedor = "SELECT * FROM Proveedor WHERE idProveedor='".$row['idProveedor']."'";
+																// Ejecutamos la consulta
+																$ResultadoConsultaProveedor = $mysqli->query($VerProveedor);
+																// Guardamos la consulta en un array
+																$ResultadoConsulta = $ResultadoConsultaProveedor->fetch_assoc();
+																// Nombre del banco
+																$NombreProveedor = $ResultadoConsulta['NombreProveedor'];
+																?>
+																<tr>
+																<td><span id="idProveedor<?php echo $row['idProveedor'];?>"><?php echo $row['idProveedor'] ?></span></td>
+																<td><span id="NombreProveedor<?php echo $row['idProveedor'];?>"><?php echo $row['NombreProveedor'] ?></span></td>
+																<td><?php echo $NombreProveedor ?></td>
+																<td>	
+																	<!-- Edición -->
+																	<div>
+																		<div class="input-group input-group-lg">
+																			<button type="button" class="btn btn-success EditarBanco" value="<?php echo $row['idBanco']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
+																		</div>
+																	</div>
+																</td>
+																<td>
+																	<!-- Eliminación -->
+																	<div>
+																		<div class="input-group input-group-lg">
+																			<button type="button" class="btn btn-danger EliminarBanco" value="<?php echo $row['idBanco']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
+																		</div>
+																	</div>
+																</td>
+																</tr>
+													<?php
+															}
+													?>
+											</tbody>
+										</table>
+									</div>								
 								</div>
 							</div>
 						</div>
 					</div>
-					<br>
 				</div>
-				
-				<?php
-					include_once "Seguridad/conexion.php";
-					if (isset($_POST['enviar'])) {
-						// Obtenemos los valores de todos los campos y los almacenamos en variables
-						$CodigoProveedor=$_POST['CodigoProveedor'];
-						$NombreProveedor=$_POST['NombreProveedor'];
-												
-						// Creamos la consulta para la insersión de los datos
-						$Consulta = "INSERT INTO Proveedor(CodigoProveedor, NombreProveedor) 
-						Values('".$CodigoProveedor."','".$NombreProveedor."');";
 							
-						if(!$resultado = $mysqli->query($Consulta)){
-							echo "Error: La ejecución de la consulta falló debido a: \n";
-							echo "Query: " . $Consulta . "\n";
-							echo "Error: " . $mysqli->errno . "\n";
-							exit;
-						}
-						else{
-						?>
-						<div class="alert alert-success">Proveedor registrado</div>
-						<?php
-						}
-					}
-				?>
-				
-								
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
 

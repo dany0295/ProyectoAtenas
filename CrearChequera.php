@@ -41,8 +41,13 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="CrearBanco.php">Crear banco</a></li>
 								<li><a href="Banco.php">Lista de bancos</a></li>
-								
 							</ul>
+						</li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
+						  <ul class="dropdown-menu" role="menu">
+							<li><a href="Crearcuenta.php">Crear cuenta</a></li>
+							<li><a href="Cuenta.php">Listado de cuentas</a></li>
+						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
@@ -53,18 +58,9 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="Crearcheque.php">Crear cheque</a></li>
-							<li><a href="Listacheque.php">Lista de cheques</a></li>
+							<li><a href="Cheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
-						
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="Crearcuenta.php">Crear cuenta</a></li>
-							<li><a href="Cuenta.php">Listado de cuentas</a></li>
-						  </ul>
-						</li>
-						
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="LiberarCheque.php">Liberar un cheque</a></li>
@@ -96,7 +92,8 @@
 				  </div>
 				  <!-- /.container-fluid --> 
 				</nav>
-
+				<div class="form-group">
+					<form name="CrearChequera" action="CrearChequera.php" method="post">
 				<div class="container">
 				  <div class="row text-center">
 					<div class="container-fluid">
@@ -145,7 +142,6 @@
 								<input type="text" class="form-control" name="NombreChequera" placeholder="Nombre Chequera" id="NombreChequera" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
-						
 						<!--Rango Inicial Chquera-->
 						<div class="col-xs-5 col-xs-offset+1">
 							<div class="input-group input-group-lg">
@@ -155,7 +151,6 @@
 						</div>
 					</div>
 					<br>
-					
 					<!--Rango Final Chequera-->
 					<div class="row">
 						<div class="col-xs-5 col-xs-offset-1">
@@ -166,7 +161,6 @@
 						</div>
 					</div>
 					<br>
-					
 					<!-- Resgistrar -->
 					<div class="row">
 						<div class="col-xs-12 col-xs-offset-1">
@@ -186,7 +180,8 @@
 					if (isset($_POST['enviar'])) {
 						// Obtenemos los valores de todos los campos y los almacenamos en variables
 						$CodigoChequera=$_POST['CodigoChequera'];
-						$NumeroCuenta=$_POST['NombreChequera'];
+						$BancoCuenta=$_POST['BancoCuenta'];
+						$NombreChequera=$_POST['NombreChequera'];
 						$RangoMinimoChequera=$_POST['RangoMinimoChequera'];
 						$RangoMaximoChequera=$_POST['RangoMaximoChequera'];
 												
@@ -202,13 +197,11 @@
 						}
 						else{
 						?>
-						<div class="alert alert-success">Cuenta registrada</div>
+						<div class="alert alert-success">Chequera registrada</div>
 						<?php
 						}
 					}
 				?>
-				
-				
 				
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
