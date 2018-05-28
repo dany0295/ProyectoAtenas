@@ -105,7 +105,7 @@
 				<div class="container-fluid">
 				  <div class="row">
 					<div class="col-md-6 col-md-offset-3">
-					  <h1 class="text-center">Atenas S. A.</h1>
+					  <h1 class="text-center">Atenas, S. A.</h1>
 					</div>
 				  </div>
 				</div>
