@@ -378,7 +378,7 @@
 					<hr>
 					<div class="row">
 						<div class="text-center col-md-6 col-md-offset-3">
-							<h4>Sistema de gestión de inventario</h4>
+							<h4>Atenas, S. A.</h4>
 							<p>Copyright &copy; 2018 &middot; All Rights Reserved &middot; <a href="http://www.umg.edu.gt/" >www.umg.edu.gt</a></p>
 						</div>
 					</div>

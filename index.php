@@ -15,6 +15,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<link rel="shortcut icon" href="imagenes/IconoAtenas.ico">
         <title>Atenas, S. A.</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 			<!-- vinculo a bootstrap -->
@@ -29,6 +30,7 @@
 		<!-- Contenedor del ícono del Usuario -->
 		<div id="Contenedor">
 			<div class="Icon">
+			<h2 class="text-center">Inicie sesión</h2>
 				<!-- Icono de usuario -->
 				<span class="glyphicon glyphicon-user"></span>
 			</div>
