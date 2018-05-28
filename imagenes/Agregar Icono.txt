@@ -1,0 +1,3 @@
+en la primer línea (14) se agrega el ícono
+
+en la segunda línea (36) en vez de que diga Administración como decía antes ahora tiene un logo que es el que está mostrando.
