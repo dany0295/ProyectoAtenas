@@ -40,8 +40,14 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="CrearBanco.php">Crear banco</a></li>
 								<li><a href="Banco.php">Lista de bancos</a></li>
-								
 							</ul>
+						</li>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
+						  <ul class="dropdown-menu" role="menu">
+							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
+							<li><a href="Cuenta.php">Listado de cuentas</a></li>
+						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
@@ -52,17 +58,15 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="Crearcheque.php">Crear cheque</a></li>
-							<li><a href="#">Lista de cheques</a></li>
+							<li><a href="Cheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
-							<li><a href="Cuenta.php">Listado de cuentas</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="CrearProveedor.php">Crear Proveedor</a></li>
+							<li><a href="Proveedor.php">Lista de Proveedores</a></li>
 						  </ul>
 						</li>
-						
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="LiberarCheque.php">Liberar un cheque</a></li>
@@ -70,7 +74,7 @@
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Impresión de Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
-							<li><a href="Listacheque.php">Lista de cheques en cola</a></li>
+							<li><a href="#">Lista de cheques en cola</a></li>
 						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
@@ -103,30 +107,6 @@
 							<h1 class="text-center">Lista de cheques</h1>
 							</div>
 						</div>
-
-
-				
-						<!-- Contenedor del ícono del Usuario -->
-						<!--
-							<div class="Icon">
-								<!-- Icono de usuario -->
-						<!--		
-								<span class="glyphicon glyphicon-plus"></span>
-							</div>
-						-->
-						
-	
-				<!--Titulo de cheque -->		
-		<!--		<div class="container">
-				  <div class="row text-center">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-3 col-xs-offset-1">
-							<h3 class="text-center">Banco Industrial</h3>
-							</div>
-						</div>
-						<br>
-		-->				
 					<div class="row">
 						<div class="col-xs-7 col-xs-offset-1">
 							<div class="input-group input-group-lg">
@@ -169,129 +149,7 @@
 					</div>
 					<br>
 					
-					<!-- Nombre del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-5 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-								<input type="text" class="form-control" name="NombreUsuario" placeholder="Nombre" id="NombreUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					-->
-					<!-- Apellido del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-5 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-								<input type="text" class="form-control" name="ApellidoUsuario" placeholder="Apellido" id="ApellidoUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Teléfono del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-earphone"></i></span>
-								<input type="tel" class="form-control" name="TelefonoUsuario" placeholder="Teléfono" id="TelefonoUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Dirección del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
-								<input type="text" class="form-control" name="DireccionUsuario" placeholder="Dirección" id="DireccionUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Correo del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
-								<input type="email" class="form-control" name="CorreoUsuario" placeholder="Correo" id="CorreoUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Contraseña del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<input type="password" class="form-control" name="PasswordUsuario" placeholder="Contraseña" id="PaswordUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Repetición de contraseña del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<input type="password" class="form-control" name="RePasswordUsuario" placeholder="Ingrese nuevamente la contraseña" id="RePaswordUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Rol del usuario
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<select class="form-control" name="RolUsuario" id="RolUsuario">
-								<option value="" disabled selected>Selecciona el rol del usuario</option>
-									<option value="Administrador">Administrador</option>
-									<option value="Auditor">Auditor</option>
-									<option value="Gerente">Gerente</option>
-									<option value="Pagador">Pagador</option>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br> -->
-					<!-- Puesto del usuario -->
-					<!--
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<select class="form-control" name="PuestoUsuario" id="PuestoUsuario">
-								<option value="" disabled selected>Puesto</option>
-									<optgroup label="Gerencia">
-										<option value="GerenteGeneral">Gerente General</option>
-									</optgroup>
-									<optgroup label="Auditoría">
-										<option value="JefeAuditoría">Jefe de Auditoría</option>
-										<option value="AsistenteAuditoria">Asistente de Auditoría</option>
-									</optgroup>
-									<optgroup label="Pagos">
-										<option value="JefePagos">Jefe de Pagos</option>
-									</optgroup>
-								</select>
-							</div>
-						</div>
-					</div>
-					<br>
-					-->
-					<!-- Resgistrar -->
+					<!-- Registrar -->
 					<div class="row">
 						<div class="col-xs-12 col-xs-offset-1">
 							<div class="input-group input-group-lg">

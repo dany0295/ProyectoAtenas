@@ -42,8 +42,14 @@
 							<ul class="dropdown-menu" role="menu">
 								<li><a href="CrearBanco.php">Crear banco</a></li>
 								<li><a href="Banco.php">Lista de bancos</a></li>
-								
 							</ul>
+						</li>
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
+						  <ul class="dropdown-menu" role="menu">
+							<li><a href="#">Crear cuenta</a></li>
+							<li><a href="Cuenta.php">Listado de cuentas</a></li>
+						  </ul>
 						</li>
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
@@ -54,28 +60,15 @@
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="Crearcheque.php">Crear cheque</a></li>
-							<li><a href="Listacheque.php">Lista de cheques</a></li>
+							<li><a href="Cheque.php">Lista de cheques</a></li>
 						  </ul>
 						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administración de Niveles<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Action</a></li>
-							<li><a href="#">Another action</a></li>
-							<li><a href="#">Something else here</a></li>
-							<li class="divider"></li>
-							<li><a href="#">Separated link</a></li>
-							<li class="divider"></li>
-							<li><a href="#">One more separated link</a></li>
+						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
+						<ul class="dropdown-menu" role="menu">
+							<li><a href="CrearProveedor.php">Crear Proveedor</a></li>
+							<li><a href="Proveedor.php">Lista de Proveedores</a></li>
 						  </ul>
-						</li>
-						<li class="dropdown">
-						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Crear cuenta</a></li>
-							<li><a href="Cuenta.php">Listado de cuentas</a></li>
-						  </ul>
-						</li>
-						
+						</li>						
 						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
 						  <ul class="dropdown-menu" role="menu">
 							<li><a href="LiberarCheque.php">Liberar un cheque</a></li>
@@ -118,12 +111,10 @@
 									</div>
 								</div>
 								<!-- Contenedor del ícono -->
-								
 								<div class="Icon">
 									<!-- Icono de Dolar -->
 									<span class="glyphicon glyphicon-piggy-bank"></span>
 								</div>
-							
 							<!-- Codigo de cuenta -->
 							<div class="row">
 								<div class="col-xs-10 col-xs-offset-1">
@@ -134,7 +125,6 @@
 								</div>
 							</div>
 							<br>
-							
 							<!-- Tipo de Cuenta -->
 							<div class="row">
 								<div class="col-xs-10 col-xs-offset-1">
