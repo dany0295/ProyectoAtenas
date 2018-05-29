@@ -1,4 +1,4 @@
-﻿// Eliminación de usuario de la pantalla de usuarios
+// Eliminación de usuario de la pantalla de usuarios
 $(document).ready(function(){
 	$(document).on('click', '.EliminarUsuario', function(){
 		var id=$(this).val();
@@ -75,6 +75,27 @@ $(document).ready(function(){
 	});
 });
 
+// Mostramos la pantalla modal para agregar puesto
+$(document).ready(function(){
+	$(document).on('click', '.AgregarPuesto', function(){
+		$('#ModalAgregarPuesto').modal('show');
+	});
+});
+
+// Mostramos la pantalla modal para agregar rol
+$(document).ready(function(){
+	$(document).on('click', '.AgregarRol', function(){
+		$('#ModalAgregarRol').modal('show');
+	});
+});
+
+// Mostramos la pantalla modal para agregar Rango
+$(document).ready(function(){
+	$(document).on('click', '.AgregarRango', function(){
+		$('#ModalAgregarRango').modal('show');
+	});
+});
+
 // Edición de números de banco de la pantalla de bancos
 $(document).ready(function(){
 	$(document).on('click', '.EditarBanco', function(){
@@ -87,7 +108,7 @@ $(document).ready(function(){
 		var SitioWebBanco=$('#SitioWebBanco'+id).text();
 		var TelefonoBanco=$('#TelefonoBanco'+id).text();
 	
-		$('#frmEditar').modal('show');
+		$('#frmEditarBanco').modal('show');
 		$('#idBancoEditar').val(idBanco);
 		$('#CodigoBancoEditar').val(CodigoBanco);
 		$('#NombreBancoEditar').val(NombreBanco);
@@ -102,21 +123,43 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$(document).on('click', '.EliminarBanco', function(){
 		var id=$(this).val();
-		var CodigoBanco=$('#CodigoBanco'+id).text();
 		var NombreBanco=$('#NombreBanco'+id).text();
-		var DireccionBanco=$('#DireccionBanco'+id).text();
-		var CorreoBanco=$('#CorreoBanco'+id).text();
-		var SitioWebBanco=$('#SitioWebBanco'+id).text();
-		var TelefonoBanco=$('#TelefonoBanco'+id).text();
-		var Usuario=$('#idCuenta'+id).text();
+		var Usuario=$('#idBanco'+id).text();
 	
 		$('#frmEliminarBanco').modal('show');
-		document.querySelector('#CodigoBanco').innerText = CodigoBanco;
 		document.querySelector('#NombreBanco').innerText = NombreBanco;
-		document.querySelector('#DireccionBanco').innerText = DireccionBanco;
-		document.querySelector('#CorreoBanco').innerText = CorreoBanco;
-		document.querySelector('#SitioWebBanco').innerText = DireccionBanco;
-		document.querySelector('#TelefonoBanco').innerText = TelefonoBanco;
 		$('#idBancoAEliminar').val(Usuario);
+	});
+});
+
+// Edición de números de chequera de la pantalla de chequeras
+$(document).ready(function(){
+	$(document).on('click', '.EditarChequera', function(){
+		var id=$(this).val();
+		var idChequera=$('#idChequera'+id).text();
+		var CodigoChequera=$('#CodigoChequera'+id).text();
+		var NombreChequera=$('#NombreChequera'+id).text();
+		var RangoMinimoChequera=$('#RangoMiminoChequera'+id).text();
+		var RangoMaximoChequera=$('#RangoMaximoChequera'+id).text();
+	
+		$('#frmEditarChequera').modal('show');
+		$('#idChequeraEditar').val(idChequera);
+		$('#CodigoChequeraEditar').val(CodigoChequera);
+		$('#NombreChequeraEditar').val(NombreChequera);
+		$('#RangoMinimoChequeraEditar').val(RangoMinimoChequera);
+		$('#RangoMaximochequeraEditar').val(RangoMaximoChequera);
+	});
+});
+
+// Eliminación de cuenta de la pantalla de cuentas
+$(document).ready(function(){
+	$(document).on('click', '.EliminarChequera', function(){
+		var id=$(this).val();
+		var NombreChequera=$('#NombreChequera'+id).text();
+		var Usuario=$('#idChequera'+id).text();
+	
+		$('#frmEliminarChequera').modal('show');
+		document.querySelector('#NombreChequera').innerText = NombreChequera;
+		$('#idChequeraAEliminar').val(Usuario);
 	});
 });

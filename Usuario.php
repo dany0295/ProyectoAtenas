@@ -11,20 +11,22 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="shortcut icon" href="imagenes/icono.ico">
-<title>Proyecto Atenas, S.A.</title>
+<link rel="shortcut icon" href="imagenes/IconoAtenas.ico">
+<title>Atenas, S. A.</title>
 
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet">
-<!-- se vincula al hoja de estilo para definir el aspecto del formulario de login-->  
-<link rel="stylesheet" type="text/css" href="css/estilo.css">
+<!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
+<link rel="stylesheet" type="text/css" href="text/estilo.css"> 
 
 </head>
 	<?php
 		// Incluimos el archivo que valida si hay una sesión activa
 		include_once "Seguridad/seguro.php";
+		// Incluimos el archivo de conexión a la base de datos
+		include_once "Seguridad/conexion.php";
 		// Si en la sesión activa tiene privilegios de administrador puede ver el formulario
-		if($_SESSION["PrivilegioUsuario"] == 'Administrador'){
+		if($_SESSION["PrivilegioUsuario"] == '1'){
 		?>
 			<body>
 				<nav class="navbar navbar-default navbar-fixed-top">
@@ -123,15 +125,15 @@
 												<!-- Contenido -->
 												<tr>
 													<th>#</th>
-													<th>Nombre</th>
-													<th>Apellido</th>
+													<th>Nombres</th>
+													<th>Apellidos</th>
+													<th>Teléfono</th>
 													<th>Dirección</th>
-													<th>No. de DPI</th>
-													<th>No. de teléfono</th>
-													<th>Fecha de Nacimiento</th>
 													<th>Correo</th>
-													<th>Nombre de inicio de sesión</th>
-													<th>Privilegio</th>
+													<th>Nombre de Inicio de Sesión</th>
+													<th>Puesto</th>
+													<th>Rol</th>
+													<th>Rango</th>
 												</tr>
 											</thead>
 											<!-- Cuerpo de la tabla -->
@@ -139,40 +141,53 @@
 												<!-- Contenido de la tabla -->
 													<!-- Acá mostraremos los usuarios y seleccionaremos el que deseamos eliminar -->
 													<?php
-														// Primero hacemos la consulta en la tabla de persona
-														include_once "Seguridad/conexion.php";								
-														$VerPersonas = "SELECT * FROM persona";
+														// Primero hacemos la consulta en la tabla de usuario
+														$VerUsuarios = "SELECT * FROM usuario";
 														// Hacemos la consulta
-														$resultado = $mysqli->query($VerPersonas);
+														$resultado = $mysqli->query($VerUsuarios);
 															while ($row = mysqli_fetch_array($resultado)){
-																// Obtenemos el nombre de usuario y privilegio de cada persona
-																// Primero haremos la consulta
-																$VerUsuario = "SELECT * FROM usuario WHERE idPersona='".$row['idPersona']."'";
+																// Obtendremos el puesto, rol y rango a partir de una consulta desde el id que se encuentra en cada campo
+																// Primero haremos la consulta -------------------------------------------------------------------------
+																$VerPuesto = "SELECT NombrePuesto FROM puesto WHERE idPuesto='".$row['idPuesto']."'";
 																// Ejecutamos la consulta
-																$ResultadoConsultaUsuario = $mysqli->query($VerUsuario);
+																$ResultadoPuesto = $mysqli->query($VerPuesto);
 																// Guardamos la consulta en un array
-																$ResultadoConsulta = $ResultadoConsultaUsuario->fetch_assoc();
+																$ResultadoConsultaPuesto = $ResultadoPuesto->fetch_assoc();
 																// Nombre de usuario
-																$NombreDeUsuario = $ResultadoConsulta['NombreUsuario'];
-																// Privilegio de usuario
-																$PrivilegioDeUsuario = $ResultadoConsulta['PrivilegioUsuario'];
+																$Puesto = $ResultadoConsultaPuesto['NombrePuesto'];
+																// Par el rol ------------------------------------------------------------------------------------------
+																$VerRol = "SELECT NombreRol FROM Rol WHERE idRol='".$row['idRol']."'";
+																// Ejecutamos la consulta
+																$ResultadoRol = $mysqli->query($VerRol);
+																// Guardamos la consulta en un array
+																$ResultadoConsultaRol = $ResultadoRol->fetch_assoc();
+																// Nombre de usuario
+																$Rol = $ResultadoConsultaRol['NombreRol'];
+																// Par los rango ---------------------------------------------------------------------------------------
+																$VerRango = "SELECT * FROM rango WHERE idRango='".$row['idRango']."'";
+																// Ejecutamos la consulta
+																$ResultadoRango = $mysqli->query($VerRango);
+																// Guardamos la consulta en un array
+																$ResultadoConsultaRango = $ResultadoRango->fetch_assoc();
+																// Nombre de usuario
+																$Rango = $ResultadoConsultaRango['RangoMinimo'] . " - " . $ResultadoConsultaRango['RangoMaximo'];
 																?>
 																<tr>
-																<td><span id="idPersonaEliminar<?php echo $row['idPersona'];?>"><?php echo $row['idPersona'] ?></span></td>
-																<td><span id="NombreUsuario<?php echo $row['idPersona'];?>"><?php echo $row['NombrePersona'] ?></span></td>
-																<td><span id="ApellidoUsuario<?php echo $row['idPersona'];?>"><?php echo $row['ApellidoPersona'] ?></span></td>
-																<td><span id="DireccionUsuario<?php echo $row['idPersona'];?>"><?php echo $row['DireccionPersona'] ?></span></td>
-																<td><span id="DPIUsuario<?php echo $row['idPersona'];?>"><?php echo $row['DPIPersona'] ?></span></td>
-																<td><span id="TelefonoUsuario<?php echo $row['idPersona'];?>"><?php echo $row['TelefonoPersona'] ?></span></td>
-																<td><span id="FechaNacUsuario<?php echo $row['idPersona'];?>"><?php echo $row['FechaNacPersona'] ?></span></td>
-																<td><span id="CorreoUsuario<?php echo $row['idPersona'];?>"><?php echo $row['CorreoPersona'] ?></span></td>
-																<td><?php echo $NombreDeUsuario ?></td>
-																<td><span id="PrivilegioUsuario<?php echo $row['idPersona'];?>"><?php echo $PrivilegioDeUsuario ?></span></td>
+																<td><span id="idUsuario<?php echo $row['idUsuario'];?>"><?php echo $row['idUsuario'] ?></span></td>
+																<td><span id="NombreUsuario<?php echo $row['idUsuario'];?>"><?php echo $row['NombreUsuario'] ?></span></td>
+																<td><span id="ApellidoUsuario<?php echo $row['idUsuario'];?>"><?php echo $row['ApellidoUsuario'] ?></span></td>
+																<td><span id="TelefonoUsuario<?php echo $row['idUsuario'];?>"><?php echo $row['TelefonoUsuario'] ?></span></td>
+																<td><span id="DireccionUsuario<?php echo $row['idUsuario'];?>"><?php echo $row['DireccionUsuario'] ?></span></td>
+																<td><span id="CorreoUsuario<?php echo $row['idUsuario'];?>"><?php echo $row['CorreoUsuario'] ?></span></td>
+																<td><span id="NombreInicioSesionUsuario<?php echo $row['idUsuario'];?>"><?php echo $row['NombreInicioSesionUsuario'] ?></span></td>
+																<td><span id="Puesto<?php echo $row['idUsuario'];?>"><?php echo $Puesto ?></span></td>
+																<td><span id="Rol<?php echo $row['idUsuario'];?>"><?php echo $Rol ?></span></td>
+																<td><span id="Rango<?php echo $row['idUsuario'];?>"><?php echo $Rango ?></span></td>
 																<td>
 																	<!-- Edición -->
 																	<div>
 																		<div class="input-group input-group-lg">
-																			<button type="button" class="btn btn-success EditarUsuario" value="<?php echo $row['idPersona']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
+																			<button type="button" class="btn btn-success EditarUsuario" value="<?php echo $row['idUsuario']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
 																		</div>
 																	</div>
 																</td>
@@ -180,7 +195,7 @@
 																	<!-- Eliminación -->
 																	<div>
 																		<div class="input-group input-group-lg">
-																			<button type="button" class="btn btn-danger EliminarUsuario" value="<?php echo $row['idPersona']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
+																			<button type="button" class="btn btn-danger EliminarUsuario" value="<?php echo $row['idUsuario']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
 																		</div>
 																	</div>
 																</td>
@@ -222,9 +237,73 @@
 						</div>
 					</div>
 				<!-- /.modal -->
+				
+				<!-- Edit Modal-->
+					<div class="modal fade" id="frmEditar" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<center><h4 class="modal-title" id="myModalLabel">Editar usuario</h4></center>
+								</div>
+								<form method="post" action="Usuario.php" id="frmEdit">
+									<div class="modal-body">
+									<div class="container-fluid">
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">ID</span>
+												<input type="text" style="width:350px;" class="form-control" name="idEditar" id="idEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Nombre</span>
+												<input type="text" style="width:350px;" class="form-control" name="NombreEditar" id="NombreEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Apellido</span>
+												<input type="text" style="width:350px;" class="form-control" name="ApellidoEditar" id="ApellidoEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Dirección</span>
+												<input type="text" style="width:350px;" class="form-control" name="DireccionEditar" id="DireccionEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">No. de DPI</span>
+												<input type="text" style="width:350px;" class="form-control" name="DPIEditar" id="DPIEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">No. de telefono</span>
+												<input type="tel" style="width:350px;" class="form-control" name="TelefonoEditar" id="TelefonoEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Fecha Nacimiento</span>
+												<input type="date" style="width:350px;" class="form-control" name="FechaNacEditar" id="FechaNacEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Correo</span>
+												<input type="email" style="width:350px;" class="form-control" name="CorreoEditar" id="CorreoEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Privilegio</span>
+												<select class="form-control" style="width:350px;" name="PrivilegioEditar" id="PrivilegioEditar">
+													<option value="" disabled selected>Privilegios</option>
+															<option value="Administrador">Administrador</option>
+															<option value="Jefatura">Jefatura</option>
+															<option value="Operador">Operador</option>
+													</select>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+										<input type="submit" name="EditarUsuario" class="btn btn-warning" value="Editar Usuario">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				<!-- /.modal -->
+				
 				<?php
 					include_once "Seguridad/conexion.php";
-					include_once "Clases/clsPrincipal.php";
 					// Código que recibe la información de eliminar usuario
 					if (isset($_POST['EliminarUsuario'])) {
 						// Guardamos el id en una variable
@@ -303,69 +382,6 @@
     					}
 					}
 				?>
-				<!-- Edit Modal-->
-					<div class="modal fade" id="frmEditar" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<center><h4 class="modal-title" id="myModalLabel">Editar usuario</h4></center>
-								</div>
-								<form method="post" action="Usuario.php" id="frmEdit">
-									<div class="modal-body">
-									<div class="container-fluid">
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">ID</span>
-												<input type="text" style="width:350px;" class="form-control" name="idEditar" id="idEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Nombre</span>
-												<input type="text" style="width:350px;" class="form-control" name="NombreEditar" id="NombreEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Apellido</span>
-												<input type="text" style="width:350px;" class="form-control" name="ApellidoEditar" id="ApellidoEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Dirección</span>
-												<input type="text" style="width:350px;" class="form-control" name="DireccionEditar" id="DireccionEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">No. de DPI</span>
-												<input type="text" style="width:350px;" class="form-control" name="DPIEditar" id="DPIEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">No. de telefono</span>
-												<input type="tel" style="width:350px;" class="form-control" name="TelefonoEditar" id="TelefonoEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Fecha Nacimiento</span>
-												<input type="date" style="width:350px;" class="form-control" name="FechaNacEditar" id="FechaNacEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Correo</span>
-												<input type="email" style="width:350px;" class="form-control" name="CorreoEditar" id="CorreoEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Privilegio</span>
-												<select class="form-control" style="width:350px;" name="PrivilegioEditar" id="PrivilegioEditar">
-													<option value="" disabled selected>Privilegios</option>
-															<option value="Administrador">Administrador</option>
-															<option value="Jefatura">Jefatura</option>
-															<option value="Operador">Operador</option>
-													</select>
-											</div>
-										</div>
-									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-										<input type="submit" name="EditarUsuario" class="btn btn-warning" value="Editar Usuario">
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				<!-- /.modal -->
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
 

@@ -135,11 +135,11 @@
 												<!-- Contenido de la tabla -->
 													<!-- Acá mostraremos los usuarios y seleccionaremos el que deseamos eliminar -->
 													<?php
-														// Primero hacemos la consulta en la tabla de persona
-														include_once "Seguridad/conexion.php";								
-														$VerChequera = "SELECT * FROM Chequera";
+														// Primero hacemos la consulta en la tabla de Chequera
+														include_once "Seguridad/conexion.php";														
+														$VerChequeras = "SELECT * FROM Chequera";
 														// Hacemos la consulta
-														$resultado = $mysqli->query($VerChequera);
+														$resultado = $mysqli->query($VerChequeras);
 															while ($row = mysqli_fetch_array($resultado)){
 																// Obtenemos el nombre de usuario y privilegio de cada persona
 																// Primero haremos la consulta
@@ -153,16 +153,16 @@
 																?>
 																<tr>
 																<td><span id="idChequera<?php echo $row['idChequera'];?>"><?php echo $row['idChequera'] ?></span></td>
-																<td><span id="CodigoBanco<?php echo $row['idChequera'];?>"><?php echo $row['CodigoChequera'] ?></span></td>
-																<td><span id="NombreBanco<?php echo $row['idChequera'];?>"><?php echo $row['NombreChequera'] ?></span></td>
-																<td><span id="CorreoBanco<?php echo $row['idChequera'];?>"><?php echo $row['RangoMinimoChequera'] ?></span></td>
-																<td><span id="SitioWebBanco<?php echo $row['idChequera'];?>"><?php echo $row['RangoMaximoChequera'] ?></span></td>
-																<td><?php echo $NombreCuenta ?></td>
+																<td><span id="CodigoChequera<?php echo $row['idChequera'];?>"><?php echo $row['CodigoChequera'] ?></span></td>
+																<td><span id="NombreChequera<?php echo $row['idChequera'];?>"><?php echo $row['NombreChequera'] ?></span></td>
+																<td><span id="RangoMinimoChequera<?php echo $row['idChequera'];?>"><?php echo $row['RangoMinimoChequera'] ?></span></td>
+																<td><span id="RangoMaximoChequera<?php echo $row['idChequera'];?>"><?php echo $row['RangoMaximoChequera'] ?></span></td>
+																<td><span id="NombreCuenta<?php echo $row['idChequera'];?>"><?php echo $NombreCuenta ?></span></td>
 																<td>
 																	<!-- Edición -->
 																	<div>
 																		<div class="input-group input-group-lg">
-																			<button type="button" class="btn btn-success EditarBanco" value="<?php echo $row['idBanco']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
+																			<button type="button" class="btn btn-success EditarChequera" value="<?php echo $row['idChequera']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
 																		</div>
 																	</div>
 																</td>
@@ -170,7 +170,7 @@
 																	<!-- Eliminación -->
 																	<div>
 																		<div class="input-group input-group-lg">
-																			<button type="button" class="btn btn-danger EliminarBanco" value="<?php echo $row['idBanco']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
+																			<button type="button" class="btn btn-danger EliminarChequera" value="<?php echo $row['idChequera']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
 																		</div>
 																	</div>
 																</td>
@@ -186,18 +186,149 @@
 						</div>
 					</div>
 				</div>
+				<!-- Edit Modal-->
+					<div class="modal fade" id="frmEliminarChequera" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<center><h1 class="modal-title" id="myModalLabel">Eliminar usuario</h1></center>
+								</div>
+								<form method="post" action="Chequera.php" id="myForm">
+								<div class="modal-body">
+									<p class="lead">¿Está seguro que desea eliminar la siguiente chequera?</p>
+									<div class="form-group input-group">
+										<input type="text" name="idChequeraAEliminar" style="width:350px; visibility:hidden;" class="form-control" id="idChequeraAEliminar">
+										<br>
+										<label id="NombreCuenta"></label>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<input type="submit" name="EliminarUsuario" class="btn btn-danger" value="Eliminar chequera">
+									<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+								</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				<!-- /.modal -->
+				<?php
+					// Código que recibe la información de eliminar una cuenta
+					if (isset($_POST['EliminarUsuario'])) {
+						// Guardamos el id en una variable
+						$idChequeraEliminar = $_POST['idChequeraAEliminar'];
+						// Preparamos la consulta
+						$query = "DELETE FROM chequera WHERE idChequera=".$idChequeraEliminar.";";
+						// Ejecutamos la consulta
+						if(!$resultado = $mysqli->query($query)){
+    					echo "Error: La ejecución de la consulta falló debido a: \n";
+    					echo "Query: " . $query . "\n";
+    					echo "Errno: " . $mysqli->errno . "\n";
+    					echo "Error: " . $mysqli->error . "\n";
+    					exit;
+						}
+						else{
+    						?>
+    						<div class="alert alert-warning"> Chequera eliminada </div>
+    						<?php
+							// Recargamos la página
+    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=Chequera.php\">"; 
+    					}
+					}
+					// Termina código para eliminar una cuenta
 					
+					// Código para editar una cuenta, solo se podrá editar el nombre y el tipo de cuenta
+					if (isset($_POST['EditarChequera'])) {
+						// Guardamos La información proveniente del formulario
+						$idChequeraEditar = $_POST['idChequeraEditar'];
+						$CodigoChequeraEditar = $_POST ['CodigoChequeraEditar'];
+						$NombreChequeraEditar = $_POST['NombreChequeraEditar'];
+						$RangoMinimoChequeraEditar = $_POST['RangoMinimoChequeraEditar'];
+						$RangoMaximoChequeraEditar = $_POST['RangoMaximoChequeraEditar'];
+						
+						// Preparamos las consultas
+						$ConsultaEditarChequera = "UPDATE chequera
+								  SET CodigoChequera = '" .$CodigoChequeraEditar."',
+									  NombreChequera = '" .$NombreChequeraEditar."',
+									  RangoMinimoChequera = '" .$RangoMinimoChequeraEditar."',
+									  RangoMaximoChequera = '" .$RangoMaximoChequeraEditar."',			  
+									 WHERE idChequera=".$idChequeraEditar.";";
+						
+						// Ejecutamos la consulta para la tabla de cuenta
+						if(!$resultado = $mysqli->query($ConsultaEditarChequera)){
+							echo "Error: La ejecución de la consulta falló debido a: \n";
+							echo "Query: " . $ConsultaEditarCuenta . "\n";
+							echo "Errno: " . $mysqli->errno . "\n";
+							echo "Error: " . $mysqli->error . "\n";
+							exit;
+						}
+						else{
+							// Recargamos la página
+    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=Chequera.php\">"; 
+							?>
+							<div class="alert alert-success" role="alert">
+							  <strong>Chequera actualizada</strong>
+							</div>
+    						<?php
+    					}
+					}
+					// Termina código para editar una cuenta
+				?>
+				<!-- Edit Modal-->
+					<div class="modal fade" id="frmEditarChequera" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<center><h4 class="modal-title" id="myModalLabel">Editar chequera</h4></center>
+								</div>
+								<form method="post" action="Chequera.php" id="frmEdit">
+									<div class="modal-body">
+									<div class="container-fluid">
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:200px;">ID</span>
+												<input type="text" style="width:350px;" class="form-control" name="idChequeraEditar" id="idChequeraEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:200px;">Código de chequera</span>
+												<input type="text" style="width:350px;" class="form-control" name="CodigoChequeraEditar" id="CodigoChequeraEditar" disabled>
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:200px;">Nombre de chequera</span>
+												<input type="text" style="width:350px;" class="form-control" name="NombreChequeraEditar" id="NombreChequeraEditar" disabled>
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:200px;">Rango minimo de chequera</span>
+												<input type="text" style="width:350px;" class="form-control" name="RangoMinimoChequeraEditar" id="RangoMinimoChequeraEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:200px;">Rango maximo de chequera</span>
+												<select class="form-control" style="width:350px;" name="RangoMaximoChequeraEditar" id="RangoMaximoChequeraEditar">
+											</div>
+										</div>
+									</div>
+											<div class="modal-footer">
+										<button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+										<input type="submit" name="EditarChequera" class="btn btn-warning" value="Editar Chequera">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				<!-- /.modal -->
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
 
 				<!-- Include all compiled plugins (below), or include individual files as needed --> 
 				<script src="js/bootstrap.js"></script>
+				<!-- Incluimos el script que nos dará el nombre de la persona para mostrarlo en el modal -->
+				<script src="js/custom.js"></script>
 				<!-- Pie de página, se utilizará el mismo para todos. -->
 				<footer>
 					<hr>
 					<div class="row">
 						<div class="text-center col-md-6 col-md-offset-3">
-							<h4>Atenas S. A.</h4>
+							<h4>Atenas, S. A.</h4>
 							<p>Copyright &copy; 2018 &middot; All Rights Reserved &middot; <a href="http://www.umg.edu.gt/" >www.umg.edu.gt</a></p>
 						</div>
 					</div>

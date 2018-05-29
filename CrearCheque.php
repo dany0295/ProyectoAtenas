@@ -116,12 +116,12 @@
 							<br>
 							</div>
 						</div>
-						<!-- Codigo del banco -->
+						<!-- Codigo del Cheque -->
 						<div class="row">
 						<div class="col-xs-2 col-xs-offset+1">
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="CodigoBanco" placeholder="Codigo de banco" id="CodigoBanco" aria-describedby="sizing-addon1" required>
+								<input type="text" class="form-control" name="CodigoCheque" placeholder="Codigo de cheque" id="CodigoCheque" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
 						<!--Seleccionar Banco-->
@@ -132,23 +132,30 @@
 								<!--<span class="glyphicons glyphicons-bank"></span>
 								
 								<!-- Tipo de Banco -->
-								<select class="form-control" name="BancoCuenta" id="BancoCuenta">
-									<option value="" disabled selected>Seleccione Banco</option>
+								<select class="form-control" name="ChequeraCuenta" id="ChequeraCuenta">
+									<option value="" disabled selected>Seleccione Chequera</option>
 									<!-- Contenido de la tabla -->
 										<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
 										<?php							
-											$VerBanco = "SELECT * FROM banco";
+											$VerChequera = "SELECT * FROM chequera";
 											// Hacemos la consulta
-											$resultado = $mysqli->query($VerBanco);			
+											$resultado = $mysqli->query($VerChequera);			
 												while ($row = mysqli_fetch_array($resultado)){
 													?>
-													<option value="idBanco<?php echo $row['idBanco'];?>"><?php echo $row['NombreBanco'] ?></option>
+													<option value="idChequera<?php echo $row['idChequera'];?>"><?php echo $row['NombreChequera'] ?></option>
 										<?php
 												}
 										?>
 								</select>	
 							</div>
-						</div>	
+						</div>
+						<!-- Numero del Cheque -->
+						<div class="col-xs-2 col-xs-offset+1">
+							<div class="input-group input-group-lg">
+								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+								<input type="text" class="form-control" name="NumeroCheque" placeholder="No. de cheque" id="NumeroCheque" aria-describedby="sizing-addon1" required>
+							</div>
+						</div>
 						<!-- Pago a la orden -->
 						<div class="row">
 							<div class="col-xs-5 col-xs-offset+1">
@@ -157,7 +164,7 @@
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
 								<!--<input type="text" class="form-control" name="Pago" placeholder="Pagar a la orden de:" id="Pago" aria-describedby="sizing-addon1" required>-->
 									<!-- Tipo de Proveedor -->
-								<select class="form-control" name="BancoCuenta" id="BancoCuenta">
+								<select class="form-control" name="ProveedorCuenta" id="ProveedorCuenta">
 								<option value="" disabled selected>Seleccione proveedor</option>
 									<!-- Contenido de la tabla -->
 									<!-- Acá mostraremos los proveedores -->
@@ -167,7 +174,7 @@
 									$resultado1 = $mysqli->query($VerProveedor);			
 									while ($row = mysqli_fetch_array($resultado1)){
 											?>
-													<option value="idproveedor<?php echo $row['idproveedor'];?>"><?php echo $row['NombreProveedor'] ?></option>
+													<option value="idproveedor<?php echo $row['idProveedor'];?>"><?php echo $row['NombreProveedor'] ?></option>
 										<?php
 												}
 										?>	
@@ -184,7 +191,7 @@
 							<div class="input-group input-group-lg">
 								<!--<span class="input-group-addon" id="sizing-addon1">Lugar</span>-->
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
-								<input type="text" class="form-control" name="Lugar" placeholder="Lugar" id="NLugar" aria-describedby="sizing-addon1" required>
+								<input type="text" class="form-control" name="LugarCheque" placeholder="Lugar" id="LugarCheque" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
 				<!-- Fecha --> 
@@ -192,7 +199,7 @@
 							<div class="input-group input-group-lg">
 								<!--<span class="input-group-addon" id="sizing-addon1">Fecha</span>-->
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-calendar"></i></span>
-								<input type="date" class="form-control" name="Fecha" placeholder="Fecha" id="Fecha" aria-describedby="sizing-addon1" required>
+								<input type="date" class="form-control" name="FechaCheque" placeholder="Fecha" id="FechaCheque" aria-describedby="sizing-addon1" required>
 							<br>
 							</div>
 						</div>
@@ -201,7 +208,7 @@
 							<div class="input-group input-group-lg">
 								<span class="input-group-addon" id="sizing-addon1">QTZ</span>
 								<!--<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-usd"></i></span>-->
-								<input type="money_format" class="form-control" name="Monto" placeholder="Monto" id="Monto" aria-describedby="sizing-addon1" required>
+								<input type="money_format" class="form-control" name="MontoCheque" placeholder="Monto" id="MontoCheque" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
 					</div>
@@ -212,7 +219,7 @@
 							<div class="input-group input-group-lg">
 								<!--<span class="input-group-addon" id="sizing-addon1">Descripcion</span>-->
 								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-comment"></i></span>
-								<input type="text" class="form-control" name="Pago" placeholder="Descripcion" id="Pago" aria-describedby="sizing-addon1" required>
+								<input type="text" class="form-control" name="ComentarioCheque" placeholder="Descripcion" id="ComentarioCheque" aria-describedby="sizing-addon1" required>
 							</div>
 						</div>
 					</div>
@@ -222,7 +229,7 @@
 						<div class="col-xs-12 col-xs-offset-1">
 							<div class="input-group input-group-lg">
 								<div clss="btn-group">
-									<input type="submit" name="CrearCuenta" class="btn btn-success" value="Crear cheque">
+									<button type="submit" class="btn btn-primary" id="CrearCheque" name="enviar">Registrar</button>
 									<button type="button" class="btn btn-danger">Cancelar</button>
 								</div>
 							</div>
@@ -238,12 +245,14 @@
 						$NumeroCheque=$_POST['NumeroCheque'];
 						$LugarCheque=$_POST['LugarCheque'];
 						$FechaCheque=$_POST['FechaCheque'];
+						$ProveedorCuenta=$_POST['ProveedorCuenta'];
 						$ComentarioCheque=$_POST['ComentarioCheque'];
 						$MontoCheque=$_POST['MontoCheque'];
+						$ChequeraCuenta=$_POST['ChequeraCuenta'];
 						
 						// Creamos la consulta para la insersión de los datos
-						$Consulta = "INSERT INTO cheque(CodigoCheque, NumeroCheque, LugarCheque, FechaCheque, ComentarioCheque, MontoCheque) 
-						Values('".$CodigoCheque."','".$NumeroCheque."', '".$LugarCheque."', '".$FechaCheque."', '".$ComentarioCheque."', '".$MontoCheque."');";
+						$Consulta = "INSERT INTO cheque(CodigoCheque, NumeroCheque, LugarCheque, FechaCheque, idProveedor, ComentarioCheque, MontoCheque, idChequera ) 
+						Values('".$CodigoCheque."', '".$NumeroCheque."', '".$LugarCheque."', '".$FechaCheque."', '".$ProveedorCuenta."', '".$ComentarioCheque."', '".$MontoCheque."', '".$ChequeraCuenta."');";
 							
 						if(!$resultado = $mysqli->query($Consulta)){
 							echo "Error: La ejecución de la consulta falló debido a: \n";

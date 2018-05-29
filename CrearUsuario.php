@@ -24,6 +24,8 @@
 		//include_once 'Seguridad/conexion.php';
 		// Incluimos el archivo que valida si hay una sesión activa
 		include_once "Seguridad/seguro.php";
+		// Primero hacemos la consulta en la tabla de persona
+		include_once "Seguridad/conexion.php";	
 		// Si en la sesión activa tiene privilegios de administrador puede ver el formulario
 		if($_SESSION["PrivilegioUsuario"] == 1){
 		?>
@@ -100,190 +102,200 @@
 				  <!-- /.container-fluid --> 
 				</nav>
 
-				<div class="container">
-				  <div class="row text-center">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-6 col-xs-offset-3">
-							<h1 class="text-center">Creación de usuario</h1>
-							</div>
-						</div>
-						<!-- Contenedor del ícono del Usuario -->
-						
-							<div class="Icon">
-								<!-- Icono de usuario -->
-								<span class="glyphicon glyphicon-user"></span>
-							</div>
-					<!-- Nombre del usuario -->
-					<div class="row">
-						<div class="col-xs-5 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-								<input type="text" class="form-control" name="NombreUsuario" placeholder="Nombre" id="NombreUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-						<!-- Nombre de inicio de sesión del usuario -->
-						<div class="col-xs-5">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-								<input type="text" class="form-control" name="NombreInicioSesionUsuario" placeholder="Nombre de inicio de sesión" id="NombreInicioSesionUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Apellido del usuario -->
-					<div class="row">
-						<div class="col-xs-5 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-								<input type="text" class="form-control" name="ApellidoUsuario" placeholder="Apellido" id="ApellidoUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-						<!-- Contraseña del usuario -->
-						<div class="col-xs-5">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<input type="password" class="form-control" name="PasswordUsuario" placeholder="Contraseña" id="PaswordUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Teléfono del usuario -->
-					<div class="row">
-						<div class="col-xs-5 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-earphone"></i></span>
-								<input type="tel" class="form-control" name="TelefonoUsuario" placeholder="Teléfono" id="TelefonoUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					<!-- Repetición de contraseña del usuario -->
-						<div class="col-xs-5">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<input type="password" class="form-control" name="RePasswordUsuario" placeholder="Ingrese nuevamente la contraseña" id="RePaswordUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Dirección del usuario -->
-					<div class="row">
-						<div class="col-xs-5 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
-								<input type="text" class="form-control" name="DireccionUsuario" placeholder="Dirección" id="DireccionUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					<!-- Rol del usuario -->
-						<div class="col-xs-4">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<select class="form-control" name="RolUsuario" id="RolUsuario">
-									<option value="" disabled selected>Selecciona el rol del usuario</option>
-										<option value="Administrador">Administrador</option>
-										<option value="Auditor">Auditor</option>
-										<option value="Gerente">Gerente</option>
-										<option value="Pagador">Pagador</option>
-								</select>
-							</div>
-						</div>
-					<!-- Button trigger modal -->
-						<div class="col-xs-1">
-							<div class="input-group input-group-lg">
-								<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#ModalCrearUsuario">+</button>
-							</div>
-						</div>
-					</div>
-					<br> 
-					<!-- Correo del usuario -->
-					<div class="row">
-						<div class="col-xs-5 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
-								<input type="email" class="form-control" name="CorreoUsuario" placeholder="Correo" id="CorreoUsuario" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					<!-- Grupo del usuario -->
-						<div class="col-xs-4">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<select class="form-control" name="RolUsuario" id="RolUsuario">
-								<option value="" disabled selected>Selecciona el grupo al que pertenece el usuario</option>
-									<option value="Administrador">Administrador</option>
-									<option value="Auditor">Auditoría</option>
-									<option value="Gerente">Gerencia</option>
-									<option value="Pagador">Pagos</option>
-								</select>
-							</div>
-						</div>
-					<!-- Button trigger modal -->
-						<div class="col-xs-1">
-							<div class="input-group input-group-lg">
-								<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#ModalCrearGrupo">+</button>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Puesto del usuario -->
-					<div class="row">
-						<div class="col-xs-4 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<select class="form-control" name="PuestoUsuario" id="PuestoUsuario">
-								<option value="" disabled selected>Puesto</option>
-									<optgroup label="Gerencia">
-										<option value="GerenteGeneral">Gerente General</option>
-									</optgroup>
-									<optgroup label="Auditoría">
-										<option value="JefeAuditoría">Jefe de Auditoría</option>
-										<option value="AsistenteAuditoria">Asistente de Auditoría</option>
-									</optgroup>
-									<optgroup label="Pagos">
-										<option value="JefePagos">Jefe de Pagos</option>
-									</optgroup>
-								</select>
-							</div>
-						</div>
-					<!-- Button trigger modal -->
-						<div class="col-xs-1">
-							<div class="input-group input-group-lg">
-								<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#ModalCrearPuesto">+</button>
-							</div>
-						</div>
-					<!-- Rango de cheques que creará el usuario -->
-						<div class="col-xs-4">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
-								<select class="form-control" name="RolUsuario" id="RolUsuario">
-								<option value="" disabled selected>Selecciona el rango monetario con que podrá operar el usuario</option>
-									<option value="Administrador">0 - 1,000</option>
-									<option value="Auditor">1,001 - 10,000</option>
-									<option value="Gerente">10,001 - 25,000</option>
-									<option value="Pagador">25,001 - 50,000</option>
-								</select>
-							</div>
-						</div>
-					<!-- Button trigger modal -->
-						<div class="col-xs-1">
-							<div class="input-group input-group-lg">
-								<button type="button" class="btn btn-success btn-lg" data-toggle="modal" data-target="#myModal">+</button>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Resgistrar -->
-					<div class="row">
-						<div class="col-xs-12 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<div clss="btn-group">
-									<button type="button" class="btn btn-primary">Registrar</button>
-									<button type="button" class="btn btn-danger">Cancelar</button>
+				<div class="form-group">
+					<form name="CrearUsuario" action="CrearUsuario.php" method="post">
+						<div class="container">
+							<div class="row text-center">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-xs-6 col-xs-offset-3">
+										<h1 class="text-center">Creación de usuario</h1>
+										</div>
+									</div>
+									<!-- Contenedor del ícono del Usuario -->
+									
+										<div class="Icon">
+											<!-- Icono de usuario -->
+											<span class="glyphicon glyphicon-user"></span>
+										</div>
+									<!-- Nombre del usuario -->
+									<div class="row">
+										<div class="col-xs-5 col-xs-offset-1">
+											<div class="input-group input-group-lg">
+												<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
+												<input type="text" class="form-control" name="NombreUsuario" placeholder="Nombre" id="NombreUsuario" aria-describedby="sizing-addon1" required>
+											</div>
+										</div>
+										<!-- Nombre de inicio de sesión del usuario -->
+										<div class="col-xs-5">
+											<div class="input-group input-group-lg">
+												<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
+												<input type="text" class="form-control" name="NombreInicioSesionUsuario" placeholder="Nombre de inicio de sesión" id="NombreInicioSesionUsuario" aria-describedby="sizing-addon1" required>
+											</div>
+										</div>
+									</div>
+									<br>
+									<!-- Apellido del usuario -->
+									<div class="row">
+										<div class="col-xs-5 col-xs-offset-1">
+											<div class="input-group input-group-lg">
+												<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
+												<input type="text" class="form-control" name="ApellidoUsuario" placeholder="Apellido" id="ApellidoUsuario" aria-describedby="sizing-addon1" required>
+											</div>
+										</div>
+										<!-- Contraseña del usuario -->
+										<div class="col-xs-5">
+											<div class="input-group input-group-lg">
+												<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+												<input type="password" class="form-control" name="PasswordUsuario" placeholder="Contraseña" id="PasswordUsuario" aria-describedby="sizing-addon1" required>
+											</div>
+										</div>
+									</div>
+									<br>
+									<!-- Teléfono del usuario -->
+									<div class="row">
+										<div class="col-xs-5 col-xs-offset-1">
+											<div class="input-group input-group-lg">
+												<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-earphone"></i></span>
+												<input type="tel" class="form-control" name="TelefonoUsuario" placeholder="Teléfono" id="TelefonoUsuario" aria-describedby="sizing-addon1" required>
+											</div>
+										</div>
+									<!-- Repetición de contraseña del usuario -->
+										<div class="col-xs-5">
+											<div class="input-group input-group-lg">
+												<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+												<input type="password" class="form-control" name="RePasswordUsuario" placeholder="Ingrese nuevamente la contraseña" id="RePasswordUsuario" aria-describedby="sizing-addon1" required>
+											</div>
+										</div>
+									</div>
+									<br>
+									<!-- Dirección del usuario -->
+									<div class="row">
+										<div class="col-xs-5 col-xs-offset-1">
+											<div class="input-group input-group-lg">
+												<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
+												<input type="text" class="form-control" name="DireccionUsuario" placeholder="Dirección" id="DireccionUsuario" aria-describedby="sizing-addon1" required>
+											</div>
+										</div>
+										<!-- Puesto del usuario -->
+										<div class="row">
+											<div class="col-xs-4">
+												<div class="input-group input-group-lg">
+													<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+													<select class="form-control" name="PuestoUsuario" id="PuestoUsuario">
+													<option value="" disabled selected>Puesto</option>
+														<!-- Contenido de la tabla -->
+														<!-- Acá mostraremos los puestos que existen en la base de datos -->
+														<?php							
+															$VerPuestos = "SELECT * FROM puesto";
+															// Hacemos la consulta
+															$resultado = $mysqli->query($VerPuestos);			
+																while ($row = mysqli_fetch_array($resultado)){
+																	?>
+																	<option value="<?php echo $row['idPuesto'];?>"><?php echo $row['NombrePuesto'] ?></option>
+														<?php
+																}
+														?>
+													</select>
+												</div>
+											</div>
+										<!-- Button trigger modal -->
+										<div class="col-xs-1">
+											<div class="input-group input-group-lg">
+												<button type="button" class="btn btn-success btn-lg AgregarPuesto" value="" data-toggle="modal" data-target="#ModalAgregarPuesto">+</button>
+											</div>
+										</div>
+										</div>
+									</div>
+									<br> 
+									<!-- Correo del usuario -->
+									<div class="row">
+										<div class="col-xs-5 col-xs-offset-1">
+											<div class="input-group input-group-lg">
+												<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-envelope"></i></span>
+												<input type="email" class="form-control" name="CorreoUsuario" placeholder="Correo" id="CorreoUsuario" aria-describedby="sizing-addon1" required>
+											</div>
+										</div>
+										<!-- Rol del usuario -->
+										<div class="row">
+											<div class="col-xs-4">
+												<div class="input-group input-group-lg">
+													<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+													<select class="form-control" name="RolUsuario" id="RolUsuario">
+														<option value="" disabled selected>Selecciona el rol del usuario</option>
+															<!-- Contenido de la tabla -->
+															<!-- Acá mostraremos los roles que están en la base de datos -->
+															<?php							
+																$VerRoles = "SELECT * FROM rol";
+																// Hacemos la consulta
+																$resultado = $mysqli->query($VerRoles);			
+																	while ($row = mysqli_fetch_array($resultado)){
+																		?>
+																		<option value="<?php echo $row['idRol'];?>"><?php echo $row['NombreRol'] ?></option>
+															<?php
+																	}
+															?>
+													</select>
+												</div>
+											</div>
+											<!-- Button trigger modal -->
+											<div class="col-xs-1">
+												<div class="input-group input-group-lg">
+													<button type="button" class="btn btn-success btn-lg AgregarRol" data-toggle="modal" data-target="#ModalAgregarRol">+</button>
+												</div>
+											</div>
+										</div>
+									</div>
+									<br>
+									<div class="row">
+										<div class="col-xs-4 col-xs-offset-1">
+											<!-- Rango de cheques que creará el usuario -->
+												<div class="input-group input-group-lg">
+													<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-lock"></i></span>
+													<select class="form-control" name="RangoUsuario" id="RangoUsuario">
+													<option value="" disabled selected>Selecciona el rango monetario con que podrá operar el usuario</option>
+														<!-- Contenido de la tabla -->
+														<!-- Acá mostraremos los rango que existen en la base de datos -->
+														<?php							
+															$VerRangos = "SELECT * FROM rango";
+															// Hacemos la consulta
+															$resultado = $mysqli->query($VerRangos);			
+																while ($row = mysqli_fetch_array($resultado)){
+																	?>
+																	<option value="<?php echo $row['idRango'];?>"><?php echo $row['RangoMinimo']?> - <?php echo $row['RangoMaximo']?></option>
+														<?php
+																}
+														?>
+													</select>
+												</div>
+											</div>
+											<!-- Button trigger modal -->
+											<div class="col-xs-1">
+												<div class="input-group input-group-lg">
+													<button type="button" class="btn btn-success btn-lg AgregarRango" data-toggle="modal" data-target="#ModalAgregarRango">+</button>
+												</div>
+											</div>
+									</div>
+									<br>
+									<!-- Registrar -->
+									<div class="row">
+										<div class="col-xs-12 col-xs-offset-1">
+											<div class="input-group input-group-lg">
+												<div clss="btn-group">
+													<input type="submit" name="AgregarUsuario" class="btn btn-success" value="Crear usuario">
+													<button type="button" class="btn btn-danger">Cancelar</button>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</form>
 				</div>
+				
 				<!-- Modal para crear puesto -->
-				<div class="modal fade slide left" id="ModalCrearPuesto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				<div class="modal fade slide left" id="ModalAgregarPuesto" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
 				  <div class="modal-dialog" role="document">
 					<div class="modal-content">
 					  <div class="modal-header">
@@ -304,30 +316,221 @@
 							<label for="email">Nombre del puesto</label>
 							<input type="text" name="NombreNuevoPuesto" id="NombreNuevoPuesto" class="form-control" placeholder="Nombre del puesto" value="" required/>
 						  </div>
-						  <input type="submit" name="GuardarPuesto" class="btn btn-success btn-lg" value="Crear">
-						</form>
 					  </div>
 					  <div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+						<input type="submit" name="AgregarPuesto" class="btn btn-success" value="Registrar puesto">
 					  </div>
+					</form>
 					</div>
 				  </div>
 				</div>
-				<!-- 
+				
+				<!-- Modal para crear Rol -->
+				<div class="modal fade slide left" id="ModalAgregarRol" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog" role="document">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+
+						</button>
+						<h1 class="modal-title" id="myModalLabel">Crear nuevo rol</h1>
+
+					  </div>
+					  <div class="modal-body">
+						<p class="lead">Ingrese los datos</p>
+						<form method="post" id="myForm">
+						  <div class="form-group">
+							<label for="name">Nombre del Rol</label>
+							<input type="text" name="NombreRol" id="NombreRol" class="form-control" placeholder="Nombre del rol" value="" required/>
+						  </div>
+						  <div class="form-group">
+							<label for="email">Permisos</label>
+							<select class="form-control" name="PermisoRol" id="PermisoRol">
+							<option value="" disabled selected>Selecciona permiso que tendrá este rol</option>
+								<!-- Contenido de la tabla -->
+								<!-- Acá mostraremos los permisos que existen en la base de datos -->
+								<?php							
+									$VerRangos = "SELECT * FROM permiso";
+									// Hacemos la consulta
+									$resultado = $mysqli->query($VerRangos);			
+										while ($row = mysqli_fetch_array($resultado)){
+											?>
+											<option value="<?php echo $row['idPermiso'];?>"><?php echo $row['TipoPermiso']?></option>
+								<?php
+										}
+								?>
+							</select>
+						  </div>
+					  </div>
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+						<input type="submit" name="AgregarRol" class="btn btn-success" value="Registrar rol">
+					  </div>
+					</form>
+					</div>
+				  </div>
+				</div>
+				
+				<!-- Modal para crear un nuevo rango -->
+				<div class="modal fade slide left" id="ModalAgregarRango" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog" role="document">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+
+						</button>
+						<h1 class="modal-title" id="myModalLabel">Crear nuevo rango</h1>
+
+					  </div>
+					  <div class="modal-body">
+						<p class="lead">Ingrese los datos</p>
+						<form method="post" id="myForm">
+						  <div class="form-group">
+							<label for="name">Codigo del rango</label>
+							<input type="text" name="CodigoRango" id="CodigoRango|" class="form-control" placeholder="Codigo del rango" value="" required/>
+						  </div>
+						  <div class="form-group">
+							<label for="email">Rango mínimo</label>
+							<input type="number" name="RangoMinimo" id="RangoMinimo" class="form-control" placeholder="Rango minimo" value="" required/>
+						  </div>
+						  <div class="form-group">
+							<label for="email">Rango máximo</label>
+							<input type="number" name="RangoMaximo" id="RangoMaximo" class="form-control" placeholder="Rango maximo" value="" required/>
+						  </div>
+					  </div>
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+						<input type="submit" name="AgregarRango" class="btn btn-success" value="Registrar rango">
+					  </div>
+					</form>
+					</div>
+				  </div>
+				</div>
+				
+				<!--  -->
 				<?php
-					include_once "Seguridad/conexion.php";
-					// Código php para el modal de creación de puesto
-					if (isset($_POST['GuardarPuesto'])) {
-						echo "<script languaje='javascript'>
-							alert('Guardar puesto');
-							</script>";
+					// Código que recibe la información para agregar un nuevo Puesto
+					if (isset($_POST['AgregarPuesto'])) {
+						// Guardamos la información en variables
+						$CodigoPuesto = $_POST['CodigoPuesto'];
+						$NombrePuesto = $_POST['NombreNuevoPuesto'];
+						// Preparamos la consulta
+						$query = "INSERT INTO puesto(CodigoPuesto, NombrePuesto)
+											  VALUES('".$CodigoPuesto."', '".$NombrePuesto."');";
+						// Ejecutamos la consulta
+						if(!$resultado = $mysqli->query($query)){
+    					echo "Error: La ejecución de la consulta falló debido a: \n";
+    					echo "Query: " . $query . "\n";
+    					echo "Errno: " . $mysqli->errno . "\n";
+    					echo "Error: " . $mysqli->error . "\n";
+    					exit;
+						}
+						else{
+							?>
+    						<div class="alert alert-warning"> Puesto registrado </div>
+    			<?php
+							// Recargamos la página
+    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=CrearUsuario.php\">"; 
+    					}
 					}
-					// Código php para el modal de creación de puesto
-					if (isset($_POST['GuardarGrupo'])) {
-						echo "<script languaje='javascript'>
-							alert('Guardar Grupo');
-							</script>";
-					}					
+					// Termina código para agregar puesto
+					// Código que recibe la información para agregar un nuevo rol
+					if (isset($_POST['AgregarRol'])) {
+						// Guardamos la información en variables
+						$NombreRol = $_POST['NombreRol'];
+						$PermisoRol = $_POST['PermisoRol'];
+						// Preparamos la consulta
+						$query = "INSERT INTO rol(NombreRol, idPermiso)
+											  VALUES('".$NombreRol."', ".$PermisoRol.");";
+						// Ejecutamos la consulta
+						if(!$resultado = $mysqli->query($query)){
+    					echo "Error: La ejecución de la consulta falló debido a: \n";
+    					echo "Query: " . $query . "\n";
+    					echo "Errno: " . $mysqli->errno . "\n";
+    					echo "Error: " . $mysqli->error . "\n";
+    					exit;
+						}
+						else{
+							?>
+    						<div class="alert alert-warning"> Rol registrado </div>
+    			<?php
+							// Recargamos la página
+    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=CrearUsuario.php\">"; 
+    					}
+					}
+					// Termina código para agregar rol
+					// Código que recibe la información para agregar un nuevo rango
+					if (isset($_POST['AgregarRango'])) {
+						// Guardamos la información en variables
+						$CodigoRango = $_POST['CodigoRango'];
+						$RangoMinimo = $_POST['RangoMinimo'];
+						$RangoMaximo = $_POST['RangoMaximo'];
+						// Preparamos la consulta
+						$query = "INSERT INTO Rango(CodigoRango, RangoMinimo, RangoMaximo)
+											  VALUES('".$CodigoRango."', '".$RangoMinimo."', '".$RangoMaximo."');";
+						// Ejecutamos la consulta
+						if(!$resultado = $mysqli->query($query)){
+    					echo "Error: La ejecución de la consulta falló debido a: \n";
+    					echo "Query: " . $query . "\n";
+    					echo "Errno: " . $mysqli->errno . "\n";
+    					echo "Error: " . $mysqli->error . "\n";
+    					exit;
+						}
+						else{
+							?>
+    						<div class="alert alert-warning"> Rango registrado </div>
+    			<?php
+							// Recargamos la página
+    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=CrearUsuario.php\">"; 
+    					}
+					}
+					// Código que recibe la información del usuario y la agrega a la tabla de usuarios
+					if (isset($_POST['AgregarUsuario'])) {
+						// Guardamos la información en variables
+						$NombreUsuario=$_POST['NombreUsuario'];
+						$NombreInicioSesionUsuario=$_POST['NombreInicioSesionUsuario'];
+						$ApellidoUsuario=$_POST['ApellidoUsuario'];
+						$PasswordUsuario=$_POST['PasswordUsuario'];
+						$TelefonoUsuario=$_POST['TelefonoUsuario'];
+						$RePasswordUsuario=$_POST['RePasswordUsuario'];
+						$DireccionUsuario=$_POST['DireccionUsuario'];
+						$PuestoUsuario=$_POST['PuestoUsuario'];
+						$CorreoUsuario=$_POST['CorreoUsuario'];
+						$RolUsuario=$_POST['RolUsuario'];
+						$RangoUsuario=$_POST['RangoUsuario'];
+						
+						if($PasswordUsuario != $RePasswordUsuario){
+							?>
+							<div class="alert alert-warning">Las contraseñas no coinciden</div>
+							<?php
+						}
+						else{
+							$ContraseniaEncriptada = md5($PasswordUsuario);
+							// Preparamos la consulta
+							$query = "INSERT INTO Usuario (NombreUsuario, ApellidoUsuario, TelefonoUsuario,
+														   DireccionUsuario, CorreoUsuario, NombreInicioSesionUsuario,
+														   ContraseniaUsuario, idPuesto, idRol, idRango)
+												  VALUES('".$NombreUsuario."', '".$ApellidoUsuario."', '".$TelefonoUsuario."', '"
+														   .$DireccionUsuario."', '".$CorreoUsuario."', '".$NombreInicioSesionUsuario."', '"
+														   .$ContraseniaEncriptada."', ".$PuestoUsuario.", ".$RolUsuario.", ".$RangoUsuario.");";
+							// Ejecutamos la consulta
+							if(!$resultado = $mysqli->query($query)){
+							echo "Error: La ejecución de la consulta falló debido a: \n";
+							echo "Query: " . $query . "\n";
+							echo "Errno: " . $mysqli->errno . "\n";
+							echo "Error: " . $mysqli->error . "\n";
+							exit;
+							}
+							else{
+								?>
+								<div class="alert alert-warning"> Cuenta eliminada </div>
+					<?php
+								// Recargamos la página
+								echo "<meta http-equiv=\"refresh\" content=\"0;URL=CrearUsuario.php\">"; 
+							}
+						}
+					}
 				?> 
 				
 				<!-- Modal para crear Grupo al que pertenece -->

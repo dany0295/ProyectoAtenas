@@ -137,7 +137,9 @@
 											<tbody>
 												<!-- Contenido de la tabla -->
 													<!-- Acá mostraremos los usuarios y seleccionaremos el que deseamos eliminar -->
-													<?php				
+													<?php
+														// Primero hacemos la consulta en la tabla de Cheque
+														include_once "Seguridad/conexion.php";
 														$VerCheques = "SELECT * FROM cheque";
 														// Hacemos la consulta
 														$resultado = $mysqli->query($VerCheques);

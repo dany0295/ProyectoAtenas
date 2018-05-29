@@ -179,7 +179,7 @@
 							</div>
 						</div>
 					</div>
-				</div>
+	
 				<!-- Edit Modal-->
 					<div class="modal fade" id="frmEliminarBanco" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
@@ -279,7 +279,7 @@
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 									<center><h4 class="modal-title" id="myModalLabel">Editar Banco</h4></center>
 								</div>
-								<form method="post" action="Banco.php" id="frmEdit">
+								<form method="post" action="Banco.php" id="myForm">
 									<div class="modal-body">
 									<div class="container-fluid">
 											<div class="form-group input-group">
@@ -326,6 +326,8 @@
 
 				<!-- Include all compiled plugins (below), or include individual files as needed -->
 				<script src="js/bootstrap.js"></script>
+				<!-- Incluimos el script que nos dará el nombre de la persona para mostrarlo en el modal -->
+				<script src="js/custom.js"></script>
 				<!-- Pie de página, se utilizará el mismo para todos. -->
 				<footer>
 					<hr>
