@@ -1,10 +1,3 @@
-/*
-Al cuerpo de la
-pagina se aplica el tamaño de fuente
- */
-body{
-	font-size: 12px;
-}
 /**
  * se aplica el ancho, margen centrado
  * borde de un pixel con redondeado, y rellenado
@@ -34,6 +27,20 @@ body{
  * Se aplica al contenedor madre un margen de tamaño 10px hacia la cabecera y pie,
  * color de fuente blanco,un tamaño de fuente 50px y texto centrado.
  */
+ 
+ .IconoInicio span{
+	 background: #FFF;
+	 padding: 20px;
+     border-radius: 120px;
+}
+ 
+ .IconoInicio{
+	 margin-top: 10px;
+     margin-bottom:10px; 
+     font-size: 50px;
+	 text-align: center;
+}
+ 
 .Icon{
      margin-top: 10px;
      margin-bottom:10px; 

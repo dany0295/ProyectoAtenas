@@ -24,6 +24,7 @@
 		//include_once 'Seguridad/conexion.php';
 		// Incluimos el archivo que valida si hay una sesión activa
 		include_once "Seguridad/seguro.php";
+		// Incluimos el archivo para la conexión
 		include_once "Seguridad/conexion.php";
 		// Si en la sesión activa tiene privilegios de administrador puede ver el formulario
 		if($_SESSION["PrivilegioUsuario"] == 1){
@@ -36,223 +37,285 @@
 					  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
 					  <a class="navbar-brand" href="principal.php"><img src="imagenes/logo.png" class="img-circle" width="30" height="30"></a></div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="defaultNavbar1">
-					  <ul class="nav navbar-nav">
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bancos<span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="CrearBanco.php">Crear banco</a></li>
-								<li><a href="Banco.php">Lista de bancos</a></li>
+						<div class="collapse navbar-collapse" id="defaultNavbar1">
+							<ul class="nav navbar-nav">
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bancos<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="CrearBanco.php">Crear banco</a></li>
+										<li><a href="Banco.php">Lista de bancos</a></li>	
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="CrearCuenta.php">Crear cuenta</a></li>
+										<li><a href="Cuenta.php">Listado de cuentas</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="CrearChequera.php">Crear chequera</a></li>
+										<li><a href="Chequera.php">Lista de chequeras</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="#">Crear cheque</a></li>
+										<li><a href="Cheque.php">Lista de cheques</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="CrearProveedor.php">Crear Proveedor</a></li>
+										<li><a href="Proveedor.php">Lista de Proveedores</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="LiberarCheque.php">Liberar un cheque</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Impresión de Cheques<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="Listacheque.php">Lista de cheques en cola</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión de Usuarios<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="CrearUsuario.php">Crear usuario</a></li>
+										<li><a href="Usuario.php">Lista de Usuarios</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cerrar Sesión<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="Seguridad/logout.php">Cerrar Sesión</a></li>
+									</ul>
+								</li>
 							</ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="CrearCuenta.php">Crear cuenta</a></li>
-							<li><a href="Cuenta.php">Lista de cuentas</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="CrearChequera.php">Crear chequera</a></li>
-							<li><a href="Chequera.php">Lista de chequeras</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Crear cheque</a></li>
-							<li><a href="Cheque.php">Lista de cheques</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="CrearProveedor.php">Crear Proveedor</a></li>
-							<li><a href="Proveedor.php">Lista de Proveedores</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
-						<ul class="dropdown-menu" role="menu">
-							<li><a href="CrearProveedor.php">Crear Proveedor</a></li>
-							<li><a href="Proveedor.php">Lista de Proveedores</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="LiberarCheque.php">Liberar un cheque</a></li>
-							</ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Impresión de Cheques<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="Listacheque.php">Lista de cheques en cola</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-						  </ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión de Usuarios<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="CrearUsuario.php">Crear usuario</a></li>
-							<li><a href="Usuario.php">Lista de Usuarios</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cerrar Sesión<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="Seguridad/logout.php">Cerrar Sesión</a></li>
-						  </ul>
-						</li>
-					  </ul>
-				</div>
-					<!-- /.navbar-collapse --> 
-				  </div>
+						</div>
+						<!-- /.navbar-collapse --> 
+					</div>
 				  <!-- /.container-fluid --> 
 				</nav>
 				<div class="form-group">
 					<form name="CrearCheque" action="CrearCheque.php" method="post">
-				<div class="container">
-				  <div class="row text-center">
-				<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-6 col-xs-offset-3">
-							<h2 class="text-center">Creación de cheques</h2>
-							<br>
-							</div>
-						</div>
-						<!-- Codigo del Cheque -->
-						<div class="row">
-						<div class="col-xs-2 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="CodigoCheque" placeholder="Codigo de cheque" id="CodigoCheque" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-						<!--Seleccionar Banco-->
-						<div class="col-xs-4 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<!--<span class="input-group-addon" id="sizing-addon5">Banco</span> -->
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-piggy-bank"></i></span>
-								<!--<span class="glyphicons glyphicons-bank"></span>
-								
-								<!-- Tipo de Banco -->
-								<select class="form-control" name="ChequeraCuenta" id="ChequeraCuenta">
-									<option value="" disabled selected>Seleccione Chequera</option>
-									<!-- Contenido de la tabla -->
-										<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
-										<?php							
-											$VerChequera = "SELECT * FROM chequera";
-											// Hacemos la consulta
-											$resultado = $mysqli->query($VerChequera);			
-												while ($row = mysqli_fetch_array($resultado)){
-													?>
-													<option value="idChequera<?php echo $row['idChequera'];?>"><?php echo $row['NombreChequera'] ?></option>
-										<?php
-												}
-										?>
-								</select>	
-							</div>
-						</div>
-						<!-- Numero del Cheque -->
-						<div class="col-xs-2 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="NumeroCheque" placeholder="No. de cheque" id="NumeroCheque" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-						<!-- Pago a la orden -->
-						<div class="row">
-							<div class="col-xs-5 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<!--<span class="input-group-addon" id="sizing-addon1">Pagar a la Orden de:</span>-->
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
-								<!--<input type="text" class="form-control" name="Pago" placeholder="Pagar a la orden de:" id="Pago" aria-describedby="sizing-addon1" required>-->
-									<!-- Tipo de Proveedor -->
-								<select class="form-control" name="ProveedorCuenta" id="ProveedorCuenta">
-								<option value="" disabled selected>Seleccione proveedor</option>
-									<!-- Contenido de la tabla -->
-									<!-- Acá mostraremos los proveedores -->
-								<?php							
-									$VerProveedor = "SELECT * FROM proveedor";
-									// Hacemos la consulta
-									$resultado1 = $mysqli->query($VerProveedor);			
-									while ($row = mysqli_fetch_array($resultado1)){
-											?>
-													<option value="idproveedor<?php echo $row['idProveedor'];?>"><?php echo $row['NombreProveedor'] ?></option>
-										<?php
-												}
-										?>	
-								</select>		
-							</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				</br>	
-				<!-- Lugar -->
-					<div class="row">
-						<div class="col-xs-5 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<!--<span class="input-group-addon" id="sizing-addon1">Lugar</span>-->
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
-								<input type="text" class="form-control" name="LugarCheque" placeholder="Lugar" id="LugarCheque" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-				<!-- Fecha --> 
-						<div class="col-xs-3 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<!--<span class="input-group-addon" id="sizing-addon1">Fecha</span>-->
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-calendar"></i></span>
-								<input type="date" class="form-control" name="FechaCheque" placeholder="Fecha" id="FechaCheque" aria-describedby="sizing-addon1" required>
-							<br>
-							</div>
-						</div>
-				<!-- Monto -->
-						<div class="col-xs-3 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1">QTZ</span>
-								<!--<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-usd"></i></span>-->
-								<input type="money_format" class="form-control" name="MontoCheque" placeholder="Monto" id="MontoCheque" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					</br>
-				<!-- Comentarios -->
-					<div class="row">
-						<div class="col-xs-11 col-xs-offset+1 <!--col-xs-offset+1-->">
-							<div class="input-group input-group-lg">
-								<!--<span class="input-group-addon" id="sizing-addon1">Descripcion</span>-->
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-comment"></i></span>
-								<input type="text" class="form-control" name="ComentarioCheque" placeholder="Descripcion" id="ComentarioCheque" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Registrar -->
-					<div class="row">
-						<div class="col-xs-12 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<div clss="btn-group">
-									<button type="submit" class="btn btn-primary" id="CrearCheque" name="enviar">Registrar</button>
-									<button type="button" class="btn btn-danger">Cancelar</button>
+						<div class="container">
+							<div class="row text-center">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-xs-6 col-xs-offset-3">
+										<h2 class="text-center">Creación de cheque</h2>
+										<br>
+										</div>
+									</div>
+									<!-- Codigo del Cheque -->
+									<div class="row">
+										<!--Seleccionar Banco-->
+										<div class="col-xs-5 col-xs-offset-1">
+											<div class="input-group input-group-lg">
+												<!--<span class="input-group-addon" id="sizing-addon5">Banco</span> -->
+												<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-piggy-bank"></i></span>
+												<!--<span class="glyphicons glyphicons-bank"></span>
+												
+												<!-- Tipo de Banco -->
+												<select class="form-control" name="ChequeraCuenta" id="ChequeraCuenta">
+													<option value="" disabled selected>Seleccione Chequera</option>
+													<!-- Contenido de la tabla -->
+														<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
+														<?php							
+															$VerChequera = "SELECT * FROM chequera";
+															// Hacemos la consulta
+															$resultado = $mysqli->query($VerChequera);			
+																while ($row = mysqli_fetch_array($resultado)){
+																	?>
+																	<option value="<?php echo $row['idChequera'];?>"><?php echo $row['NombreChequera'] ?></option>
+														<?php
+																}
+														?>
+												</select>	
+											</div>
+										</div>
+										<!-- Numero del Cheque -->
+										<div class="col-xs-5 col-xs-offset+1">
+											<div class="input-group input-group-lg">
+												<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+												<input type="text" class="form-control" name="NumeroCheque" placeholder="No. de cheque" id="NumeroCheque" aria-describedby="sizing-addon1" required>
+											</div>
+										</div>
+									</div>
+								</br>
+								<div class="row">
+									<!-- Pago a la orden -->
+									<div class="col-xs-6 col-xs-offset-1">
+										<div class="input-group input-group-lg">
+											<!--<span class="input-group-addon" id="sizing-addon1">Pagar a la Orden de:</span>-->
+											<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-user"></i></span>
+											<!--<input type="text" class="form-control" name="Pago" placeholder="Pagar a la orden de:" id="Pago" aria-describedby="sizing-addon1" required>-->
+												<!-- Tipo de Proveedor -->
+											<select class="form-control" name="ProveedorCuenta" id="ProveedorCuenta">
+											<option value="" disabled selected>Seleccione proveedor</option>
+												<!-- Contenido de la tabla -->
+												<!-- Acá mostraremos los proveedores -->
+											<?php							
+												$VerProveedor = "SELECT * FROM proveedor";
+												// Hacemos la consulta
+												$resultado1 = $mysqli->query($VerProveedor);			
+												while ($row = mysqli_fetch_array($resultado1)){
+														?>
+																<option value="<?php echo $row['idProveedor'];?>"><?php echo $row['NombreProveedor'] ?></option>
+													<?php
+															}
+													?>	
+											</select>		
+										</div>
+									</div>
+									<!-- Button trigger modal -->
+									<div class="col-xs-1">
+										<div class="input-group input-group-lg">
+											<button type="button" class="btn btn-success btn-lg AgrearProveedor" value="" data-toggle="modal" data-target="#ModalAgregarProveedor">+</button>
+										</div>
+									</div>
+									<!-- Monto -->
+									<div class="col-xs-3 col-xs-offset+1">
+										<div class="input-group input-group-lg">
+											<span class="input-group-addon" id="sizing-addon1">QTZ</span>
+											<!--<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-usd"></i></span>-->
+											<input type="money_format" class="form-control" name="MontoCheque" placeholder="Monto" id="MontoCheque" aria-describedby="sizing-addon1" required>
+										</div>
+									</div>
+								</div>
+								<br>
+								<div class="row">
+									<!-- Lugar -->
+									<div class="col-xs-6 col-xs-offset-1">
+										<div class="input-group input-group-lg">
+											<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-home"></i></span>
+											<input type="text" class="form-control" name="LugarCheque" placeholder="Lugar" id="LugarCheque" aria-describedby="sizing-addon1" required>
+										</div>
+									</div>
+									<!-- Fecha --> 
+									<div class="col-xs-4 col-xs-offset+1">
+										<div class="input-group input-group-lg">
+											<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-calendar"></i></span>
+											<input type="date" class="form-control" name="FechaCheque" placeholder="Fecha" id="FechaCheque" aria-describedby="sizing-addon1" required>
+										</div>
+									</div>
+								</div>
+								</br>
+								<div class="row">
+									<!-- Comentarios -->
+									<div class="col-xs-10 col-xs-offset+1 col-xs-offset-1">
+										<div class="input-group input-group-lg">
+											<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-comment"></i></span>
+											<input type="text" class="form-control" name="ComentarioCheque" placeholder="Descripcion" id="ComentarioCheque" aria-describedby="sizing-addon1" required>
+										</div>
+									</div>
+								</div>
+								<br>
+								<div class="row">
+									<!-- Registrar -->
+									<div class="col-xs-12 col-xs-offset-1">
+										<div class="input-group input-group-lg">
+											<div clss="btn-group">
+												<button type="submit" class="btn btn-primary" id="CrearCheque" name="enviar">Registrar</button>
+												<button type="button" class="btn btn-danger">Cancelar</button>
+											</div>
+										</div>
+									</div>
+								</div>
+								<br>
 								</div>
 							</div>
 						</div>
-					</div>
-					<br>
+					</form>
 				</div>
+				
+				<!-- Modal para crear proveedor -->
+				<div class="modal fade slide left" id="ModalAgregarProveedor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog" role="document">
+					<div class="modal-content">
+					  <div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span>
+
+						</button>
+						<h1 class="modal-title" id="myModalLabel">Crear nuevo proveedor</h1>
+
+					  </div>
+					  <div class="modal-body">
+						<p class="lead">Ingrese los datos</p>
+						<form method="post" id="myForm">
+						  <div class="form-group">
+							<label for="name">Codigo del proveedor</label>
+							<input type="text" name="CodigoProveedor" id="CodigoProveedor" class="form-control" placeholder="Codigo de proveedor" value="" required/>
+						  </div>
+						  <div class="form-group">
+							<label for="email">Nombre del proveedor</label>
+							<input type="text" name="NombreProveedor" id="NombreProveedor" class="form-control" placeholder="Nombre del proveedor" value="" required/>
+						  </div>
+					  </div>
+					  <div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+						<input type="submit" name="AgregarProveedor" class="btn btn-success" value="Registrar proveedor">
+					  </div>
+					</form>
+					</div>
+				  </div>
+				</div>
+				
 				<?php
-					include_once "Seguridad/conexion.php";
-					if (isset($_POST['enviar'])) {
+				// Registramos un cheque
+				if (isset($_POST['enviar'])) {
+					// Obtenemos los valores de todos los campos y los almacenamos en variables
+					$NumeroCheque=$_POST['NumeroCheque'];
+					$LugarCheque=$_POST['LugarCheque'];
+					$FechaCheque=$_POST['FechaCheque'];
+					$ProveedorCuenta=$_POST['ProveedorCuenta'];
+					$ComentarioCheque=$_POST['ComentarioCheque'];
+					$MontoCheque=$_POST['MontoCheque'];
+					$ChequeraCuenta=$_POST['ChequeraCuenta'];
+					
+					// Creamos la consulta para la insersión de los datos
+					$Consulta = "INSERT INTO cheque(CodigoCheque, NumeroCheque, LugarCheque, FechaCheque, idProveedor, ComentarioCheque, MontoCheque, idChequera ) 
+					Values('".$NumeroCheque."', ".$NumeroCheque.", '".$LugarCheque."', '".$FechaCheque."', ".$ProveedorCuenta.", '".$ComentarioCheque."', ".$MontoCheque.", ".$ChequeraCuenta.");";
+						
+					if(!$resultado = $mysqli->query($Consulta)){
+						echo "Error: La ejecución de la consulta falló debido a: \n";
+						echo "Query: " . $Consulta . "\n";
+						echo "Error: " . $mysqli->errno . "\n";
+						exit;
+					}
+					else{
+					?>
+						<div class="form-group">
+							<form name="Alerta">
+								<div class="container">
+									<div class="row text-center">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-xs-10 col-xs-offset-1">
+													<div class="alert alert-success">Cheque registrado</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+					<?php
+					}
+				}
+				// Termina el registro de proveedor
+				if (isset($_POST['AgregarProveedor'])) {
 						// Obtenemos los valores de todos los campos y los almacenamos en variables
-						$Codigocheque=$_POST['CodigoCheque'];
-						$NumeroCheque=$_POST['NumeroCheque'];
-						$LugarCheque=$_POST['LugarCheque'];
-						$FechaCheque=$_POST['FechaCheque'];
-						$ProveedorCuenta=$_POST['ProveedorCuenta'];
-						$ComentarioCheque=$_POST['ComentarioCheque'];
-						$MontoCheque=$_POST['MontoCheque'];
-						$ChequeraCuenta=$_POST['ChequeraCuenta'];
+						$CodigoProveedor=$_POST['CodigoProveedor'];
+						$NombreProveedor=$_POST['NombreProveedor'];
 						
 						// Creamos la consulta para la insersión de los datos
-						$Consulta = "INSERT INTO cheque(CodigoCheque, NumeroCheque, LugarCheque, FechaCheque, idProveedor, ComentarioCheque, MontoCheque, idChequera ) 
-						Values('".$CodigoCheque."', '".$NumeroCheque."', '".$LugarCheque."', '".$FechaCheque."', '".$ProveedorCuenta."', '".$ComentarioCheque."', '".$MontoCheque."', '".$ChequeraCuenta."');";
+						$Consulta = "INSERT INTO proveedor(CodigoProveedor, NombreProveedor) 
+													Values('".$CodigoProveedor."', '".$NombreProveedor."');";
 							
 						if(!$resultado = $mysqli->query($Consulta)){
 							echo "Error: La ejecución de la consulta falló debido a: \n";
@@ -262,7 +325,21 @@
 						}
 						else{
 						?>
-						<div class="alert alert-success">Cheque registrado</div>
+							<div class="form-group">
+								<form name="Alerta">
+									<div class="container">
+										<div class="row text-center">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-xs-10 col-xs-offset-1">
+														<div class="alert alert-success">Provedor registrado</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
 						<?php
 						}
 					}

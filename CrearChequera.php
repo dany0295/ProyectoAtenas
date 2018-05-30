@@ -36,144 +36,152 @@
 					  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#defaultNavbar1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
 					  <a class="navbar-brand" href="principal.php"><img src="imagenes/logo.png" class="img-circle" width="30" height="30"></a></div>
 					<!-- Collect the nav links, forms, and other content for toggling -->
-					<div class="collapse navbar-collapse" id="defaultNavbar1">
-					  <ul class="nav navbar-nav">
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bancos<span class="caret"></span></a>
-							<ul class="dropdown-menu" role="menu">
-								<li><a href="CrearBanco.php">Crear banco</a></li>
-								<li><a href="Banco.php">Lista de bancos</a></li>
+						<div class="collapse navbar-collapse" id="defaultNavbar1">
+							<ul class="nav navbar-nav">
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Bancos<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="CrearBanco.php">Crear banco</a></li>
+										<li><a href="Banco.php">Lista de bancos</a></li>	
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="CrearCuenta.php">Crear cuenta</a></li>
+										<li><a href="Cuenta.php">Listado de cuentas</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="#">Crear chequera</a></li>
+										<li><a href="Chequera.php">Lista de chequeras</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="Crearcheque.php">Crear cheque</a></li>
+										<li><a href="Cheque.php">Lista de cheques</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Proveedores<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="CrearProveedor.php">Crear Proveedor</a></li>
+										<li><a href="Proveedor.php">Lista de Proveedores</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="LiberarCheque.php">Liberar un cheque</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Impresión de Cheques<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="Listacheque.php">Lista de cheques en cola</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión de Usuarios<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="CrearUsuario.php">Crear usuario</a></li>
+										<li><a href="Usuario.php">Lista de Usuarios</a></li>
+									</ul>
+								</li>
+								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cerrar Sesión<span class="caret"></span></a>
+									<ul class="dropdown-menu" role="menu">
+										<li><a href="Seguridad/logout.php">Cerrar Sesión</a></li>
+									</ul>
+								</li>
 							</ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cuentas<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="Crearcuenta.php">Crear cuenta</a></li>
-							<li><a href="Cuenta.php">Listado de cuentas</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Chequeras<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="#">Crear chequera</a></li>
-							<li><a href="Chequera.php">Lista de chequeras</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cheques<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="Crearcheque.php">Crear cheque</a></li>
-							<li><a href="Cheque.php">Lista de cheques</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Liberación de Cheques<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="LiberarCheque.php">Liberar un cheque</a></li>
-							</ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Impresión de Cheques<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="Listacheque.php">Lista de cheques en cola</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-						  </ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión de Usuarios<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="CrearUsuario.php">Crear usuario</a></li>
-							<li><a href="Usuario.php">Lista de Usuarios</a></li>
-						  </ul>
-						</li>
-						<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cerrar Sesión<span class="caret"></span></a>
-						  <ul class="dropdown-menu" role="menu">
-							<li><a href="Seguridad/logout.php">Cerrar Sesión</a></li>
-						  </ul>
-						</li>
-					  </ul>
-				</div>
-					<!-- /.navbar-collapse --> 
-				  </div>
+						</div>
+						<!-- /.navbar-collapse --> 
+					</div>
 				  <!-- /.container-fluid --> 
 				</nav>
 				<div class="form-group">
 					<form name="CrearChequera" action="CrearChequera.php" method="post">
-				<div class="container">
-				  <div class="row text-center">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-6 col-xs-offset-3">
-							<h1 class="text-center">Creación de chequeras</h1>
-							</div>
-						</div>
-				<!--Codigo de Chequera-->	
-					<div class="row">
-						<div class="col-xs-5 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="CodigoChequera" placeholder="Codigo de chequera" id="CodigoChequera" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-				<!--ID de la cuenta -->
-						<div class="col-xs-5 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<!-- Tipo de Banco -->
-											<select class="form-control" name="BancoCuenta" id="BancoCuenta">
-											<option value="" disabled selected>Seleccione Cuenta</option>
-												<!-- Contenido de la tabla -->
-													<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
-													<?php							
-														$VerCuenta = "SELECT * FROM Cuenta";
-														// Hacemos la consulta
-														$resultado = $mysqli->query($VerCuenta);			
-															while ($row = mysqli_fetch_array($resultado)){
-																?>
-																<option value="<?php echo $row['idCuenta'];?>"><?php echo $row['NombreCuenta'] ?></option>
-													<?php
-															}
-													?>
+						<div class="container">
+						  <div class="row text-center">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-xs-6 col-xs-offset-3">
+									<h1 class="text-center">Creación de chequeras</h1>
+									</div>
+								</div>
+						<!--Codigo de Chequera-->	
+							<div class="row">
+								<div class="col-xs-5 col-xs-offset-1">
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+										<input type="text" class="form-control" name="CodigoChequera" placeholder="Codigo de chequera" id="CodigoChequera" aria-describedby="sizing-addon1" required>
+									</div>
+								</div>
+						<!--ID de la cuenta -->
+								<div class="col-xs-5 col-xs-offset+1">
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+										<!-- Tipo de Banco -->
+													<select class="form-control" name="BancoCuenta" id="BancoCuenta">
+													<option value="" disabled selected>Seleccione Cuenta</option>
+														<!-- Contenido de la tabla -->
+															<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
+															<?php							
+																$VerCuenta = "SELECT * FROM Cuenta";
+																// Hacemos la consulta
+																$resultado = $mysqli->query($VerCuenta);			
+																	while ($row = mysqli_fetch_array($resultado)){
+																		?>
+																		<option value="<?php echo $row['idCuenta'];?>"><?php echo $row['NombreCuenta'] ?></option>
+															<?php
+																	}
+															?>
 													</select>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!--Nombre chequera-->
-					<div class="row">
-						<div class="col-xs-5 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="NombreChequera" placeholder="Nombre Chequera" id="NombreChequera" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-						<!--Rango Inicial Chquera-->
-						<div class="col-xs-5 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="RangoMinimoChequera" placeholder="Rango inicial chequera" id="NombreChequera" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!--Rango Final Chequera-->
-					<div class="row">
-						<div class="col-xs-5 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="RangoMaximoChequera" placeholder="Rango Final Chequera" id="RangoMaximoChequera" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
-					<!-- Resgistrar -->
-					<div class="row">
-						<div class="col-xs-12 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<div clss="btn-group">
-									<button type="submit" class="btn btn-primary" id="CrearChequera" name="enviar">Registrar</button>
-									<button type="button" class="btn btn-danger">Cancelar</button>
+									</div>
 								</div>
 							</div>
+							<br>
+							<!--Nombre chequera-->
+							<div class="row">
+								<div class="col-xs-5 col-xs-offset-1">
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+										<input type="text" class="form-control" name="NombreChequera" placeholder="Nombre Chequera" id="NombreChequera" aria-describedby="sizing-addon1" required>
+									</div>
+								</div>
+								<!--Rango Inicial Chquera-->
+								<div class="col-xs-5 col-xs-offset+1">
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+										<input type="text" class="form-control" name="RangoMinimoChequera" placeholder="Rango inicial chequera" id="NombreChequera" aria-describedby="sizing-addon1" required>
+									</div>
+								</div>
+							</div>
+							<br>
+							<!--Rango Final Chequera-->
+							<div class="row">
+								<div class="col-xs-5 col-xs-offset-1">
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+										<input type="text" class="form-control" name="RangoMaximoChequera" placeholder="Rango Final Chequera" id="RangoMaximoChequera" aria-describedby="sizing-addon1" required>
+									</div>
+								</div>
+							</div>
+							<br>
+							<!-- Resgistrar -->
+							<div class="row">
+								<div class="col-xs-12 col-xs-offset-1">
+									<div class="input-group input-group-lg">
+										<div clss="btn-group">
+											<button type="submit" class="btn btn-primary" id="CrearChequera" name="enviar">Registrar</button>
+											<button type="button" class="btn btn-danger">Cancelar</button>
+										</div>
+									</div>
+								</div>
+							</div>
+							<br>
 						</div>
-					</div>
-					<br>
+					</form>
 				</div>
 				<!--Registramos Chequera-->
 				<?php
@@ -198,7 +206,21 @@
 						}
 						else{
 						?>
-						<div class="alert alert-success">Chequera registrada</div>
+						<div class="form-group">
+								<form name="Alerta">
+									<div class="container">
+										<div class="row text-center">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-xs-10 col-xs-offset-1">
+														<div class="alert alert-success">Chequera registrada</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
 						<?php
 						}
 					}

@@ -29,10 +29,17 @@
     <body>
 		<!-- Contenedor del ícono del Usuario -->
 		<div id="Contenedor">
-			<div class="Icon">
-			<h2 class="text-center">Inicie sesión</h2>
-				<!-- Icono de usuario -->
-				<span class="glyphicon glyphicon-user"></span>
+			<div class="IconoInicio">
+				<div class="row TextoInicioP">
+					<div class="col-xs-6 TextoInicio">
+					<h2 class="text-center">Inicie sesión</h2>
+					</div>
+					<!-- Contenedor del ícono del Usuario -->
+					<div class="col-xs-6">
+					<!-- Icono de usuario -->
+					<span class="glyphicon glyphicon-user"></span>
+					</div>
+				</div>
 			</div>
 			<div class="form-group">
 				<form name="FormEntrar" action="index.php" method="post">
@@ -80,11 +87,24 @@
 				}
 				
 				if ($resultado->num_rows == 0) {
-					?>
-					<div class="alert alert-danger"> Usuario no Registrado </div>
-					<?php
-					//echo "Usuario no registrado";
-					exit;
+				?>
+					<div class="form-group">
+						<form name="Alerta">
+							<div class="container">
+								<div class="row text-center">
+									<div class="container-fluid">
+										<div class="row">
+											<div class="col-xs-10 col-xs-offset-1">
+												<div class="alert alert-danger">Usuario no registrado</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				<?php
+				exit;
 				}
 				
 				$ResultadoConsulta = $resultado->fetch_assoc();
@@ -98,16 +118,42 @@
 					}
 					else{
 						?>
-						<div class="alert alert-warning"> Contraseña erronea </div>
+							<div class="form-group">
+								<form name="Alerta">
+									<div class="container">
+										<div class="row text-center">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-xs-10 col-xs-offset-1">
+														<div class="alert alert-warning">Contraseña erronea</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
 						<?php
-						//echo "Contraseña Erronea";
 					}
 				}
 				else{
 					?>
-					<div class="alert alert-warning"> Usuario erroneo </div>
+					<div class="form-group">
+								<form name="Alerta">
+									<div class="container">
+										<div class="row text-center">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-xs-10 col-xs-offset-1">
+														<div class="alert alert-success">Usuario erroneo</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
 					<?php
-						echo "Usuario erroneo";
 					}
 			}
 			}
