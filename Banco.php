@@ -304,11 +304,11 @@
 											</div>
 											<div class="form-group input-group">
 												<span class="input-group-addon" style="width:150px;">Sitio Web del Banco</span>
-												<input type="date" style="width:350px;" class="form-control" name="SitioWebBancoEditar" id="SitioWebBancoEditar">
+												<input type="text" style="width:350px;" class="form-control" name="SitioWebBancoEditar" id="SitioWebBancoEditar">
 											</div>
 											<div class="form-group input-group">
 												<span class="input-group-addon" style="width:150px;">Telefono del Banco</span>
-												<input type="date" style="width:350px;" class="form-control" name="TelefonoBancoEditar" id="TelefonoBancoEditar">
+												<input type="text" style="width:350px;" class="form-control" name="TelefonoBancoEditar" id="TelefonoBancoEditar">
 											</div>
 										</div>
 									</div>

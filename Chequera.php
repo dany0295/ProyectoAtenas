@@ -303,7 +303,7 @@
 											</div>
 											<div class="form-group input-group">
 												<span class="input-group-addon" style="width:200px;">Rango maximo de chequera</span>
-												<select class="form-control" style="width:350px;" name="RangoMaximoChequeraEditar" id="RangoMaximoChequeraEditar">
+												<input type="text" style="width:350px;" class="form-control" name="RangoMaximoChequeraEditar" id="RangoMaximoChequeraEditar">
 											</div>
 										</div>
 									</div>
