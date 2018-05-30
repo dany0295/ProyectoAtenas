@@ -4,11 +4,11 @@ $(document).ready(function(){
 		var id=$(this).val();
 		var Nombres=$('#NombreUsuario'+id).text();
 		var Apellidos=$('#ApellidoUsuario'+id).text();
-		var Usuario=$('#idPersonaEliminar'+id).text();
+		var Usuario=$('#idUsuario'+id).text();
 	
 		$('#frmEliminar').modal('show');
+		$('#idUsuarioEliminacion').val(Usuario);
 		document.querySelector('#NombresApellidos').innerText = Nombres + " " + Apellidos;
-		$('#idAEliminar').val(Usuario);
 	});
 });
 
@@ -16,26 +16,28 @@ $(document).ready(function(){
 $(document).ready(function(){
 	$(document).on('click', '.EditarUsuario', function(){
 		var id=$(this).val();
-		var PersonaEliminar=$('#idPersonaEliminar'+id).text();
+		var PersonaEditar=$('#idUsuario'+id).text();
 		var NombreUsuario=$('#NombreUsuario'+id).text();
 		var ApellidoUsuario=$('#ApellidoUsuario'+id).text();
-		var DireccionUsuario=$('#DireccionUsuario'+id).text();
-		var DPIUsuario=$('#DPIUsuario'+id).text();
 		var TelefonoUsuario=$('#TelefonoUsuario'+id).text();
-		var FechaNacUsuario=$('#FechaNacUsuario'+id).text();
+		var DireccionUsuario=$('#DireccionUsuario'+id).text();
 		var CorreoUsuario=$('#CorreoUsuario'+id).text();
-		var PrivilegioUsuario=$('#PrivilegioUsuario'+id).text();
+		var NombreInicioSesionUsuario=$('#NombreInicioSesionUsuario'+id).text();
+		var Puesto=$('#Puesto'+id).text();
+		var Rol=$('#Rol'+id).text();
+		var Rango=$('#Rango'+id).text();
 	
 		$('#frmEditar').modal('show');
-		$('#idEditar').val(PersonaEliminar);
+		$('#idEditar').val(PersonaEditar);
 		$('#NombreEditar').val(NombreUsuario);
 		$('#ApellidoEditar').val(ApellidoUsuario);
-		$('#DireccionEditar').val(DireccionUsuario);
-		$('#DPIEditar').val(DPIUsuario);
 		$('#TelefonoEditar').val(TelefonoUsuario);
-		$('#FechaNacEditar').val(FechaNacUsuario);
+		$('#DireccionEditar').val(DireccionUsuario);
 		$('#CorreoEditar').val(CorreoUsuario);
-		$('#PrivilegioEditar').val(PrivilegioUsuario);
+		$('#NombreInicioEditar').val(NombreInicioSesionUsuario);
+		$('#PuestoEditar').val(Puesto);
+		$('#RolEditar').val(Rol);
+		$('#RangoEditar').val(Rango);
 	});
 });
 

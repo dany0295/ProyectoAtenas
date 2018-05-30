@@ -223,7 +223,7 @@
 								<div class="modal-body">
 									<p class="lead">¿Está seguro que desea eliminar al siguiente usuario?</p>
 									<div class="form-group input-group">
-										<input type="text" name="idUsuarioEliminacion" style="width:350px; visibility:hidden;" class="form-control" id="idAEliminar">
+										<input type="text" name="idUsuarioEliminacion" style="width:350px; visibility:hidden;" class="form-control" id="idUsuarioEliminacion">
 										<br>
 										<label id="NombresApellidos"></label>
 									</div>
@@ -262,34 +262,74 @@
 												<input type="text" style="width:350px;" class="form-control" name="ApellidoEditar" id="ApellidoEditar">
 											</div>
 											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Dirección</span>
-												<input type="text" style="width:350px;" class="form-control" name="DireccionEditar" id="DireccionEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">No. de DPI</span>
-												<input type="text" style="width:350px;" class="form-control" name="DPIEditar" id="DPIEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">No. de telefono</span>
+												<span class="input-group-addon" style="width:150px;">Teléfono</span>
 												<input type="tel" style="width:350px;" class="form-control" name="TelefonoEditar" id="TelefonoEditar">
 											</div>
 											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Fecha Nacimiento</span>
-												<input type="date" style="width:350px;" class="form-control" name="FechaNacEditar" id="FechaNacEditar">
+												<span class="input-group-addon" style="width:150px;">Dirección</span>
+												<input type="text" style="width:350px;" class="form-control" name="DireccionEditar" id="DireccionEditar">
 											</div>
 											<div class="form-group input-group">
 												<span class="input-group-addon" style="width:150px;">Correo</span>
 												<input type="email" style="width:350px;" class="form-control" name="CorreoEditar" id="CorreoEditar">
 											</div>
 											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Privilegio</span>
-												<select class="form-control" style="width:350px;" name="PrivilegioEditar" id="PrivilegioEditar">
-													<option value="" disabled selected>Privilegios</option>
-															<option value="Administrador">Administrador</option>
-															<option value="Jefatura">Jefatura</option>
-															<option value="Operador">Operador</option>
-													</select>
+												<span class="input-group-addon" style="width:150px;">Nombre de inicio de Sesión</span>
+												<input type="text" style="width:300px;" class="form-control" name="NombreInicioEditar" id="NombreInicioEditar">
 											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Puesto</span>
+												<select class="form-control" style="width:350px;" name="PuestoEditar" id="PuestoEditar">
+													<option value="" disabled selected>Puesto</option>
+														<!-- Contenido de la tabla -->
+														<!-- Acá mostraremos los puestos que existen en la base de datos -->
+														<?php							
+															$VerPuestos = "SELECT * FROM puesto";
+															// Hacemos la consulta
+															$resultado = $mysqli->query($VerPuestos);			
+																while ($row = mysqli_fetch_array($resultado)){
+																	?>
+																	<option value="<?php echo $row['idPuesto'];?>"><?php echo $row['NombrePuesto'] ?></option>
+														<?php
+																}
+														?>
+												</select>
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:150px;">Rol</span>
+												<select class="form-control" style="width:350px;" name="RolEditar" id="RolEditar">
+													<option value="" disabled selected>Selecciona el rol del usuario</option>
+															<!-- Contenido de la tabla -->
+															<!-- Acá mostraremos los roles que están en la base de datos -->
+															<?php							
+																$VerRoles = "SELECT * FROM rol";
+																// Hacemos la consulta
+																$resultado = $mysqli->query($VerRoles);			
+																	while ($row = mysqli_fetch_array($resultado)){
+																		?>
+																		<option value="<?php echo $row['idRol'];?>"><?php echo $row['NombreRol'] ?></option>
+															<?php
+																	}
+															?>
+												</select>
+											</div>
+											<div class="form-group input-group">  
+												<span class="input-group-addon" style="width:150px;">Rango</span>
+												<select class="form-control" style="width:350px;" name="RangoEditar" id="RangoEditar">
+													<option value="" disabled selected>Selecciona el rango monetario con que podrá operar el usuario</option>
+														<!-- Contenido de la tabla -->
+														<!-- Acá mostraremos los rango que existen en la base de datos -->
+														<?php							
+															$VerRangos = "SELECT * FROM rango";
+															// Hacemos la consulta
+															$resultado = $mysqli->query($VerRangos);			
+																while ($row = mysqli_fetch_array($resultado)){
+																	?>
+																	<option value="<?php echo $row['idRango'];?>"><?php echo $row['RangoMinimo']?> - <?php echo $row['RangoMaximo']?></option>
+														<?php
+																}
+														?>
+												</select>
 										</div>
 									</div>
 									<div class="modal-footer">
@@ -300,16 +340,15 @@
 							</div>
 						</div>
 					</div>
+					</div>
 				<!-- /.modal -->
 				
 				<?php
-					include_once "Seguridad/conexion.php";
-					// Código que recibe la información de eliminar usuario
 					if (isset($_POST['EliminarUsuario'])) {
 						// Guardamos el id en una variable
 						$idUsuarioaEliminar = $_POST['idUsuarioEliminacion'];
 						// Preparamos la consulta
-						$query = "DELETE FROM persona WHERE idPersona=".$idUsuarioaEliminar.";";
+						$query = "DELETE FROM usuario WHERE idUsuario=".$idUsuarioaEliminar.";";
 						// Ejecutamos la consulta
 						if(!$resultado = $mysqli->query($query)){
     					echo "Error: La ejecución de la consulta falló debido a: \n";
@@ -330,43 +369,33 @@
 					// Código para editar un usuario
 					if (isset($_POST['EditarUsuario'])) {
 						// Guardamos La información proveniente del formulario
-						$idPersonaEditar = $_POST['idEditar'];
+						$idEditar = $_POST['idEditar'];
 						$NombreEditar = $_POST['NombreEditar'];
 						$ApellidoEditar = $_POST['ApellidoEditar'];
-						$DireccionEditar = $_POST['DireccionEditar'];
-						$DPIEditar = $_POST['DPIEditar'];
 						$TelefonoEditar = $_POST['TelefonoEditar'];
-						$FechaNacEditar = $_POST['FechaNacEditar'];
+						$DireccionEditar = $_POST['DireccionEditar'];
 						$CorreoEditar = $_POST['CorreoEditar'];
-						$PrivilegioEditar = $_POST['PrivilegioEditar'];
+						$NombreInicioEditar = $_POST['NombreInicioEditar'];
+						$PuestoEditar = $_POST['PuestoEditar'];
+						$RolEditar = $_POST['RolEditar'];
+						$RangoEditar = $_POST['RangoEditar'];
 						
 						// Preparamos las consultas
-						$EditarTablaPersona = "UPDATE persona
-								  SET NombrePersona = '" .$NombreEditar."',
-									  ApellidoPersona = '" .$ApellidoEditar."',
-									  DireccionPersona = '".$DireccionEditar."',
-									  DPIPersona = '".$DPIEditar."',
-									  TelefonoPersona = '".$TelefonoEditar."',
-									  FechaNacPersona = '".$FechaNacEditar."',
-									  CorreoPersona = '".$CorreoEditar."'
-								  WHERE idPersona=".$idPersonaEditar.";";
-						$EditarTablaUsuario = "UPDATE usuario
-								  SET PrivilegioUsuario = '".$PrivilegioEditar."'
-								  WHERE idPersona=".$idPersonaEditar.";";
+						$EditarUsuario = "UPDATE usuario
+								  SET NombreUsuario = '" .$NombreEditar."',
+									  ApellidoUsuario = '" .$ApellidoEditar."',
+									  TelefonoUsuario = '".$TelefonoEditar."',
+									  DireccionUsuario = '".$DireccionEditar."',
+									  CorreoUsuario = '".$CorreoEditar."',
+									  idPuesto = ".$PuestoEditar.",
+									  idRol = ".$RolEditar.",
+									  idRango = ".$RangoEditar."
+								  WHERE idUsuario=".$idEditar.";";
 						
 						// Ejecutamos la consulta para la tabla de persona
-						if(!$resultado = $mysqli->query($EditarTablaPersona)){
+						if(!$resultado = $mysqli->query($EditarUsuario)){
 							echo "Error: La ejecución de la consulta falló debido a: \n";
-							echo "Query: " . $EditarTablaPersona . "\n";
-							echo "Errno: " . $mysqli->errno . "\n";
-							echo "Error: " . $mysqli->error . "\n";
-							exit;
-						}
-						
-						// Ejecutamos la consulta para la tabla de usuario
-						if(!$resultado2 = $mysqli->query($EditarTablaUsuario)){
-							echo "Error: La ejecución de la consulta falló debido a: \n";
-							echo "Query: " . $EditarTablaUsuario . "\n";
+							echo "Query: " . $EditarUsuario . "\n";
 							echo "Errno: " . $mysqli->errno . "\n";
 							echo "Error: " . $mysqli->error . "\n";
 							exit;
