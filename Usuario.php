@@ -17,7 +17,7 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet">
 <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
-<link rel="stylesheet" type="text/css" href="text/estilo.css"> 
+<link rel="stylesheet" type="text/css" href="css/estilo.css"> 
 
 </head>
 	<?php
@@ -75,7 +75,7 @@
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Impresión de Cheques<span class="caret"></span></a>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="Listacheque.php">Lista de cheques en cola</a></li>
+										<li><a href="ImpresionCheque.php">Impresión de cheques</a></li>
 									</ul>
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
@@ -118,7 +118,7 @@
 									</div>
 									<br>
 									<div class="table-responsive">          
-										<table class="table">
+										<table class="table table-striped">
 											<!-- Título -->
 											<thead>
 												<!-- Contenido -->

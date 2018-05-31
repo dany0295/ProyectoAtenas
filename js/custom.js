@@ -153,7 +153,7 @@ $(document).ready(function(){
 	});
 });
 
-// Eliminación de cuenta de la pantalla de cuentas
+// Eliminación de cuenta de la pantalla de Chequeras
 $(document).ready(function(){
 	$(document).on('click', '.EliminarChequera', function(){
 		var id=$(this).val();
@@ -162,6 +162,44 @@ $(document).ready(function(){
 	
 		$('#frmEliminarChequera').modal('show');
 		document.querySelector('#NombreChequera').innerText = NombreChequera;
-		$('#idChequeraAEliminar').val(Usuario);
+		$('#idChequeraAEliminar').val(id);
+	});
+});
+
+// Edición de proveedores
+$(document).ready(function(){
+	$(document).on('click', '.EditarProveedor', function(){
+		var id=$(this).val();
+		var idProveedor=$('#idProveedor'+id).text();
+		var CodigoProveedor=$('#CodigoProveedor'+id).text();
+		var NombreProveedor=$('#NombreProveedor'+id).text();
+	
+		$('#ModalEditarProveedor').modal('show');
+		$('#idProveedorEditar').val(id);
+		$('#CodigoProveedorEditar').val(CodigoProveedor);
+		$('#NombreProveedorEditar').val(NombreProveedor);
+	});
+});
+
+// Eliminación de proveedores
+$(document).ready(function(){
+	$(document).on('click', '.EliminarProveedor', function(){
+		var id=$(this).val();
+		var NombreProveedor=$('#NombreProveedor'+id).text();
+		var Proveedor=$('#idProveedor'+id).text();
+	
+		$('#ModalEliminarProveedor').modal('show');
+		document.querySelector('#NombreProveedor').innerText = NombreProveedor;
+		$('#idProveedorEliminar').val(id);
+	});
+});
+
+// Liberación de cheques
+$(document).ready(function(){
+	$(document).on('click', '.AprobarCheque', function(){
+		var id=$(this).val();
+	
+		$('#ModalAprobarCheque').modal('show');
+		$('#idCheque').val(id);
 	});
 });

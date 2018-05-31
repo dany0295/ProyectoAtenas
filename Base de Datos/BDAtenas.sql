@@ -139,9 +139,10 @@ CREATE OR REPLACE TABLE Cheque(
 	LugarCheque			VARCHAR(50)		NOT NULL,
 	FechaCheque			DATE			NOT NULL,
 	idProveedor			TINYINT			NOT NULL,
-	ComentarioCheque	VARCHAR(50),
-	MontoCheque			DECIMAL,
-	idChequera			SMALLINT,
+	ComentarioCheque	VARCHAR(50)		NOT NULL,
+	MontoCheque			DECIMAL			NOT NULL,
+	idChequera			SMALLINT		NOT NULL,
+	EstadoCheque		VARCHAR(15),	NOT NULL,
 	INDEX (idProveedor),
 	FOREIGN	KEY	(idProveedor)
         REFERENCES Proveedor(idProveedor)

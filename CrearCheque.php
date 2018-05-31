@@ -17,7 +17,7 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet">
 <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
-<link rel="stylesheet" type="text/css" href="text/estilo.css"> 
+<link rel="stylesheet" type="text/css" href="css/estilo.css"> 
 
 </head>
 	<?php
@@ -76,7 +76,7 @@
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Impresión de Cheques<span class="caret"></span></a>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="Listacheque.php">Lista de cheques en cola</a></li>
+										<li><a href="ImpresionCheque.php">Impresión de cheques</a></li>
 									</ul>
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
@@ -277,34 +277,72 @@
 					$MontoCheque=$_POST['MontoCheque'];
 					$ChequeraCuenta=$_POST['ChequeraCuenta'];
 					
-					// Creamos la consulta para la insersión de los datos
-					$Consulta = "INSERT INTO cheque(CodigoCheque, NumeroCheque, LugarCheque, FechaCheque, idProveedor, ComentarioCheque, MontoCheque, idChequera ) 
-					Values('".$NumeroCheque."', ".$NumeroCheque.", '".$LugarCheque."', '".$FechaCheque."', ".$ProveedorCuenta.", '".$ComentarioCheque."', ".$MontoCheque.", ".$ChequeraCuenta.");";
-						
-					if(!$resultado = $mysqli->query($Consulta)){
-						echo "Error: La ejecución de la consulta falló debido a: \n";
-						echo "Query: " . $Consulta . "\n";
-						echo "Error: " . $mysqli->errno . "\n";
-						exit;
-					}
-					else{
-					?>
-						<div class="form-group">
-							<form name="Alerta">
-								<div class="container">
-									<div class="row text-center">
-										<div class="container-fluid">
-											<div class="row">
-												<div class="col-xs-10 col-xs-offset-1">
-													<div class="alert alert-success">Cheque registrado</div>
+					// Validaremos si el cheque que se desea generar se encuentra en el rango que puede operar el usuario
+					// Primero obtendremos los rangos que maneja en usuario, para ello realizará una consulta con el id de
+					// rango que tiene en la tabla
+					// Obtenemos el ID almacenado en la cookie
+					$idUsuario = $_SESSION["idUsuario"];
+					$ConsultaRango = "SELECT RangoMinimo, RangoMaximo FROM rango WHERE idRango ='".$idUsuario."';";
+					// Realizamos la consulta y obtendremos los datos:
+					$ResultadoRango = $mysqli->query($ConsultaRango);
+					// Guardamos la consulta en un array
+					$ResultadoConsultaRango = $ResultadoRango->fetch_assoc();
+					// Rango minimo y máximo
+					$RangoMinimo = $ResultadoConsultaRango['RangoMinimo'];
+					$RangoMaximo = $ResultadoConsultaRango['RangoMaximo'];
+					if ($MontoCheque >= $RangoMinimo && $MontoCheque <= $RangoMaximo){
+						// Creamos la consulta para la insersión de los datos
+						$Consulta = "INSERT INTO cheque(NumeroCheque, LugarCheque,
+														FechaCheque, idProveedor, ComentarioCheque,
+														MontoCheque, idChequera, EstadoCheque) 
+												 Values(".$NumeroCheque.", '".$LugarCheque."', '"
+														  .$FechaCheque."', ".$ProveedorCuenta.", '".$ComentarioCheque."', "
+														  .$MontoCheque.", ".$ChequeraCuenta.", 'Generado');";
+							
+						if(!$resultado = $mysqli->query($Consulta)){
+							echo "Error: La ejecución de la consulta falló debido a: \n";
+							echo "Query: " . $Consulta . "\n";
+							echo "Error: " . $mysqli->errno . "\n";
+							exit;
+						}
+						else{
+						?>
+							<div class="form-group">
+								<form name="Alerta">
+									<div class="container">
+										<div class="row text-center">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-xs-10 col-xs-offset-1">
+														<div class="alert alert-success">Cheque registrado</div>
+													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</form>
-						</div>
-					<?php
+								</form>
+							</div>
+						<?php
+						}
+					}
+					else{
+						?>
+							<div class="form-group">
+								<form name="Alerta">
+									<div class="container">
+										<div class="row text-center">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-xs-10 col-xs-offset-1">
+														<div class="alert alert-success">No posee permisos para generar cheques de este monto</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						<?php
 					}
 				}
 				// Termina el registro de proveedor

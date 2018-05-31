@@ -17,7 +17,7 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet">
 <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
-<link rel="stylesheet" type="text/css" href="text/estilo.css"> 
+<link rel="stylesheet" type="text/css" href="css/estilo.css"> 
 
 </head>
 	<?php
@@ -74,7 +74,7 @@
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Impresión de Cheques<span class="caret"></span></a>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="Listacheque.php">Lista de cheques en cola</a></li>
+										<li><a href="ImpresionCheque.php">Impresión de cheques</a></li>
 									</ul>
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
@@ -117,7 +117,7 @@
 									</div>
 									<br>
 									<div class="table-responsive">          
-										<table class="table">
+										<table class="table table-striped">
 											<!-- Título -->
 											<thead>
 												<!-- Contenido -->
@@ -200,11 +200,11 @@
 									<div class="form-group input-group">
 										<input type="text" name="idChequeraAEliminar" style="width:350px; visibility:hidden;" class="form-control" id="idChequeraAEliminar">
 										<br>
-										<label id="NombreCuenta"></label>
+										<label id="NombreChequera"></label>
 									</div>
 								</div>
 								<div class="modal-footer">
-									<input type="submit" name="EliminarUsuario" class="btn btn-danger" value="Eliminar chequera">
+									<input type="submit" name="EliminarChequera" class="btn btn-danger" value="Eliminar chequera">
 									<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
 								</div>
 								</form>
@@ -214,7 +214,7 @@
 				<!-- /.modal -->
 				<?php
 					// Código que recibe la información de eliminar una cuenta
-					if (isset($_POST['EliminarUsuario'])) {
+					if (isset($_POST['EliminarChequera'])) {
 						// Guardamos el id en una variable
 						$idChequeraEliminar = $_POST['idChequeraAEliminar'];
 						// Preparamos la consulta

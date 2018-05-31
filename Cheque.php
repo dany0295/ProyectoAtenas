@@ -17,11 +17,11 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet">
 <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
-<link rel="stylesheet" type="text/css" href="text/estilo.css"> 
+<link rel="stylesheet" type="text/css" href="css/estilo.css"> 
 
 </head>
 	<?php
-		//include_once 'Seguridad/conexion.php';
+		include_once "Seguridad/conexion.php";
 		// Incluimos el archivo que valida si hay una sesión activa
 		include_once "Seguridad/seguro.php";
 		// Si en la sesión activa tiene privilegios de administrador puede ver el formulario
@@ -74,7 +74,7 @@
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Impresión de Cheques<span class="caret"></span></a>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="Listacheque.php">Lista de cheques en cola</a></li>
+										<li><a href="ImpresionCheque.php">Impresión de cheques</a></li>
 									</ul>
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
@@ -102,90 +102,98 @@
 				<br>
 				<br>
 				<div class="form-group">
-						<div class="container">
-							<div class="row text-center">
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-xs-6 ">
-										<h1 class="text-center">Cheques registrados</h1>
-										</div>
-										<!-- Contenedor del ícono del Usuario -->
-										<div class="col-xs-6 Icon">
-											<!-- Icono de usuario -->
-											<span class="glyphicon glyphicon-pencil"></span>
-										</div>
+					<div class="container">
+						<div class="row">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-xs-6 ">
+									<h1 class="text-center">Cheques registrados</h1>
 									</div>
-									<br>
-									<div class="table-responsive">          
-										<table class="table">
-											<!-- Título -->
-											<thead>
-												<!-- Contenido -->
-												<tr>
-													<th>#</th>
-													<th>Codigo de Cheque</th>
-													<th>Banco</th>
-													<th>Nombre de Proveedor</th>
-													<th>Lugar</th>
-													<th>Fecha</th>
-													<th>Monto</th>
-													<th>Descripción</th>
-												</tr>
-											</thead>
-											<!-- Cuerpo de la tabla -->
-											<tbody>
-												<!-- Contenido de la tabla -->
-													<!-- Acá mostraremos los usuarios y seleccionaremos el que deseamos eliminar -->
-													<?php
-														// Primero hacemos la consulta en la tabla de Cheque
-														include_once "Seguridad/conexion.php";
-														$VerCheques = "SELECT * FROM cheque";
-														// Hacemos la consulta
-														$resultado = $mysqli->query($VerCheques);
-															while ($row = mysqli_fetch_array($resultado)){
-																// Obtenemos el nombre de usuario y privilegio de cada persona
-																// Primero haremos la consulta
-																$VerBanco = "SELECT * FROM banco WHERE idBanco='".$row['idBanco']."'";
-																// Ejecutamos la consulta
-																$ResultadoConsultaBanco = $mysqli->query($VerBanco);
-																// Guardamos la consulta en un array
-																$ResultadoConsulta = $ResultadoConsultaBanco->fetch_assoc();
-																// Nombre del banco
-																$NombreBanco = $ResultadoConsulta['NombreBanco'];
-																?>
-																<tr>
-																<td><span id="idCheque<?php echo $row['idCheque'];?>"><?php echo $row['idCheque'] ?></span></td>
-																<td><span id="CodigoCheque<?php echo $row['idCheque'];?>"><?php echo $row['CodigoCheque'] ?></span></td>
-																<td><span id="NumeroCheque<?php echo $row['idCheque'];?>"><?php echo $row['NumeroCheque'] ?></span></td>
-																<td><span id="LugarCheque<?php echo $row['idCheque'];?>"><?php echo $row['LugarCheque'] ?></span></td>
-																<td><span id="FechaCheque<?php echo $row['idCheque'];?>"><?php echo $row['FechaCheque'] ?></span></td>
-																<td><span id="MontoCheque<?php echo $row['idCheque'];?>"><?php echo $row['MontoCheque'] ?></span></td>
-																<td><span id="ComentarioCheque<?php echo $row['idCheque'];?>"><?php echo $row['ComentarioCheque'] ?></span></td>
-																<td><?php echo $NombreBanco ?></td>
-																<td>
-																	<!-- Edición -->
-																	<div>
-																		<div class="input-group input-group-lg">
-																			<button type="button" class="btn btn-success EditarCuenta" value="<?php echo $row['idCuenta']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
-																		</div>
-																	</div>
-																</td>
-																<td>
-																	<!-- Eliminación -->
-																	<div>
-																		<div class="input-group input-group-lg">
-																			<button type="button" class="btn btn-danger EliminarCuenta" value="<?php echo $row['idCuenta']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
-																		</div>
-																	</div>
-																</td>
-																</tr>
-													<?php
-															}
-													?>
-											</tbody>
-										</table>
-									</div>								
+									<!-- Contenedor del ícono del Usuario -->
+									<div class="col-xs-6 Icon">
+										<!-- Icono de usuario -->
+										<span class="glyphicon glyphicon-pencil"></span>
+									</div>
 								</div>
+								<br>
+								<div class="table-responsive">          
+									<table class="table table-striped">
+										<!-- Título -->
+										<thead>
+											<!-- Contenido -->
+											<tr>
+												<th>#</th>
+												<th>Código</th>
+												<th>Número</th>
+												<th>Lugar</th>
+												<th>Fecha</th>
+												<th>A la orden de:</th>
+												<th>Comentario</th>
+												<th>Monto</th>
+												<th>Chequera</th>
+											</tr>
+										</thead>
+										<!-- Cuerpo de la tabla -->
+										<tbody>
+											<!-- Contenido de la tabla -->
+												<!-- Acá mostraremos los usuarios y seleccionaremos el que deseamos eliminar -->
+												<?php
+													// Primero hacemos la consulta en la tabla de Cheque
+													$VerCheques = "SELECT * FROM cheque";
+													// Hacemos la consulta
+													$resultado = $mysqli->query($VerCheques);
+														while ($row = mysqli_fetch_array($resultado)){
+															// Obtenemos el nombre de usuario y privilegio de cada persona
+															// Primero haremos la consulta para mostrar el nombre del proveedor a partir del ID
+															$VerProveedor = "SELECT NombreProveedor FROM proveedor WHERE idProveedor='".$row['idProveedor']."'";
+															// Ejecutamos la consulta
+															$ResultadoConsultaProveedor = $mysqli->query($VerProveedor);
+															// Guardamos la consulta en un array
+															$ResultadoConsulta = $ResultadoConsultaProveedor->fetch_assoc();
+															// Nombre del banco
+															$NombreProveedor = $ResultadoConsulta['NombreProveedor'];
+															// Primero haremos la consulta para mostrar el nombre de la chequera a partir del ID
+															$VerChequera = "SELECT NombreChequera FROM chequera WHERE idChequera='".$row['idChequera']."'";
+															// Ejecutamos la consulta
+															$ResultadoConsultaChequera = $mysqli->query($VerChequera);
+															// Guardamos la consulta en un array
+															$ResultadoConsultaChequera = $ResultadoConsultaChequera->fetch_assoc();
+															// Nombre del banco
+															$NombreChequera = $ResultadoConsultaChequera['NombreChequera'];
+															?>
+															<tr>
+															<td><span id="idCheque<?php echo $row['idCheque'];?>"><?php echo $row['idCheque'] ?></span></td>
+															<td><span id="CodigoCheque<?php echo $row['idCheque'];?>"><?php echo $row['CodigoCheque'] ?></span></td>
+															<td><span id="NumeroCheque<?php echo $row['idCheque'];?>"><?php echo $row['NumeroCheque'] ?></span></td>
+															<td><span id="LugarCheque<?php echo $row['idCheque'];?>"><?php echo $row['LugarCheque'] ?></span></td>
+															<td><span id="FechaCheque<?php echo $row['idCheque'];?>"><?php echo $row['FechaCheque'] ?></span></td>
+															<td><?php echo $NombreProveedor ?></span></td>
+															<td><span id="MontoCheque<?php echo $row['idCheque'];?>"><?php echo $row['MontoCheque'] ?></span></td>
+															<td><span id="ComentarioCheque<?php echo $row['idCheque'];?>"><?php echo $row['ComentarioCheque'] ?></span></td>
+															<td><?php echo $NombreChequera ?></td>
+															<td>
+																<!-- Edición -->
+																<div>
+																	<div class="input-group input-group-lg">
+																		<button type="button" class="btn btn-success EditarCheque" value="<?php echo $row['idCheque']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
+																	</div>
+																</div>
+															</td>
+															<td>
+																<!-- Eliminación -->
+																<div>
+																	<div class="input-group input-group-lg">
+																		<button type="button" class="btn btn-danger EliminarCheque" value="<?php echo $row['idCheque']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
+																	</div>
+																</div>
+															</td>
+															</tr>
+												<?php
+														}
+												?>
+										</tbody>
+									</table>
+								</div>								
 							</div>
 						</div>
 					</div>

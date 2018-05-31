@@ -17,7 +17,7 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet">
 <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
-<link rel="stylesheet" type="text/css" href="text/estilo.css"> 
+<link rel="stylesheet" type="text/css" href="css/estilo.css"> 
 
 <!-- Librería javascript para las notificaciones -->
 <script src="js/notify.js"></script>
@@ -79,7 +79,7 @@
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Impresión de Cheques<span class="caret"></span></a>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="Listacheque.php">Lista de cheques en cola</a></li>
+										<li><a href="ImpresionCheque.php">Impresión de cheques</a></li>
 									</ul>
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
@@ -107,90 +107,222 @@
 				<br>
 				<br>
 				<div class="form-group">
-						<div class="container">
-							<div class="row text-center">
-								<div class="container-fluid">
-									<div class="row">
-										<div class="col-xs-6 ">
-										<h1 class="text-center">Proveedores registrados</h1>
-										</div>
-										<!-- Contenedor del ícono del Usuario -->
-										<div class="col-xs-6 Icon">
-											<!-- Icono de usuario -->
-											<span class="glyphicon glyphicon-home"></span>
-										</div>
+					<div class="container">
+						<div class="row">
+							<div class="container-fluid">
+								<div class="row">
+									<div class="col-xs-6 ">
+									<h1 class="text-center">Proveedores registrados</h1>
 									</div>
-									<br>
-									<div class="table-responsive">          
-										<table class="table">
-											<!-- Título -->
-											<thead>
-												<!-- Contenido -->
-												<tr>
-													<th>#</th>
-													<th>Codigo Proveedor </th>
-													<th>Nombre Proveedor</th>
-												</tr>
-											</thead>
-											<!-- Cuerpo de la tabla -->
-											<tbody>
-												<!-- Contenido de la tabla -->
-													<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
-													<?php
-														// Primero hacemos la consulta en la tabla de Proveedores
-														include_once "Seguridad/conexion.php";								
-														$VerProveedores = "SELECT * FROM Proveedor";
-														// Hacemos la consulta
-														$resultado = $mysqli->query($VerProveedores);
-															while ($row = mysqli_fetch_array($resultado)){
-																// Obtenemos el nombre de usuario y privilegio de cada proveedor
-																// Primero haremos la consulta
-																$VerProveedor = "SELECT * FROM Proveedor WHERE idProveedor='".$row['idProveedor']."'";
-																// Ejecutamos la consulta
-																$ResultadoConsultaProveedor = $mysqli->query($VerProveedor);
-																// Guardamos la consulta en un array
-																$ResultadoConsulta = $ResultadoConsultaProveedor->fetch_assoc();
-																// Nombre del banco
-																$NombreProveedor = $ResultadoConsulta['NombreProveedor'];
-																?>
-																<tr>
-																<td><span id="idProveedor<?php echo $row['idProveedor'];?>"><?php echo $row['idProveedor'] ?></span></td>
-																<td><span id="NombreProveedor<?php echo $row['idProveedor'];?>"><?php echo $row['NombreProveedor'] ?></span></td>
-																<td><?php echo $NombreProveedor ?></td>
-																<td>	
-																	<!-- Edición -->
-																	<div>
-																		<div class="input-group input-group-lg">
-																			<button type="button" class="btn btn-success EditarBanco" value="<?php echo $row['idBanco']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
-																		</div>
-																	</div>
-																</td>
-																<td>
-																	<!-- Eliminación -->
-																	<div>
-																		<div class="input-group input-group-lg">
-																			<button type="button" class="btn btn-danger EliminarBanco" value="<?php echo $row['idBanco']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
-																		</div>
-																	</div>
-																</td>
-																</tr>
-													<?php
-															}
-													?>
-											</tbody>
-										</table>
-									</div>								
+									<!-- Contenedor del ícono del Usuario -->
+									<div class="col-xs-6 Icon">
+										<!-- Icono de usuario -->
+										<span class="glyphicon glyphicon-shopping-cart"></span>
+									</div>
 								</div>
+								<br>
+								<div class="table-responsive">          
+									<table class="table table-striped">
+										<!-- Título -->
+										<thead>
+											<!-- Contenido -->
+											<tr>
+												<th>#</th>
+												<th>Codigo Proveedor </th>
+												<th>Nombre Proveedor</th>
+											</tr>
+										</thead>
+										<!-- Cuerpo de la tabla -->
+										<tbody>
+											<!-- Contenido de la tabla -->
+											<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
+											<?php
+												// Primero hacemos la consulta en la tabla de Proveedores					
+												$VerProveedores = "SELECT * FROM Proveedor";
+												// Hacemos la consulta
+												$resultado = $mysqli->query($VerProveedores);
+													while ($row = mysqli_fetch_array($resultado)){
+														?>
+														<tr>
+														<td><span id="idProveedor<?php echo $row['idProveedor'];?>"><?php echo $row['idProveedor'] ?></span></td>
+														<td><span id="CodigoProveedor<?php echo $row['idProveedor'];?>"><?php echo $row['CodigoProveedor'] ?></span></td>
+														<td><span id="NombreProveedor<?php echo $row['idProveedor'];?>"><?php echo $row['NombreProveedor'] ?></td>
+														<td>	
+															<!-- Edición -->
+															<div>
+																<div class="input-group input-group-lg">
+																	<button type="button" class="btn btn-success EditarProveedor" value="<?php echo $row['idProveedor']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
+																</div>
+															</div>
+														</td>
+														<td>
+															<!-- Eliminación -->
+															<div>
+																<div class="input-group input-group-lg">
+																	<button type="button" class="btn btn-danger EliminarProveedor" value="<?php echo $row['idProveedor']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
+																</div>
+															</div>
+														</td>
+														</tr>
+													<?php
+													}
+											?>
+										</tbody>
+									</table>
+								</div>								
 							</div>
 						</div>
 					</div>
 				</div>
-							
+				
+				<!-- Edit Modal-->
+				<div class="modal fade" id="ModalEliminarProveedor" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<center><h1 class="modal-title" id="myModalLabel">Eliminar proveedor</h1></center>
+							</div>
+							<form method="post" action="Proveedor.php" id="myForm">
+							<div class="modal-body">
+								<p class="lead">¿Está seguro que desea eliminar el siguiente proveedor?</p>
+								<div class="form-group input-group">
+									<input type="text" name="idProveedorEliminar" style="width:350px; visibility:hidden;" class="form-control" id="idProveedorEliminar">
+									<br>
+									<label id="NombreProveedor"></label>
+							</div>
+							</div>
+							<div class="modal-footer">
+								<input type="submit" name="EliminarProveedor" class="btn btn-danger" value="Eliminar">
+								<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+							</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!-- /.modal -->
+				<!-- Edit Modal-->
+				<div class="modal fade" id="ModalEditarProveedor" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<center><h4 class="modal-title" id="myModalLabel">Editar proveedor</h4></center>
+							</div>
+							<form method="post" action="Proveedor.php" id="myForm">
+								<div class="modal-body">
+								<div class="container-fluid">
+										<div class="form-group input-group">
+											<span class="input-group-addon" style="width:150px;">ID</span>
+											<input type="text" style="width:350px;" class="form-control" name="idProveedorEditar" id="idProveedorEditar">
+										</div>
+										<div class="form-group input-group">
+											<span class="input-group-addon" style="width:150px;">Código del proveedor</span>
+											<input type="text" style="width:350px;" class="form-control" name="CodigoProveedorEditar" id="CodigoProveedorEditar">
+										</div>
+										<div class="form-group input-group">
+											<span class="input-group-addon" style="width:150px;">Nombre del proveedor</span>
+											<input type="text" style="width:350px;" class="form-control" name="NombreProveedorEditar" id="NombreProveedorEditar">
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+									<input type="submit" name="EditarProveedor" class="btn btn-warning" value="Editar">
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<!-- /.modal -->
+				
+				<?php
+				// Código que recibe la información de eliminar proveedor
+				if (isset($_POST['EliminarProveedor'])) {
+					// Guardamos el id en una variable
+					$idProveedorEliminar = $_POST['idProveedorEliminar'];
+					// Preparamos la consulta
+					$query = "DELETE FROM proveedor WHERE idProveedor=".$idProveedorEliminar.";";
+					// Ejecutamos la consulta
+					if(!$resultado = $mysqli->query($query)){
+					echo "Error: La ejecución de la consulta falló debido a: \n";
+					echo "Query: " . $query . "\n";
+					echo "Errno: " . $mysqli->errno . "\n";
+					echo "Error: " . $mysqli->error . "\n";
+					exit;
+					}
+					else{
+						?>
+						<div class="form-group">
+							<form name="Alerta">
+								<div class="container">
+									<div class="row text-center">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-xs-10 col-xs-offset-1">
+													<div class="alert alert-warning">Proveedor eliminado</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<?php
+						// Recargamos la página
+						echo "<meta http-equiv=\"refresh\" content=\"0;URL=Proveedor.php\">"; 
+					}
+				}
+				// Código que recibe la información de editar proveedor
+				if (isset($_POST['EditarProveedor'])) {
+					// Guardamos el id en una variable
+					$idProveedorEditar = $_POST['idProveedorEditar'];
+					$CodigoProveedorEditar = $_POST['CodigoProveedorEditar'];
+					$NombreProveedorEditar = $_POST['NombreProveedorEditar'];
+					// Preparamos la consulta
+					$query = "UPDATE proveedor
+								  SET CodigoProveedor = '" .$CodigoProveedorEditar."',
+									  NombreProveedor = '" .$NombreProveedorEditar."'
+									WHERE idProveedor=".$idProveedorEditar.";";
+					// Ejecutamos la consulta
+					if(!$resultado = $mysqli->query($query)){
+					echo "Error: La ejecución de la consulta falló debido a: \n";
+					echo "Query: " . $query . "\n";
+					echo "Errno: " . $mysqli->errno . "\n";
+					echo "Error: " . $mysqli->error . "\n";
+					exit;
+					}
+					else{
+						?>
+						<div class="form-group">
+							<form name="Alerta">
+								<div class="container">
+									<div class="row text-center">
+										<div class="container-fluid">
+											<div class="row">
+												<div class="col-xs-10 col-xs-offset-1">
+													<div class="alert alert-warning">Proveedor actualizado</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</form>
+						</div>
+						<?php
+						// Recargamos la página
+						echo "<meta http-equiv=\"refresh\" content=\"0;URL=Proveedor.php\">"; 
+					}
+				}
+				?>						
+				
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
 
 				<!-- Include all compiled plugins (below), or include individual files as needed --> 
 				<script src="js/bootstrap.js"></script>
+				<!-- Incluimos el script que nos dará el nombre de la persona para mostrarlo en el modal -->
+				<script src="js/custom.js"></script>
 				<!-- Pie de página, se utilizará el mismo para todos. -->
 				<footer>
 					<hr>

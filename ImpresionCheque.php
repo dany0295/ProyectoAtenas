@@ -107,12 +107,12 @@
 							<div class="container-fluid">
 								<div class="row">
 									<div class="col-xs-6 ">
-									<h1 class="text-center">Liberación de cheques</h1>
+									<h1 class="text-center">Impresión de cheques</h1>
 									</div>
 									<!-- Contenedor del ícono del Usuario -->
 									<div class="col-xs-6 Icon">
 										<!-- Icono de usuario -->
-										<span class="glyphicon glyphicon-check"></span>
+										<span class="glyphicon glyphicon-print"></span>
 									</div>
 								</div>
 								<br>
@@ -140,7 +140,7 @@
 												<!-- Acá mostraremos los usuarios y seleccionaremos el que deseamos eliminar -->
 												<?php
 													// Primero hacemos la consulta en la tabla de Cheque
-													$VerCheques = "SELECT * FROM cheque";
+													$VerCheques = "SELECT * FROM cheque WHERE EstadoCheque='Liberado';";
 													// Hacemos la consulta
 													$resultado = $mysqli->query($VerCheques);
 														while ($row = mysqli_fetch_array($resultado)){
@@ -177,7 +177,7 @@
 																<!-- Edición -->
 																<div>
 																	<div class="input-group input-group-lg">
-																		<button type="button" class="btn btn-success AprobarCheque" value="<?php echo $row['idCheque']; ?>"><span class="glyphicon glyphicon-check"></span></button>
+																		<button type="button" class="btn btn-success AprobarCheque" value="<?php echo $row['idCheque']; ?>"><span class="glyphicon glyphicon-print"></span></button>
 																	</div>
 																</div>
 															</td>

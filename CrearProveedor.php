@@ -17,14 +17,13 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet">
 <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
-<link rel="stylesheet" type="text/css" href="text/estilo.css"> 
+<link rel="stylesheet" type="text/css" href="css/estilo.css"> 
 
 <!-- Librería javascript para las notificaciones -->
 <script src="js/notify.js"></script>
 
 </head>
 	<?php
-		//include_once 'Seguridad/conexion.php';
 		// Incluimos el archivo que valida si hay una sesión activa
 		include_once "Seguridad/seguro.php";
 		// Primero hacemos la consulta en la tabla de persona
@@ -79,7 +78,7 @@
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Impresión de Cheques<span class="caret"></span></a>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="Listacheque.php">Lista de cheques en cola</a></li>
+										<li><a href="ImpresionCheque.php">Impresión de cheques</a></li>
 									</ul>
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
@@ -105,48 +104,57 @@
 				</nav>
 				<div class="form-group">
 					<form name="CrearProveedor" action="CrearProveedor.php" method="post">
-				<div class="container">
-				  <div class="row text-center">
-					<div class="container-fluid">
-						<div class="row">
-							<div class="col-xs-6 col-xs-offset-3">
-							<h2 class="text-center">Creación de proveedor</h2>
-							</div>
-						</div>									
-				<!-- Codigo del Proveedor -->
-					<div class="row">
-						<div class="col-xs-3 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="CodigoProveedor" placeholder="Codigo del Proveedor" id="CodigoProveedor" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-				<!-- Nombre del Proveedor -->
-					<div class="row">
-						<div class="col-xs-7 col-xs-offset+1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="NombreProveedor" placeholder="Nombre del Proveedor" id="NombreProveedor" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					</br>
-				<!-- Resgistrar -->
-					<div class="row">
-						<div class="col-xs-11 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<div clss="btn-group">
-									<button type="submit" class="btn btn-primary" id="CrearProveedor" name="enviar">Registrar</button>
-									<button type="button" class="btn btn-danger">Cancelar</button>
+						<div class="container">
+							<div class="row text-center">
+								<div class="container-fluid">
+									<div class="row">
+										<div class="col-xs-5 col-xs-offset-1">
+											<h1 class="text-center">Registro de proveedores</h1>
+										</div>
+										<!-- Contenedor del ícono del Usuario -->
+										<div class="col-xs-6 Icon">
+											<!-- Icono de usuario -->
+											<span class="glyphicon glyphicon-shopping-cart"></span>
+										</div>
+									</div>
+									<br>
+									<!-- Codigo del Proveedor -->
+									<div class="row">
+										<div class="col-xs-10 col-xs-offset-1 col-xs-offset+1">
+											<div class="input-group input-group-lg">
+												<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+												<input type="text" class="form-control" name="CodigoProveedor" placeholder="Codigo del Proveedor" id="CodigoProveedor" aria-describedby="sizing-addon1" required>
+											</div>
+										</div>
+									</div>
+									<br>
+									<!-- Nombre del Proveedor -->
+									<div class="row">
+										<div class="col-xs-10 col-xs-offset-1 col-xs-offset+1">
+											<div class="input-group input-group-lg">
+												<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+												<input type="text" class="form-control" name="NombreProveedor" placeholder="Nombre del Proveedor" id="NombreProveedor" aria-describedby="sizing-addon1" required>
+											</div>
+										</div>
+									</div>
+									</br>
+									<!-- Resgistrar -->
+									<div class="row">
+										<div class="col-xs-11 col-xs-offset-1">
+											<div class="input-group input-group-lg">
+												<div clss="btn-group">
+													<button type="submit" class="btn btn-primary" id="CrearProveedor" name="enviar">Registrar</button>
+													<button type="button" class="btn btn-danger">Cancelar</button>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-					<br>
+					</form>
 				</div>
-				
 				<?php
-					include_once "Seguridad/conexion.php";
 					if (isset($_POST['enviar'])) {
 						// Obtenemos los valores de todos los campos y los almacenamos en variables
 						$CodigoProveedor=$_POST['CodigoProveedor'];
@@ -183,8 +191,6 @@
 						}
 					}
 				?>
-				
-								
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
 
@@ -206,7 +212,6 @@
 		// De lo contrario lo redirigimos al inicio de sesión
 			} 
 			else{
-				echo "usuario no valido";
 				header("location:index.php");
 			}
 		?>

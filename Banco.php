@@ -17,7 +17,7 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet">
 <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
-<link rel="stylesheet" type="text/css" href="text/estilo.css">
+<link rel="stylesheet" type="text/css" href="css/estilo.css">
 
 </head>
 	<?php
@@ -74,7 +74,7 @@
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Impresión de Cheques<span class="caret"></span></a>
 									<ul class="dropdown-menu" role="menu">
-										<li><a href="Listacheque.php">Lista de cheques en cola</a></li>
+										<li><a href="ImpresionCheque.php">Impresión de cheques</a></li>
 									</ul>
 								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
@@ -117,7 +117,7 @@
 									</div>
 									<br>
 									<div class="table-responsive">          
-										<table class="table">
+										<table class="table table-striped">
 											<!-- Título -->
 											<thead>
 												<!-- Contenido -->
@@ -128,7 +128,7 @@
 													<th>Dirección </th>
 													<th>Correo </th>
 													<th>Sitio Web </th>
-													<th>Telefono </th>
+													<th>Teléfono </th>
 												</tr>
 											</thead>
 											<!-- Cuerpo de la tabla -->
@@ -185,11 +185,11 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<center><h1 class="modal-title" id="myModalLabel">Eliminar Banco</h1></center>
+									<center><h1 class="modal-title" id="myModalLabel">Eliminar banco</h1></center>
 								</div>
 								<form method="post" action="Banco.php" id="myForm">
 								<div class="modal-body">
-									<p class="lead">¿Está seguro que desea eliminar el siguiente Banco?</p>
+									<p class="lead">¿Está seguro que desea eliminar el siguiente banco?</p>
 									<div class="form-group input-group">
 										<input type="text" name="idBancoAEliminar" style="width:350px; visibility:hidden;" class="form-control" id="idBancoAEliminar">
 										<br>
@@ -197,7 +197,7 @@
 								</div>
 								</div>
 								<div class="modal-footer">
-									<input type="submit" name="EliminarUsuario" class="btn btn-danger" value="Eliminar Banco">
+									<input type="submit" name="EliminarUsuario" class="btn btn-danger" value="Eliminar">
 									<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
 								</div>
 								</form>
@@ -206,7 +206,6 @@
 					</div>
 				<!-- /.modal -->
 				<?php
-				include_once "Seguridad/conexion.php";
 				// Código que recibe la información de eliminar banco
 					if (isset($_POST['EliminarUsuario'])) {
 						// Guardamos el id en una variable
@@ -302,7 +301,7 @@
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<center><h4 class="modal-title" id="myModalLabel">Editar Banco</h4></center>
+									<center><h4 class="modal-title" id="myModalLabel">Editar banco</h4></center>
 								</div>
 								<form method="post" action="Banco.php" id="myForm">
 									<div class="modal-body">
@@ -339,7 +338,7 @@
 									</div>
 									<div class="modal-footer">
 										<button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-										<input type="submit" name="EditarBanco" class="btn btn-warning" value="Editar Banco">
+										<input type="submit" name="EditarBanco" class="btn btn-warning" value="Editar">
 									</div>
 								</form>
 							</div>
