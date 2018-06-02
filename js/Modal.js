@@ -195,3 +195,56 @@ $(document).ready(function(){
 		$('#idCheque').val(id);
 	});
 });
+
+// Rollback de cheques
+$(document).ready(function(){
+	$(document).on('click', '.ChequeRegreso', function(){
+		var id=$(this).val();
+	
+		$('#ModalRegresarCheque').modal('show');
+		$('#idChequeRegreso').val(id);
+	});
+});
+
+// Edición de cheques
+$(document).ready(function(){
+	$(document).on('click', '.EditarCheque', function(){
+		var id=$(this).val();
+		var idCheque=$('#idCheque'+id).text();
+		var NumeroCheque=$('#NumeroCheque'+id).text();
+		var LugarCheque=$('#LugarCheque'+id).text();
+		var FechaCheque=$('#FechaCheque'+id).text();
+		var MontoCheque=$('#MontoCheque'+id).text();
+		var ComentarioCheque=$('#ComentarioCheque'+id).text();
+		var ProveedorCheque=$('#ProveedorCheque'+id).text();
+	
+		$('#ModalEditarCheque').modal('show');
+		$('#idChequeEditar').val(idCheque);
+		$('#NumeroChequeEditar').val(NumeroCheque);
+		$('#LugarChequeEditar').val(LugarCheque);
+		$('#FechaChequeEditar').val(FechaCheque);
+		$('#MontoChequeEditar').val(MontoCheque);
+		$('#ComentarioChequeEditar').val(ComentarioCheque);
+		$('#ProveedorChequeEditar').val(ProveedorCheque);
+	});
+});
+
+// Anulación de cheque
+$(document).ready(function(){
+	$(document).on('click', '.AnularCheque', function(){
+		var id=$(this).val();
+	
+		$('#ModalAnularCheque').modal('show');
+		$('#idChequeAnular').val(id);
+	});
+});
+
+// Impresión de Cheques
+$(document).ready(function(){
+	$(document).on('click', '.ImprimirCheque', function(){
+		var id=$(this).val();
+	
+		$('#ModalImprimirCheque').modal('show');
+		$('#idChequeImprimir').val(id);
+	});
+});

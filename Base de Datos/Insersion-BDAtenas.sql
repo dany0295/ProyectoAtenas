@@ -36,6 +36,12 @@ INSERT INTO Permiso (TipoPermiso)
 -- Insersión del primer Rol, en este caso Administrador
 INSERT INTO Rol(NombreRol, idPermiso)
 			VALUES('Administrador', 1);
+INSERT INTO Rol(NombreRol, idPermiso)
+			VALUES('Pagos', 1);
+INSERT INTO Rol(NombreRol, idPermiso)
+			VALUES('Auditoria', 1);
+INSERT INTO Rol(NombreRol, idPermiso)
+			VALUES('Gerencia', 1);
 			
 -- Insersión de los usuarios adminstradores del sistema.
 INSERT INTO Usuario (NombreUsuario, ApellidoUsuario, TelefonoUsuario,

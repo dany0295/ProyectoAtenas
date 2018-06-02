@@ -17,10 +17,7 @@
 <!-- Bootstrap -->
 <link href="css/bootstrap.css" rel="stylesheet">
 <!-- se vincula al hoja de estilo para definir el aspecto del formulario de login -->
-<link rel="stylesheet" type="text/css" href="css/estilo.css"> 
-
-<!-- Librería javascript para las notificaciones -->
-<script src="js/notify.js"></script>
+<link rel="stylesheet" type="text/css" href="css/estilo.css">
 
 </head>
 	<?php
@@ -96,10 +93,6 @@
 										<a href="#" class="dropdown-toggle negrita" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $NombreUsuario; ?></a>
 										<!-- <span class="caret"></span> Agrega un indicador de flecha abajo -->
 										<ul class="dropdown-menu">
-											<li><a href="#"><i class="fa fa-user" aria-hidden="true">&nbsp;</i>Perfil</a></li>
-											<!--<li><a href="#"><i class="fa fa-cog" aria-hidden="true">&nbsp;</i>Cuenta</a></li>
-											<li><a href="#"><i class="fa fa-question-circle" aria-hidden="true">&nbsp;</i>Soporte</a></li>-->
-											<li role="separator" class="divider"></li>
 											<li><a href="Seguridad/logout.php"><i class="fa fa-sign-out" aria-hidden="true">&nbsp;</i>Cerrar Sesión</a></li>
 										</ul>
 									</li>

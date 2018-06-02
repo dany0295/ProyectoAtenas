@@ -95,10 +95,6 @@
 									<a href="#" class="dropdown-toggle negrita" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $NombreUsuario;?></a>
 									<!-- <span class="caret"></span> Agrega un indicador de flecha abajo -->
 									<ul class="dropdown-menu">
-										<li><a href="#"><i class="fa fa-user" aria-hidden="true">&nbsp;</i>Perfil</a></li>
-										<!--<li><a href="#"><i class="fa fa-cog" aria-hidden="true">&nbsp;</i>Cuenta</a></li>
-										<li><a href="#"><i class="fa fa-question-circle" aria-hidden="true">&nbsp;</i>Soporte</a></li>-->
-										<li role="separator" class="divider"></li>
 										<li><a href="Seguridad/logout.php"><i class="fa fa-sign-out" aria-hidden="true">&nbsp;</i>Cerrar Sesión</a></li>
 									</ul>
 								</li>
@@ -133,7 +129,7 @@
 												<!--<span class="glyphicons glyphicons-bank"></span>
 												
 												<!-- Tipo de Banco -->
-												<select class="form-control" name="ChequeraCuenta" id="ChequeraCuenta">
+												<select class="form-control" name="ChequeraCuenta" id="ChequeraCuenta" onchange="AnEventHasOccurred()">
 													<option value="" disabled selected>Seleccione Chequera</option>
 													<!-- Contenido de la tabla -->
 														<!-- Acá mostraremos los bancos y seleccionaremos el que deseamos eliminar -->
@@ -416,13 +412,17 @@
 						// Recargamos la página
     					echo "<meta http-equiv=\"refresh\" content=\"0;URL=CrearUsuario.php\">"; 
 					}
+					  function accion(){
+						echo "accion";
+					  }
 				?>
-				
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
 
 				<!-- Include all compiled plugins (below), or include individual files as needed --> 
 				<script src="js/bootstrap.js"></script>
+				<!-- Incluimos el script que nos dará el nombre de la persona para mostrarlo en el modal -->
+				<script src="js/Modal.js"></script>
 				<!-- Pie de página, se utilizará el mismo para todos. -->
 				<footer>
 					<hr>

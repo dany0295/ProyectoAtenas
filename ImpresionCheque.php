@@ -92,10 +92,6 @@
 								<a href="#" class="dropdown-toggle negrita" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $NombreUsuario; ?></a>
 								<!-- <span class="caret"></span> Agrega un indicador de flecha abajo -->
 								<ul class="dropdown-menu">
-									<li><a href="#"><i class="fa fa-user" aria-hidden="true">&nbsp;</i>Perfil</a></li>
-									<!--<li><a href="#"><i class="fa fa-cog" aria-hidden="true">&nbsp;</i>Cuenta</a></li>
-									<li><a href="#"><i class="fa fa-question-circle" aria-hidden="true">&nbsp;</i>Soporte</a></li>-->
-									<li role="separator" class="divider"></li>
 									<li><a href="Seguridad/logout.php"><i class="fa fa-sign-out" aria-hidden="true">&nbsp;</i>Cerrar Sesión</a></li>
 								</ul>
 							</li>
@@ -146,7 +142,7 @@
 												<!-- Acá mostraremos los usuarios y seleccionaremos el que deseamos eliminar -->
 												<?php
 													// Primero hacemos la consulta en la tabla de Cheque
-													$VerCheques = "SELECT * FROM cheque WHERE EstadoCheque='Generado';";
+													$VerCheques = "SELECT * FROM cheque WHERE EstadoCheque='Generado' or EstadoCheque='Entregado';";
 													// Hacemos la consulta
 													$resultado = $mysqli->query($VerCheques);
 														while ($row = mysqli_fetch_array($resultado)){
@@ -178,14 +174,22 @@
 															<td><span id="ComentarioCheque<?php echo $row['idCheque'];?>"><?php echo $row['ComentarioCheque'] ?></span></td>
 															<td><?php echo $NombreChequera ?></td>
 															<td><span id="EstadoCheque<?php echo $row['idCheque'];?>"><?php echo $row['EstadoCheque'] ?></span></td>
-															<td>
-																<!-- Edición -->
-																<div>
-																	<div class="input-group input-group-lg">
-																		<button type="button" class="btn btn-success AprobarCheque" value="<?php echo $row['idCheque']; ?>"><span class="glyphicon glyphicon-print"></span></button>
+															<?php 
+																if ($row['EstadoCheque'] != 'Entregado'){
+																	
+															?>
+																<td>
+																	<!-- Edición -->
+																	<div>
+																		<div class="input-group input-group-lg">
+																			<button type="button" class="btn btn-success ImprimirCheque" value="<?php echo $row['idCheque']; ?>"><span class="glyphicon glyphicon-print"></span></button>
+																		</div>
 																	</div>
-																</div>
-															</td>
+																</td>
+															<?php 
+																}
+																	
+															?>
 															</tr>
 												<?php
 														}
@@ -198,22 +202,22 @@
 					</div>
 				</div>
 				<!-- Edit Modal-->
-					<div class="modal fade" id="ModalAprobarCheque" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal fade" id="ModalImprimirCheque" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<center><h1 class="modal-title" id="myModalLabel">¿Desea liberar el cheque?</h1></center>
+									<center><h1 class="modal-title" id="myModalLabel">¿Desea imprimir el cheque?</h1></center>
 								</div>
-								<form method="post" action="LiberarCheque.php" id="myForm">
+								<form method="post" action="ImpresionCheque.php" id="myForm">
 								<div class="modal-body">
-									<p class="lead">El estado del cheque cambiará a aprobado.</p>
+									<p class="lead">El estado del cheque cambiará a entregado.</p>
 									<div class="form-group input-group">
-										<input type="text" name="idCheque" style="width:350px; visibility:hidden;" class="form-control" id="idCheque">
+										<input type="text" name="idChequeImprimir" style="width:350px; visibility:hidden;" class="form-control" id="idChequeImprimir">
 									</div>
 								</div>
 								<div class="modal-footer">
-									<input type="submit" name="LiberarCheque" class="btn btn-danger" value="Liberar">
+									<input type="submit" name="ImprimirCheque" class="btn btn-danger" value="Imprimir">
 									<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
 								</div>
 								</form>
@@ -223,12 +227,12 @@
 				<!-- /.modal -->
 				<?php
 					// Código que recibe la información de eliminar una cuenta
-					if (isset($_POST['LiberarCheque'])) {
+					if (isset($_POST['ImprimirCheque'])) {
 						// Guardamos el id en una variable
-						$idCheque = $_POST['idCheque'];
+						$idCheque = $_POST['idChequeImprimir'];
 						/// Preparamos las consultas
 						$query = "UPDATE cheque
-								  SET EstadoCheque = 'Liberado'
+								  SET EstadoCheque = 'Entregado'
 									 WHERE idCheque=".$idCheque.";";
 						// Ejecutamos la consulta
 						if(!$resultado = $mysqli->query($query)){
@@ -247,7 +251,7 @@
 											<div class="container-fluid">
 												<div class="row">
 													<div class="col-xs-10 col-xs-offset-1">
-														<div class="alert alert-warning">Cheque liberado</div>
+														<div class="alert alert-warning">Cheque impreso</div>
 													</div>
 												</div>
 											</div>
@@ -257,7 +261,7 @@
 							</div>
     						<?php
 							// Recargamos la página
-    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=LiberarCheque.php\">"; 
+    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=ImpresionCheque.php\">"; 
     					}
 					}
 				?>
@@ -267,7 +271,7 @@
 				<!-- Include all compiled plugins (below), or include individual files as needed --> 
 				<script src="js/bootstrap.js"></script>
 				<!-- Incluimos el script que nos dará el nombre de la persona para mostrarlo en el modal -->
-				<script src="js/custom.js"></script>
+				<script src="js/Modal.js"></script>
 				<!-- Pie de página, se utilizará el mismo para todos. -->
 				<footer>
 					<hr>

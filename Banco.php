@@ -92,10 +92,6 @@
 									<a href="#" class="dropdown-toggle negrita" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $NombreUsuario; ?></a>
 									<!-- <span class="caret"></span> Agrega un indicador de flecha abajo -->
 									<ul class="dropdown-menu">
-										<li><a href="#"><i class="fa fa-user" aria-hidden="true">&nbsp;</i>Perfil</a></li>
-										<!--<li><a href="#"><i class="fa fa-cog" aria-hidden="true">&nbsp;</i>Cuenta</a></li>
-										<li><a href="#"><i class="fa fa-question-circle" aria-hidden="true">&nbsp;</i>Soporte</a></li>-->
-										<li role="separator" class="divider"></li>
 										<li><a href="Seguridad/logout.php"><i class="fa fa-sign-out" aria-hidden="true">&nbsp;</i>Cerrar Sesión</a></li>
 									</ul>
 								</li>
@@ -350,7 +346,7 @@
 				<!-- Include all compiled plugins (below), or include individual files as needed -->
 				<script src="js/bootstrap.js"></script>
 				<!-- Incluimos el script que nos dará el nombre de la persona para mostrarlo en el modal -->
-				<script src="js/custom.js"></script>
+				<script src="js/Modal.js"></script>
 				<!-- Pie de página, se utilizará el mismo para todos. -->
 				<footer>
 					<hr>

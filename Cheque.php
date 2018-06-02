@@ -92,10 +92,6 @@
 									<a href="#" class="dropdown-toggle negrita" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $NombreUsuario; ?></a>
 									<!-- <span class="caret"></span> Agrega un indicador de flecha abajo -->
 									<ul class="dropdown-menu">
-										<li><a href="#"><i class="fa fa-user" aria-hidden="true">&nbsp;</i>Perfil</a></li>
-										<!--<li><a href="#"><i class="fa fa-cog" aria-hidden="true">&nbsp;</i>Cuenta</a></li>
-										<li><a href="#"><i class="fa fa-question-circle" aria-hidden="true">&nbsp;</i>Soporte</a></li>-->
-										<li role="separator" class="divider"></li>
 										<li><a href="Seguridad/logout.php"><i class="fa fa-sign-out" aria-hidden="true">&nbsp;</i>Cerrar Sesión</a></li>
 									</ul>
 								</li>
@@ -137,6 +133,7 @@
 												<th>Monto</th>
 												<th>Comentario</th>
 												<th>Chequera</th>
+												<th>Estado</th>
 											</tr>
 										</thead>
 										<!-- Cuerpo de la tabla -->
@@ -172,26 +169,35 @@
 															<td><span id="NumeroCheque<?php echo $row['idCheque'];?>"><?php echo $row['NumeroCheque'] ?></span></td>
 															<td><span id="LugarCheque<?php echo $row['idCheque'];?>"><?php echo $row['LugarCheque'] ?></span></td>
 															<td><span id="FechaCheque<?php echo $row['idCheque'];?>"><?php echo $row['FechaCheque'] ?></span></td>
-															<td><?php echo $NombreProveedor ?></span></td>
+															<td><span id="ProveedorCheque<?php echo $row['idCheque'];?>"><?php echo $NombreProveedor ?></span></td>
 															<td><span id="MontoCheque<?php echo $row['idCheque'];?>"><?php echo $row['MontoCheque'] ?></span></td>
 															<td><span id="ComentarioCheque<?php echo $row['idCheque'];?>"><?php echo $row['ComentarioCheque'] ?></span></td>
 															<td><?php echo $NombreChequera ?></td>
-															<td>
-																<!-- Edición -->
-																<div>
-																	<div class="input-group input-group-lg">
-																		<button type="button" class="btn btn-success EditarCheque" value="<?php echo $row['idCheque']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
-																	</div>
-																</div>
-															</td>
-															<td>
-																<!-- Eliminación -->
-																<div>
-																	<div class="input-group input-group-lg">
-																		<button type="button" class="btn btn-danger EliminarCheque" value="<?php echo $row['idCheque']; ?>"><span class="glyphicon glyphicon-minus"></span></button>
-																	</div>
-																</div>
-															</td>
+															<td><span id="EstadoCheque<?php echo $row['idCheque'];?>"><?php echo $row['EstadoCheque'] ?></span></td>
+															<?php 
+																if ($row['EstadoCheque'] != 'Generado' and $row['EstadoCheque'] != 'Anulado' and $row['EstadoCheque'] != 'Entregado'){
+																	
+															?>
+																	<td>
+																		<!-- Edición -->
+																		<div>
+																			<div class="input-group input-group-lg">
+																				<button type="button" class="btn btn-success EditarCheque" value="<?php echo $row['idCheque']; ?>"><span class="glyphicon glyphicon-edit"></span></button>
+																			</div>
+																		</div>
+																	</td>
+																	<td>
+																		<!-- Eliminación -->
+																		<div>
+																			<div class="input-group input-group-lg">
+																				<button type="button" class="btn btn-danger AnularCheque" value="<?php echo $row['idCheque']; ?>"><span class="glyphicon glyphicon-remove"></span></button>
+																			</div>
+																		</div>
+																	</td>
+															<?php 
+																}
+																	
+															?>
 															</tr>
 												<?php
 														}
@@ -203,11 +209,188 @@
 						</div>
 					</div>
 				</div>
+				<!-- Edit Modal-->
+					<div class="modal fade" id="ModalEditarCheque" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<center><h4 class="modal-title" id="myModalLabel">Editar cheque</h4></center>
+								</div>
+								<form method="post" action="Cheque.php" id="frmEdit">
+									<div class="modal-body">
+									<div class="container-fluid">
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:200px;">ID</span>
+												<input type="text" style="width:350px;" class="form-control" name="idChequeEditar" id="idChequeEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:200px;">Número de cheque</span>
+												<input type="number" style="width:350px;" class="form-control" name="NumeroChequeEditar" id="NumeroChequeEditar" disabled>
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:200px;">Lugar</span>
+												<input type="text" style="width:350px;" class="form-control" name="LugarChequeEditar" id="LugarChequeEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:200px;">Fecha</span>
+												<input type="date" style="width:350px;" class="form-control" name="FechaChequeEditar" id="FechaChequeEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:200px;">Proveedor</span>
+												<select class="form-control" name="ProveedorChequeEditar" id="ProveedorChequeEditar">
+												<option value="" disabled selected>Seleccione proveedor</option>
+													<!-- Contenido de la tabla -->
+													<!-- Acá mostraremos los proveedores -->
+												<?php							
+													$VerProveedor = "SELECT * FROM proveedor";
+													// Hacemos la consulta
+													$resultado1 = $mysqli->query($VerProveedor);			
+													while ($row = mysqli_fetch_array($resultado1)){
+															?>
+																	<option value="<?php echo $row['idProveedor'];?>"><?php echo $row['NombreProveedor'] ?></option>
+														<?php
+																}
+														?>	
+												</select>
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:200px;">Monto</span>
+												<input type="number" style="width:350px;" class="form-control" name="MontoChequeEditar" id="MontoChequeEditar">
+											</div>
+											<div class="form-group input-group">
+												<span class="input-group-addon" style="width:200px;">Comentario cheque</span>
+												<input type="text" style="width:350px;" class="form-control" name="ComentarioChequeEditar" id="ComentarioChequeEditar">
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+										<input type="submit" name="EditarCheque" class="btn btn-warning" value="Editar Cuenta">
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				<!-- /.modal -->
+				<!-- Edit Modal-->
+					<div class="modal fade" id="ModalAnularCheque" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<center><h1 class="modal-title" id="myModalLabel">¿Desea anular el cheque?</h1></center>
+								</div>
+								<form method="post" action="Cheque.php" id="myForm">
+								<div class="modal-body">
+									<p class="lead">Se anulará el cheque seleccionado.</p>
+									<div class="form-group input-group">
+										<input type="text" name="idChequeAnular" style="width:350px; visibility:hidden;" class="form-control" id="idChequeAnular">
+									</div>
+								</div>
+								<div class="modal-footer">
+									<input type="submit" name="AnularCheque" class="btn btn-danger" value="Anular">
+									<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+								</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				<!-- /.modal -->
+				<?php
+					// Código que recibe la información de eliminar una cuenta
+					if (isset($_POST['EditarCheque'])) {
+						// Guardamos el id en una variable
+						$idChequeEditar = $_POST['idChequeEditar'];
+						$LugarChequeEditar = $_POST['LugarChequeEditar'];
+						$FechaChequeEditar = $_POST['FechaChequeEditar'];
+						$MontoChequeEditar = $_POST['MontoChequeEditar'];
+						$ComentarioChequeEditar = $_POST['ComentarioChequeEditar'];
+						$ProveedorChequeEditar = $_POST['ProveedorChequeEditar'];
+						// Preparamos la consulta
+						$query = "UPDATE cheque
+								  SET LugarCheque = '" .$LugarChequeEditar."',
+									  FechaCheque = '" .$FechaChequeEditar."',
+									  idProveedor = " .$ProveedorChequeEditar.",
+									  ComentarioCheque = '" .$ComentarioChequeEditar."',
+									  MontoCheque = " .$MontoChequeEditar."
+								  WHERE idCheque=".$idChequeEditar.";";
+						// Ejecutamos la consulta
+						if(!$resultado = $mysqli->query($query)){
+    					echo "Error: La ejecución de la consulta falló debido a: \n";
+    					echo "Query: " . $query . "\n";
+    					echo "Errno: " . $mysqli->errno . "\n";
+    					echo "Error: " . $mysqli->error . "\n";
+    					exit;
+						}
+						else{
+    						?>
+    						<div class="form-group">
+								<form name="Alerta">
+									<div class="container">
+										<div class="row text-center">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-xs-10 col-xs-offset-1">
+														<div class="alert alert-warning">Cheque editado</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+    						<?php
+							// Recargamos la página
+    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=Cheque.php\">"; 
+    					}
+					}
+					// Código que recibe la información de eliminar una cuenta
+					if (isset($_POST['AnularCheque'])) {
+						// Guardamos el id en una variable
+						$idCheque = $_POST['idChequeAnular'];
+						/// Preparamos las consultas
+						$query = "UPDATE cheque
+								  SET EstadoCheque = 'Anulado'
+									 WHERE idCheque=".$idCheque.";";
+						// Ejecutamos la consulta
+						if(!$resultado = $mysqli->query($query)){
+    					echo "Error: La ejecución de la consulta falló debido a: \n";
+    					echo "Query: " . $query . "\n";
+    					echo "Errno: " . $mysqli->errno . "\n";
+    					echo "Error: " . $mysqli->error . "\n";
+    					exit;
+						}
+						else{
+    						?>
+    						<div class="form-group">
+								<form name="Alerta">
+									<div class="container">
+										<div class="row text-center">
+											<div class="container-fluid">
+												<div class="row">
+													<div class="col-xs-10 col-xs-offset-1">
+														<div class="alert alert-warning">Cheque anulado</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+    						<?php
+							// Recargamos la página
+    						echo "<meta http-equiv=\"refresh\" content=\"0;URL=Cheque.php\">"; 
+    					}
+					}
+				?>
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>
 
 				<!-- Include all compiled plugins (below), or include individual files as needed --> 
 				<script src="js/bootstrap.js"></script>
+				<!-- Incluimos el script que nos dará el nombre de la persona para mostrarlo en el modal -->
+				<script src="js/Modal.js"></script>
 				<!-- Pie de página, se utilizará el mismo para todos. -->
 				<footer>
 					<hr>
