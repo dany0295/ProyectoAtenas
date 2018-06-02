@@ -46,7 +46,6 @@ $(document).ready(function(){
 	$(document).on('click', '.EditarCuenta', function(){
 		var id=$(this).val();
 		var idCuenta=$('#idCuenta'+id).text();
-		var CodigoCuenta=$('#CodigoCuenta'+id).text();
 		var NumeroCuenta=$('#NumeroCuenta'+id).text();
 		var NombreCuenta=$('#NombreCuenta'+id).text();
 		var TipoCuenta=$('#TipoCuenta'+id).text();
@@ -55,7 +54,6 @@ $(document).ready(function(){
 	
 		$('#frmEditarCuena').modal('show');
 		$('#idCuentaEditar').val(idCuenta);
-		$('#CodigoCuentaEditar').val(CodigoCuenta);
 		$('#NumeroCuentaEditar').val(NumeroCuenta);
 		$('#NombreCuentaEditar').val(NombreCuenta);
 		$('#TipoCuentaEditar').val(TipoCuenta);
@@ -103,7 +101,6 @@ $(document).ready(function(){
 	$(document).on('click', '.EditarBanco', function(){
 		var id=$(this).val();
 		var idBanco=$('#idBanco'+id).text();
-		var CodigoBanco=$('#CodigoBanco'+id).text();
 		var NombreBanco=$('#NombreBanco'+id).text();
 		var DireccionBanco=$('#DireccionBanco'+id).text();
 		var CorreoBanco=$('#CorreoBanco'+id).text();
@@ -112,7 +109,6 @@ $(document).ready(function(){
 	
 		$('#frmEditarBanco').modal('show');
 		$('#idBancoEditar').val(idBanco);
-		$('#CodigoBancoEditar').val(CodigoBanco);
 		$('#NombreBancoEditar').val(NombreBanco);
 		$('#DireccionBancoEditar').val(DireccionBanco);
 		$('#CorreoBancoEditar').val(CorreoBanco);
@@ -139,14 +135,12 @@ $(document).ready(function(){
 	$(document).on('click', '.EditarChequera', function(){
 		var id=$(this).val();
 		var idChequera=$('#idChequera'+id).text();
-		var CodigoChequera=$('#CodigoChequera'+id).text();
 		var NombreChequera=$('#NombreChequera'+id).text();
 		var RangoMinimoChequera=$('#RangoMiminoChequera'+id).text();
 		var RangoMaximoChequera=$('#RangoMaximoChequera'+id).text();
 	
 		$('#frmEditarChequera').modal('show');
 		$('#idChequeraEditar').val(idChequera);
-		$('#CodigoChequeraEditar').val(CodigoChequera);
 		$('#NombreChequeraEditar').val(NombreChequera);
 		$('#RangoMinimoChequeraEditar').val(RangoMinimoChequera);
 		$('#RangoMaximochequeraEditar').val(RangoMaximoChequera);
@@ -171,12 +165,10 @@ $(document).ready(function(){
 	$(document).on('click', '.EditarProveedor', function(){
 		var id=$(this).val();
 		var idProveedor=$('#idProveedor'+id).text();
-		var CodigoProveedor=$('#CodigoProveedor'+id).text();
 		var NombreProveedor=$('#NombreProveedor'+id).text();
 	
 		$('#ModalEditarProveedor').modal('show');
 		$('#idProveedorEditar').val(id);
-		$('#CodigoProveedorEditar').val(CodigoProveedor);
 		$('#NombreProveedorEditar').val(NombreProveedor);
 	});
 });

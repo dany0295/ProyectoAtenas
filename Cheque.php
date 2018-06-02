@@ -134,13 +134,12 @@
 											<!-- Contenido -->
 											<tr>
 												<th>#</th>
-												<th>Código</th>
 												<th>Número</th>
 												<th>Lugar</th>
 												<th>Fecha</th>
 												<th>A la orden de:</th>
-												<th>Comentario</th>
 												<th>Monto</th>
+												<th>Comentario</th>
 												<th>Chequera</th>
 											</tr>
 										</thead>
@@ -174,7 +173,6 @@
 															?>
 															<tr>
 															<td><span id="idCheque<?php echo $row['idCheque'];?>"><?php echo $row['idCheque'] ?></span></td>
-															<td><span id="CodigoCheque<?php echo $row['idCheque'];?>"><?php echo $row['CodigoCheque'] ?></span></td>
 															<td><span id="NumeroCheque<?php echo $row['idCheque'];?>"><?php echo $row['NumeroCheque'] ?></span></td>
 															<td><span id="LugarCheque<?php echo $row['idCheque'];?>"><?php echo $row['LugarCheque'] ?></span></td>
 															<td><span id="FechaCheque<?php echo $row['idCheque'];?>"><?php echo $row['FechaCheque'] ?></span></td>

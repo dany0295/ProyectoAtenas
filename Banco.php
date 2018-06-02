@@ -134,7 +134,6 @@
 												<!-- Contenido -->
 												<tr>
 													<th>#</th>
-													<th>Codigo </th>
 													<th>Nombre </th>
 													<th>Dirección </th>
 													<th>Correo </th>
@@ -156,7 +155,6 @@
 																?>
 																<tr>
 																<td><span id="idBanco<?php echo $row['idBanco'];?>"><?php echo $row['idBanco'] ?></span></td>
-																<td><span id="CodigoBanco<?php echo $row['idBanco'];?>"><?php echo $row['CodigoBanco'] ?></span></td>
 																<td><span id="NombreBanco<?php echo $row['idBanco'];?>"><?php echo $row['NombreBanco'] ?></span></td>
 																<td><span id="DireccionBanco<?php echo $row['idBanco'];?>"><?php echo $row['DireccionBanco'] ?></span></td>
 																<td><span id="CorreoBanco<?php echo $row['idBanco'];?>"><?php echo $row['CorreoBanco'] ?></span></td>
@@ -258,7 +256,6 @@
 					if (isset($_POST['EditarBanco'])) {
 						// Guardamos La información proveniente del formulario
 						$idBancoEditar = $_POST['idBancoEditar'];
-						$CodigoBancoEditar = $_POST['CodigoBancoEditar'];
 						$NombreBancoEditar = $_POST['NombreBancoEditar'];
 						$DireccionBancoEditar = $_POST['DireccionBancoEditar'];
 						$CorreoBancoEditar = $_POST['CorreoBancoEditar'];
@@ -266,8 +263,7 @@
 						$TelefonoBancoEditar = $_POST['TelefonoBancoEditar'];
 				// Preparamos las consultas
 						$ConsultaEditarBanco = "UPDATE banco
-								  SET CodigoBanco = '" .$CodigoBancoEditar."',
-									  NombreBanco = '" .$NombreBancoEditar."',
+								  SET NombreBanco = '" .$NombreBancoEditar."',
 									  DireccionBanco = '".$DireccionBancoEditar."',
 									  CorreoBanco = '".$CorreoBancoEditar."',
 									  SitioWebBanco = '".$SitioWebBancoEditar."',
@@ -320,10 +316,6 @@
 											<div class="form-group input-group">
 												<span class="input-group-addon" style="width:150px;">ID</span>
 												<input type="text" style="width:350px;" class="form-control" name="idBancoEditar" id="idBancoEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:150px;">Código de Banco</span>
-												<input type="text" style="width:350px;" class="form-control" name="CodigoBancoEditar" id="CodigoBancoEditar">
 											</div>
 											<div class="form-group input-group">
 												<span class="input-group-addon" style="width:150px;">Nombre de Banco</span>

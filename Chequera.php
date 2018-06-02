@@ -134,7 +134,6 @@
 												<!-- Contenido -->
 												<tr>
 													<th>#</th>
-													<th>Codigo </th>
 													<th>Nombre </th>
 													<th>Rango Minimo </th>
 													<th>Rango Maximo </th>
@@ -164,7 +163,6 @@
 																?>
 																<tr>
 																<td><span id="idChequera<?php echo $row['idChequera'];?>"><?php echo $row['idChequera'] ?></span></td>
-																<td><span id="CodigoChequera<?php echo $row['idChequera'];?>"><?php echo $row['CodigoChequera'] ?></span></td>
 																<td><span id="NombreChequera<?php echo $row['idChequera'];?>"><?php echo $row['NombreChequera'] ?></span></td>
 																<td><span id="RangoMinimoChequera<?php echo $row['idChequera'];?>"><?php echo $row['RangoMinimoChequera'] ?></span></td>
 																<td><span id="RangoMaximoChequera<?php echo $row['idChequera'];?>"><?php echo $row['RangoMaximoChequera'] ?></span></td>
@@ -266,15 +264,13 @@
 					if (isset($_POST['EditarChequera'])) {
 						// Guardamos La información proveniente del formulario
 						$idChequeraEditar = $_POST['idChequeraEditar'];
-						$CodigoChequeraEditar = $_POST ['CodigoChequeraEditar'];
 						$NombreChequeraEditar = $_POST['NombreChequeraEditar'];
 						$RangoMinimoChequeraEditar = $_POST['RangoMinimoChequeraEditar'];
 						$RangoMaximoChequeraEditar = $_POST['RangoMaximoChequeraEditar'];
 						
 						// Preparamos las consultas
 						$ConsultaEditarChequera = "UPDATE chequera
-								  SET CodigoChequera = '" .$CodigoChequeraEditar."',
-									  NombreChequera = '" .$NombreChequeraEditar."',
+								  SET NombreChequera = '" .$NombreChequeraEditar."',
 									  RangoMinimoChequera = '" .$RangoMinimoChequeraEditar."',
 									  RangoMaximoChequera = '" .$RangoMaximoChequeraEditar."',			  
 									 WHERE idChequera=".$idChequeraEditar.";";
@@ -325,10 +321,6 @@
 											<div class="form-group input-group">
 												<span class="input-group-addon" style="width:200px;">ID</span>
 												<input type="text" style="width:350px;" class="form-control" name="idChequeraEditar" id="idChequeraEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:200px;">Código de chequera</span>
-												<input type="text" style="width:350px;" class="form-control" name="CodigoChequeraEditar" id="CodigoChequeraEditar" disabled>
 											</div>
 											<div class="form-group input-group">
 												<span class="input-group-addon" style="width:200px;">Nombre de chequera</span>

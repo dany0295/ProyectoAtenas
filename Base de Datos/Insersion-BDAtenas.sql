@@ -20,12 +20,12 @@
 USE BDAtenas;
 
 -- Insersion del primer puesto, en este caso será Administrador
-INSERT INTO Puesto (CodigoPuesto, NombrePuesto)
-			Values('0001','Administrador');
+INSERT INTO Puesto (NombrePuesto)
+			Values('Administrador');
 			
 -- Insersión del primer Rango, en este Caso Administrador
-INSERT INTO Rango (CodigoRango, RangoMinimo, RangoMaximo)
-			VALUES('0001', 999999.99, 999999.99);
+INSERT INTO Rango (RangoMinimo, RangoMaximo)
+			VALUES(0, 999999.99);
 
 -- Insersión del primer Permiso, en este cado Administrador y operador
 INSERT INTO Permiso (TipoPermiso)

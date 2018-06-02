@@ -128,15 +128,6 @@
 								<span class="glyphicon glyphicon-home"></span>
 							</div>
 					<!-- Codigo del banco -->
-					<div class="row">
-						<div class="col-xs-10 col-xs-offset-1">
-							<div class="input-group input-group-lg">
-								<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-								<input type="text" class="form-control" name="CodigoBanco" placeholder="Codigo de banco" id="CodigoBanco" aria-describedby="sizing-addon1" required>
-							</div>
-						</div>
-					</div>
-					<br>
 					<!-- Nombre del banco -->
 					<div class="row">
 						<div class="col-xs-10 col-xs-offset-1">
@@ -208,7 +199,6 @@
 					include_once "Seguridad/conexion.php";
 					if (isset($_POST['enviar'])) {
 						// Obtenemos los valores de todos los campos y los almacenamos en variables
-						$CodigoBanco=$_POST['CodigoBanco'];
 						$NombreBanco=$_POST['NombreBanco'];
 						$DireccionBanco=$_POST['DireccionBanco'];
 						$CorreoBanco=$_POST['CorreoBanco'];
@@ -216,8 +206,8 @@
 						$TelefonoBanco=$_POST['TelefonoBanco'];
 						
 						// Creamos la consulta para la insersión de los datos
-						$Consulta = "INSERT INTO Banco(CodigoBanco, NombreBanco, DireccionBanco, CorreoBanco, SitioWebBanco, TelefonoBanco) 
-						Values('".$CodigoBanco."','".$NombreBanco."', '".$DireccionBanco."', '".$CorreoBanco."', '".$SitioWebBanco."', '".$TelefonoBanco."');";
+						$Consulta = "INSERT INTO Banco(NombreBanco, DireccionBanco, CorreoBanco, SitioWebBanco, TelefonoBanco) 
+						Values('".$NombreBanco."', '".$DireccionBanco."', '".$CorreoBanco."', '".$SitioWebBanco."', '".$TelefonoBanco."');";
 							
 						if(!$resultado = $mysqli->query($Consulta)){
 							echo "Error: La ejecución de la consulta falló debido a: \n";

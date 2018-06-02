@@ -263,10 +263,6 @@
 						<p class="lead">Ingrese los datos</p>
 						<form method="post" id="myForm">
 						  <div class="form-group">
-							<label for="name">Codigo del proveedor</label>
-							<input type="text" name="CodigoProveedor" id="CodigoProveedor" class="form-control" placeholder="Codigo de proveedor" value="" required/>
-						  </div>
-						  <div class="form-group">
 							<label for="email">Nombre del proveedor</label>
 							<input type="text" name="NombreProveedor" id="NombreProveedor" class="form-control" placeholder="Nombre del proveedor" value="" required/>
 						  </div>
@@ -312,7 +308,7 @@
 														MontoCheque, idChequera, EstadoCheque) 
 												 Values(".$NumeroCheque.", '".$LugarCheque."', '"
 														  .$FechaCheque."', ".$ProveedorCuenta.", '".$ComentarioCheque."', "
-														  .$MontoCheque.", ".$ChequeraCuenta.", 'Generado');";
+														  .$MontoCheque.", ".$ChequeraCuenta.", 'Disponible');";
 							
 						if(!$resultado = $mysqli->query($Consulta)){
 							echo "Error: La ejecución de la consulta falló debido a: \n";
@@ -380,12 +376,11 @@
 				// Termina el registro de proveedor
 				if (isset($_POST['AgregarProveedor'])) {
 						// Obtenemos los valores de todos los campos y los almacenamos en variables
-						$CodigoProveedor=$_POST['CodigoProveedor'];
 						$NombreProveedor=$_POST['NombreProveedor'];
 						
 						// Creamos la consulta para la insersión de los datos
-						$Consulta = "INSERT INTO proveedor(CodigoProveedor, NombreProveedor) 
-													Values('".$CodigoProveedor."', '".$NombreProveedor."');";
+						$Consulta = "INSERT INTO proveedor(NombreProveedor) 
+													Values('".$NombreProveedor."');";
 							
 						if(!$resultado = $mysqli->query($Consulta)){
 							echo "Error: La ejecución de la consulta falló debido a: \n";

@@ -127,15 +127,6 @@
 									<span class="glyphicon glyphicon-piggy-bank"></span>
 								</div>
 							<!-- Codigo de cuenta -->
-							<div class="row">
-								<div class="col-xs-10 col-xs-offset-1">
-									<div class="input-group input-group-lg">
-										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-										<input type="text" class="form-control" name="CodigoCuenta" placeholder="Codigo de cuenta" id="CodigoCuenta" aria-describedby="sizing-addon1" required>
-									</div>
-								</div>
-							</div>
-							<br>
 							<!-- Tipo de Cuenta -->
 							<div class="row">
 								<div class="col-xs-10 col-xs-offset-1">
@@ -226,15 +217,14 @@
 				<?php
 					if (isset($_POST['CrearCuenta'])) {
 						// Obtenemos los valores de todos los campos y los almacenamos en variables
-						$CodigoCuenta=$_POST['CodigoCuenta'];
 						$BancoCuenta=$_POST['BancoCuenta'];
 						$NumeroCuenta=$_POST['NumeroCuenta'];
 						$NombreCuenta=$_POST['NombreCuenta'];
 						$TipoCuenta=$_POST['TipoCuenta'];
 						$SaldoCuenta=$_POST['SaldoCuenta'];
 						
-						$InsertarCuenta = "INSERT INTO cuenta (CodigoCuenta, NumeroCuenta, NombreCuenta, TipoCuenta, SaldoCuenta, idBanco)
-														VALUES('".$CodigoCuenta."', '".$NumeroCuenta."', '".$NombreCuenta."', '".
+						$InsertarCuenta = "INSERT INTO cuenta (NumeroCuenta, NombreCuenta, TipoCuenta, SaldoCuenta, idBanco)
+														VALUES('".$NumeroCuenta."', '".$NombreCuenta."', '".
 																$TipoCuenta."', '".$SaldoCuenta."', '".$BancoCuenta."');";
 																
 						if(!$resultado = $mysqli->query($InsertarCuenta)){

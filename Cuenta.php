@@ -135,7 +135,6 @@
 												<!-- Contenido -->
 												<tr>
 													<th>#</th>
-													<th>Codigo de cuenta</th>
 													<th>Numero de cuenta</th>
 													<th>Nombre de cuenta</th>
 													<th>Tipo de cuenta</th>
@@ -164,7 +163,6 @@
 																?>
 																<tr>
 																<td><span id="idCuenta<?php echo $row['idCuenta'];?>"><?php echo $row['idCuenta'] ?></span></td>
-																<td><span id="CodigoCuenta<?php echo $row['idCuenta'];?>"><?php echo $row['CodigoCuenta'] ?></span></td>
 																<td><span id="NumeroCuenta<?php echo $row['idCuenta'];?>"><?php echo $row['NumeroCuenta'] ?></span></td>
 																<td><span id="NombreCuenta<?php echo $row['idCuenta'];?>"><?php echo $row['NombreCuenta'] ?></span></td>
 																<td><span id="TipoCuenta<?php echo $row['idCuenta'];?>"><?php echo $row['TipoCuenta'] ?></span></td>
@@ -322,10 +320,6 @@
 											<div class="form-group input-group">
 												<span class="input-group-addon" style="width:200px;">ID</span>
 												<input type="text" style="width:350px;" class="form-control" name="idCuentaEditar" id="idCuentaEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:200px;">Código de cuenta</span>
-												<input type="text" style="width:350px;" class="form-control" name="CodigoCuentaEditar" id="CodigoCuentaEditar" disabled>
 											</div>
 											<div class="form-group input-group">
 												<span class="input-group-addon" style="width:200px;">Número de cuenta</span>

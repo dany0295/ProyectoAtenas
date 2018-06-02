@@ -129,16 +129,6 @@
 										<span class="glyphicon glyphicon-shopping-cart"></span>
 									</div>
 									<br>
-									<!-- Codigo del Proveedor -->
-									<div class="row">
-										<div class="col-xs-10 col-xs-offset-1 col-xs-offset+1">
-											<div class="input-group input-group-lg">
-												<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-												<input type="text" class="form-control" name="CodigoProveedor" placeholder="Codigo del Proveedor" id="CodigoProveedor" aria-describedby="sizing-addon1" required>
-											</div>
-										</div>
-									</div>
-									<br>
 									<!-- Nombre del Proveedor -->
 									<div class="row">
 										<div class="col-xs-10 col-xs-offset-1 col-xs-offset+1">
@@ -168,12 +158,11 @@
 				<?php
 					if (isset($_POST['enviar'])) {
 						// Obtenemos los valores de todos los campos y los almacenamos en variables
-						$CodigoProveedor=$_POST['CodigoProveedor'];
 						$NombreProveedor=$_POST['NombreProveedor'];
 												
 						// Creamos la consulta para la insersión de los datos
-						$Consulta = "INSERT INTO Proveedor(CodigoProveedor, NombreProveedor) 
-						Values('".$CodigoProveedor."','".$NombreProveedor."');";
+						$Consulta = "INSERT INTO Proveedor(NombreProveedor) 
+						Values('".$NombreProveedor."');";
 							
 						if(!$resultado = $mysqli->query($Consulta)){
 							echo "Error: La ejecución de la consulta falló debido a: \n";

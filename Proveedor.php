@@ -139,7 +139,6 @@
 											<!-- Contenido -->
 											<tr>
 												<th>#</th>
-												<th>Codigo Proveedor </th>
 												<th>Nombre Proveedor</th>
 											</tr>
 										</thead>
@@ -156,7 +155,6 @@
 														?>
 														<tr>
 														<td><span id="idProveedor<?php echo $row['idProveedor'];?>"><?php echo $row['idProveedor'] ?></span></td>
-														<td><span id="CodigoProveedor<?php echo $row['idProveedor'];?>"><?php echo $row['CodigoProveedor'] ?></span></td>
 														<td><span id="NombreProveedor<?php echo $row['idProveedor'];?>"><?php echo $row['NombreProveedor'] ?></td>
 														<td>	
 															<!-- Edición -->
@@ -228,10 +226,6 @@
 											<input type="text" style="width:350px;" class="form-control" name="idProveedorEditar" id="idProveedorEditar">
 										</div>
 										<div class="form-group input-group">
-											<span class="input-group-addon" style="width:150px;">Código del proveedor</span>
-											<input type="text" style="width:350px;" class="form-control" name="CodigoProveedorEditar" id="CodigoProveedorEditar">
-										</div>
-										<div class="form-group input-group">
 											<span class="input-group-addon" style="width:150px;">Nombre del proveedor</span>
 											<input type="text" style="width:350px;" class="form-control" name="NombreProveedorEditar" id="NombreProveedorEditar">
 										</div>
@@ -288,13 +282,11 @@
 				if (isset($_POST['EditarProveedor'])) {
 					// Guardamos el id en una variable
 					$idProveedorEditar = $_POST['idProveedorEditar'];
-					$CodigoProveedorEditar = $_POST['CodigoProveedorEditar'];
 					$NombreProveedorEditar = $_POST['NombreProveedorEditar'];
 					// Preparamos la consulta
 					$query = "UPDATE proveedor
-								  SET CodigoProveedor = '" .$CodigoProveedorEditar."',
-									  NombreProveedor = '" .$NombreProveedorEditar."'
-									WHERE idProveedor=".$idProveedorEditar.";";
+								  SET NombreProveedor = '" .$NombreProveedorEditar."'
+								  WHERE idProveedor=".$idProveedorEditar.";";
 					// Ejecutamos la consulta
 					if(!$resultado = $mysqli->query($query)){
 					echo "Error: La ejecución de la consulta falló debido a: \n";

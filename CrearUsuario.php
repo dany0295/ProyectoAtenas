@@ -397,10 +397,6 @@
 						<p class="lead">Ingrese los datos</p>
 						<form method="post" id="myForm">
 						  <div class="form-group">
-							<label for="name">Codigo del rango</label>
-							<input type="text" name="CodigoRango" id="CodigoRango|" class="form-control" placeholder="Codigo del rango" value="" required/>
-						  </div>
-						  <div class="form-group">
 							<label for="email">Rango mínimo</label>
 							<input type="number" name="RangoMinimo" id="RangoMinimo" class="form-control" placeholder="Rango minimo" value="" required/>
 						  </div>
@@ -423,11 +419,10 @@
 					// Código que recibe la información para agregar un nuevo Puesto
 					if (isset($_POST['AgregarPuesto'])) {
 						// Guardamos la información en variables
-						$CodigoPuesto = $_POST['CodigoPuesto'];
 						$NombrePuesto = $_POST['NombreNuevoPuesto'];
 						// Preparamos la consulta
-						$query = "INSERT INTO puesto(CodigoPuesto, NombrePuesto)
-											  VALUES('".$CodigoPuesto."', '".$NombrePuesto."');";
+						$query = "INSERT INTO puesto(NombrePuesto)
+											  VALUES('".$NombrePuesto."');";
 						// Ejecutamos la consulta
 						if(!$resultado = $mysqli->query($query)){
     					echo "Error: La ejecución de la consulta falló debido a: \n";
@@ -501,12 +496,11 @@
 					// Código que recibe la información para agregar un nuevo rango
 					if (isset($_POST['AgregarRango'])) {
 						// Guardamos la información en variables
-						$CodigoRango = $_POST['CodigoRango'];
 						$RangoMinimo = $_POST['RangoMinimo'];
 						$RangoMaximo = $_POST['RangoMaximo'];
 						// Preparamos la consulta
 						$query = "INSERT INTO Rango(CodigoRango, RangoMinimo, RangoMaximo)
-											  VALUES('".$CodigoRango."', '".$RangoMinimo."', '".$RangoMaximo."');";
+											  VALUES('".$RangoMinimo."', '".$RangoMaximo."');";
 						// Ejecutamos la consulta
 						if(!$resultado = $mysqli->query($query)){
     					echo "Error: La ejecución de la consulta falló debido a: \n";
@@ -627,10 +621,6 @@
 					  <div class="modal-body">
 						<p class="lead">Ingrese los datos</p>
 						<form method="post" id="myForm">
-						  <div class="form-group">
-							<label for="name">Codigo del grupo</label>
-							<input type="text" name="CodigoGrupo" id="CodigoGrupo" class="form-control" placeholder="Codigo de grupo" value="" required/>
-						  </div>
 						  <div class="form-group">
 							<label for="email">Nombre del grupo</label>
 							<input type="text" name="NombreNuevoGrupo" id="NombreNuevoGrupo" class="form-control" placeholder="Nombre del grupo" value="" required/>

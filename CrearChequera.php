@@ -125,16 +125,9 @@
 									<!-- Icono de usuario -->
 									<span class="glyphicon glyphicon-user"></span>
 								</div>
-						<!--Codigo de Chequera-->	
-							<div class="row">
-								<div class="col-xs-5 col-xs-offset-1">
-									<div class="input-group input-group-lg">
-										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-										<input type="text" class="form-control" name="CodigoChequera" placeholder="Codigo de chequera" id="CodigoChequera" aria-describedby="sizing-addon1" required>
-									</div>
-								</div>
 						<!--ID de la cuenta -->
-								<div class="col-xs-5 col-xs-offset+1">
+							<div class="row">
+								<div class="col-xs-10 col-xs-offset-1 col-xs-offset+1">
 									<div class="input-group input-group-lg">
 										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
 										<!-- Tipo de Banco -->
@@ -159,27 +152,27 @@
 							<br>
 							<!--Nombre chequera-->
 							<div class="row">
-								<div class="col-xs-5 col-xs-offset-1">
+								<div class="col-xs-10 col-xs-offset-1 col-xs-offset+1">
 									<div class="input-group input-group-lg">
 										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
 										<input type="text" class="form-control" name="NombreChequera" placeholder="Nombre Chequera" id="NombreChequera" aria-describedby="sizing-addon1" required>
 									</div>
 								</div>
-								<!--Rango Inicial Chquera-->
-								<div class="col-xs-5 col-xs-offset+1">
-									<div class="input-group input-group-lg">
-										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-										<input type="text" class="form-control" name="RangoMinimoChequera" placeholder="Rango inicial chequera" id="NombreChequera" aria-describedby="sizing-addon1" required>
-									</div>
-								</div>
 							</div>
-							<br>
-							<!--Rango Final Chequera-->
+							</br>
 							<div class="row">
+								<!--Rango Inicial Chquera-->
 								<div class="col-xs-5 col-xs-offset-1">
 									<div class="input-group input-group-lg">
 										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
-										<input type="text" class="form-control" name="RangoMaximoChequera" placeholder="Rango Final Chequera" id="RangoMaximoChequera" aria-describedby="sizing-addon1" required>
+										<input type="number" class="form-control" name="RangoMinimoChequera" placeholder="Rango inicial chequera" id="NombreChequera" aria-describedby="sizing-addon1" required>
+									</div>
+								</div>
+								<!--Rango Final Chequera-->
+								<div class="col-xs-5 col-xs-offset+1">
+									<div class="input-group input-group-lg">
+										<span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-pencil"></i></span>
+										<input type="number" class="form-control" name="RangoMaximoChequera" placeholder="Rango Final Chequera" id="RangoMaximoChequera" aria-describedby="sizing-addon1" required>
 									</div>
 								</div>
 							</div>
@@ -204,15 +197,14 @@
 					
 					if (isset($_POST['enviar'])) {
 						// Obtenemos los valores de todos los campos y los almacenamos en variables
-						$CodigoChequera=$_POST['CodigoChequera'];
 						$BancoCuenta=$_POST['BancoCuenta'];
 						$NombreChequera=$_POST['NombreChequera'];
 						$RangoMinimoChequera=$_POST['RangoMinimoChequera'];
 						$RangoMaximoChequera=$_POST['RangoMaximoChequera'];
 												
 						// Creamos la consulta para la inserción de los datos
-						$Consulta = "INSERT INTO Chequera(CodigoChequera, NombreChequera, idCuenta, RangoMinimoChequera, RangoMaximoChequera) 
-						Values('".$CodigoChequera."', '".$NombreChequera."', '".$BancoCuenta."', '".$RangoMinimoChequera."', '".$RangoMaximoChequera."');";
+						$Consulta = "INSERT INTO Chequera(NombreChequera, idCuenta, RangoMinimoChequera, RangoMaximoChequera) 
+						Values('".$NombreChequera."', '".$BancoCuenta."', '".$RangoMinimoChequera."', '".$RangoMaximoChequera."');";
 							
 						if(!$resultado = $mysqli->query($Consulta)){
 							echo "Error: La ejecución de la consulta falló debido a: \n";
