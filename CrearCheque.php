@@ -28,6 +28,8 @@
 		include_once "Seguridad/conexion.php";
 		// Si en la sesión activa tiene privilegios de administrador puede ver el formulario
 		if($_SESSION["PrivilegioUsuario"] == 1){
+			// Guardamos el nombre del usuario en una variable
+			$NombreUsuario =$_SESSION["NombreUsuario"];
 		?>
 			<body>
 				<nav class="navbar navbar-default">
@@ -89,9 +91,18 @@
 										<li><a href="Usuario.php">Lista de Usuarios</a></li>
 									</ul>
 								</li>
-								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Cerrar Sesión<span class="caret"></span></a>
-									<ul class="dropdown-menu" role="menu">
-										<li><a href="Seguridad/logout.php">Cerrar Sesión</a></li>
+							</ul>
+							<ul class="nav navbar-nav navbar-right">
+								<li class="dropdown">
+									<!-- Acá mostramos el nombre del usuario -->
+									<a href="#" class="dropdown-toggle negrita" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $NombreUsuario; ?></a>
+									<!-- <span class="caret"></span> Agrega un indicador de flecha abajo -->
+									<ul class="dropdown-menu">
+										<li><a href="#"><i class="fa fa-user" aria-hidden="true">&nbsp;</i>Perfil</a></li>
+										<!--<li><a href="#"><i class="fa fa-cog" aria-hidden="true">&nbsp;</i>Cuenta</a></li>
+										<li><a href="#"><i class="fa fa-question-circle" aria-hidden="true">&nbsp;</i>Soporte</a></li>-->
+										<li role="separator" class="divider"></li>
+										<li><a href="Seguridad/logout.php"><i class="fa fa-sign-out" aria-hidden="true">&nbsp;</i>Cerrar Sesión</a></li>
 									</ul>
 								</li>
 							</ul>
@@ -107,9 +118,13 @@
 								<div class="container-fluid">
 									<div class="row">
 										<div class="col-xs-6 col-xs-offset-3">
-										<h2 class="text-center">Creación de cheque</h2>
-										<br>
+											<h1 class="text-center">Creación de cheque</h1>
 										</div>
+									</div>
+									<!-- Contenedor del ícono del Usuario -->
+									<div class="Icon">
+										<!-- Icono de usuario -->
+										<span class="glyphicon glyphicon-user"></span>
 									</div>
 									<!-- Codigo del Cheque -->
 									<div class="row">
@@ -343,6 +358,23 @@
 								</form>
 							</div>
 						<?php
+						// Registramos el intento fallido de insersión
+						//$HoraBitacora=;
+						//$FechaBitacora=;
+						//$HostBitacora=;
+						//$TipoMovimientoBitacora=;
+						//$UsuarioBitacora=$_SESSION["Usuario"];
+						
+						// Creamos la consulta para la insersión de los datos
+						$Consulta = "INSERT INTO  bitacoratransacciones(CodigoProveedor, NombreProveedor) 
+													Values('".$CodigoProveedor."', '".$NombreProveedor."');";
+							
+						if(!$resultado = $mysqli->query($Consulta)){
+							echo "Error: La ejecución de la consulta falló debido a: \n";
+							echo "Query: " . $Consulta . "\n";
+							echo "Error: " . $mysqli->errno . "\n";
+							exit;
+						}
 					}
 				}
 				// Termina el registro de proveedor

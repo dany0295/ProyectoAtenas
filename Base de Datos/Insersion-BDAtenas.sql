@@ -27,9 +27,11 @@ INSERT INTO Puesto (CodigoPuesto, NombrePuesto)
 INSERT INTO Rango (CodigoRango, RangoMinimo, RangoMaximo)
 			VALUES('0001', 999999.99, 999999.99);
 
--- Insersión del primer Permiso, en este cado Administrador
+-- Insersión del primer Permiso, en este cado Administrador y operador
 INSERT INTO Permiso (TipoPermiso)
 			Values('Administrador');
+INSERT INTO Permiso (TipoPermiso)
+			Values('Operador');
 			
 -- Insersión del primer Rol, en este caso Administrador
 INSERT INTO Rol(NombreRol, idPermiso)
