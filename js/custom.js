@@ -136,14 +136,14 @@ $(document).ready(function(){
 		var id=$(this).val();
 		var idChequera=$('#idChequera'+id).text();
 		var NombreChequera=$('#NombreChequera'+id).text();
-		var RangoMinimoChequera=$('#RangoMiminoChequera'+id).text();
-		var RangoMaximoChequera=$('#RangoMaximoChequera'+id).text();
+		var RangoMinimoChe=$('#RangoMiminoChe'+id).text();
+		var RangoMaximoChequera=$('#RangoMaximoChequera2'+id).text();
 	
-		$('#frmEditarChequera').modal('show');
+		$('#frmEditarchequeras2').modal('show');
 		$('#idChequeraEditar').val(idChequera);
 		$('#NombreChequeraEditar').val(NombreChequera);
-		$('#RangoMinimoChequeraEditar').val(RangoMinimoChequera);
-		$('#RangoMaximochequeraEditar').val(RangoMaximoChequera);
+		$('#RangoMinimoChe').val(RangoMinimoChe);
+		$('#RangoMaximo').val(RangoMaximoChequera);
 	});
 });
 

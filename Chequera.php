@@ -164,9 +164,8 @@
 																<tr>
 																<td><span id="idChequera<?php echo $row['idChequera'];?>"><?php echo $row['idChequera'] ?></span></td>
 																<td><span id="NombreChequera<?php echo $row['idChequera'];?>"><?php echo $row['NombreChequera'] ?></span></td>
-																<td><span id="RangoMinimoChequera<?php echo $row['idChequera'];?>"><?php echo $row['RangoMinimoChequera'] ?></span></td>
-																<td><span id="RangoMaximoChequera<?php echo $row['idChequera'];?>"><?php echo $row['RangoMaximoChequera'] ?></span></td>
-																<td><span id="NombreCuenta<?php echo $row['idChequera'];?>"><?php echo $NombreCuenta ?></span></td>
+																<td><span id="RangoMinimoChe<?php echo $row['idChequera'];?>"><?php echo $row['RangoMinimoChequera'] ?></span></td>
+																<td><span id="RangoMaximoChequera2<?php echo $row['idChequera'];?>"><?php echo $row['RangoMaximoChequera'] ?></span></td>
 																<td>
 																	<!-- Edición -->
 																	<div>
@@ -194,32 +193,31 @@
 							</div>
 						</div>
 					</div>
-				</div>
 				<!-- Edit Modal-->
-					<div class="modal fade" id="frmEliminarChequera" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<center><h1 class="modal-title" id="myModalLabel">Eliminar usuario</h1></center>
-								</div>
-								<form method="post" action="Chequera.php" id="myForm">
-								<div class="modal-body">
-									<p class="lead">¿Está seguro que desea eliminar la siguiente chequera?</p>
-									<div class="form-group input-group">
-										<input type="text" name="idChequeraAEliminar" style="width:350px; visibility:hidden;" class="form-control" id="idChequeraAEliminar">
-										<br>
-										<label id="NombreChequera"></label>
-									</div>
-								</div>
-								<div class="modal-footer">
-									<input type="submit" name="EliminarChequera" class="btn btn-danger" value="Eliminar chequera">
-									<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
-								</div>
-								</form>
+				<div class="modal fade" id="frmEliminarChequera" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<center><h1 class="modal-title" id="myModalLabel">Eliminar usuario</h1></center>
 							</div>
+							<form method="post" action="Chequera.php" id="myForm">
+							<div class="modal-body">
+								<p class="lead">¿Está seguro que desea eliminar la siguiente chequera?</p>
+								<div class="form-group input-group">
+									<input type="text" name="idChequeraAEliminar" style="width:350px; visibility:hidden;" class="form-control" id="idChequeraAEliminar">
+									<br>
+									<label id="NombreChequera"></label>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<input type="submit" name="EliminarChequera" class="btn btn-danger" value="Eliminar chequera">
+								<button type="button" class="btn btn-success" data-dismiss="modal">Cancelar</button>
+							</div>
+							</form>
 						</div>
 					</div>
+				</div>
 				<!-- /.modal -->
 				<?php
 					// Código que recibe la información de eliminar una cuenta
@@ -265,8 +263,8 @@
 						// Guardamos La información proveniente del formulario
 						$idChequeraEditar = $_POST['idChequeraEditar'];
 						$NombreChequeraEditar = $_POST['NombreChequeraEditar'];
-						$RangoMinimoChequeraEditar = $_POST['RangoMinimoChequeraEditar'];
-						$RangoMaximoChequeraEditar = $_POST['RangoMaximoChequeraEditar'];
+						$RangoMinimoChequeraEditar = $_POST['RangoMinimoChe'];
+						$RangoMaximoChequeraEditar = $_POST['RangoMaximo'];
 						
 						// Preparamos las consultas
 						$ConsultaEditarChequera = "UPDATE chequera
@@ -308,42 +306,42 @@
 					// Termina código para editar una cuenta
 				?>
 				<!-- Edit Modal-->
-					<div class="modal fade" id="frmEditarChequera" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header">
-									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<center><h4 class="modal-title" id="myModalLabel">Editar chequera</h4></center>
-								</div>
-								<form method="post" action="Chequera.php" id="frmEdit">
-									<div class="modal-body">
-									<div class="container-fluid">
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:200px;">ID</span>
-												<input type="text" style="width:350px;" class="form-control" name="idChequeraEditar" id="idChequeraEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:200px;">Nombre de chequera</span>
-												<input type="text" style="width:350px;" class="form-control" name="NombreChequeraEditar" id="NombreChequeraEditar" disabled>
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:200px;">Rango minimo de chequera</span>
-												<input type="text" style="width:350px;" class="form-control" name="RangoMinimoChequeraEditar" id="RangoMinimoChequeraEditar">
-											</div>
-											<div class="form-group input-group">
-												<span class="input-group-addon" style="width:200px;">Rango maximo de chequera</span>
-												<input type="text" style="width:350px;" class="form-control" name="RangoMaximoChequeraEditar" id="RangoMaximoChequeraEditar">
-											</div>
-										</div>
-									</div>
-											<div class="modal-footer">
-										<button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-										<input type="submit" name="EditarChequera" class="btn btn-warning" value="Editar Chequera">
-									</div>
-								</form>
+				<div class="modal fade" id="frmEditarchequeras2" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+								<center><h4 class="modal-title" id="myModalLabel">Editar chequera</h4></center>
 							</div>
+							<form method="post" action="Chequera.php" id="frmEdit">
+								<div class="modal-body">
+								<div class="container-fluid">
+										<div class="form-group input-group">
+											<span class="input-group-addon" style="width:200px;">ID</span>
+											<input type="text" style="width:350px;" class="form-control" name="idChequeraEditar" id="idChequeraEditar">
+										</div>
+										<div class="form-group input-group">
+											<span class="input-group-addon" style="width:200px;">Nombre de chequera</span>
+											<input type="text" style="width:350px;" class="form-control" name="NombreChequeraEditar" id="NombreChequeraEditar" disabled>
+										</div>
+										<div class="form-group input-group">
+											<span class="input-group-addon" style="width:200px;">Rango minimo de chequera</span>
+											<input type="text" style="width:350px;" class="form-control" name="RangoMinimoChe" id="RangoMinimoChe">
+										</div>
+										<div class="form-group input-group">
+											<span class="input-group-addon" style="width:200px;">Rango maximo de chequera</span>
+											<input type="text" style="width:350px;" class="form-control" name="RangoMaximo" id="RangoMaximo">
+										</div>
+								</div>
+								</div>
+										<div class="modal-footer">
+									<button type="button" class="btn btn-success" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+									<input type="submit" name="EditarChequera" class="btn btn-warning" value="Editar Chequera">
+								</div>
+							</form>
 						</div>
 					</div>
+				</div>
 				<!-- /.modal -->
 				<!-- jQuery (necessary for Bootstrap's JavaScript plugins) --> 
 				<script src="js/jquery-1.11.3.min.js"></script>

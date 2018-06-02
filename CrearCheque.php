@@ -30,6 +30,7 @@
 		if($_SESSION["PrivilegioUsuario"] == 1){
 			// Guardamos el nombre del usuario en una variable
 			$NombreUsuario =$_SESSION["NombreUsuario"];
+			$idUsuario2 =$_SESSION["idUsuario"];
 		?>
 			<body>
 				<nav class="navbar navbar-default">
@@ -95,7 +96,7 @@
 							<ul class="nav navbar-nav navbar-right">
 								<li class="dropdown">
 									<!-- Acá mostramos el nombre del usuario -->
-									<a href="#" class="dropdown-toggle negrita" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $NombreUsuario; ?></a>
+									<a href="#" class="dropdown-toggle negrita" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><?php echo $NombreUsuario;?></a>
 									<!-- <span class="caret"></span> Agrega un indicador de flecha abajo -->
 									<ul class="dropdown-menu">
 										<li><a href="#"><i class="fa fa-user" aria-hidden="true">&nbsp;</i>Perfil</a></li>
@@ -293,7 +294,16 @@
 					// rango que tiene en la tabla
 					// Obtenemos el ID almacenado en la cookie
 					$idUsuario = $_SESSION["idUsuario"];
-					$ConsultaRango = "SELECT RangoMinimo, RangoMaximo FROM rango WHERE idRango ='".$idUsuario."';";
+					// Obtenemos el rango almacenado en la base de datos
+					$ConsultaUsuario = "SELECT idRango FROM usuario WHERE idUsuario ='".$idUsuario."';";
+					// Realizamos la consulta y obtendremos los datos:
+					$ResultadoUsuario = $mysqli->query($ConsultaUsuario);
+					// Guardamos la consulta en un array
+					$ResultadoConsultaUsuario = $ResultadoUsuario->fetch_assoc();
+					// Almacenamos el id del usuario
+					$idRango = $ResultadoConsultaUsuario['idRango'];
+					//
+					$ConsultaRango = "SELECT RangoMinimo, RangoMaximo FROM rango WHERE idRango ='".$idRango."';";
 					// Realizamos la consulta y obtendremos los datos:
 					$ResultadoRango = $mysqli->query($ConsultaRango);
 					// Guardamos la consulta en un array
@@ -407,6 +417,8 @@
 							</div>
 						<?php
 						}
+						// Recargamos la página
+    					echo "<meta http-equiv=\"refresh\" content=\"0;URL=CrearUsuario.php\">"; 
 					}
 				?>
 				
