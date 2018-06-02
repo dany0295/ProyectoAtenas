@@ -335,7 +335,7 @@
 											</div>
 											<div class="form-group input-group">
 												<span class="input-group-addon" style="width:150px;">Correo del Banco</span>
-												<input type="tel" style="width:350px;" class="form-control" name="CorreoBancoEditar" id="CorreoBancoEditar">
+												<input type="text" style="width:350px;" class="form-control" name="CorreoBancoEditar" id="CorreoBancoEditar">
 											</div>
 											<div class="form-group input-group">
 												<span class="input-group-addon" style="width:150px;">Sitio Web del Banco</span>
@@ -343,7 +343,7 @@
 											</div>
 											<div class="form-group input-group">
 												<span class="input-group-addon" style="width:150px;">Telefono del Banco</span>
-												<input type="text" style="width:350px;" class="form-control" name="TelefonoBancoEditar" id="TelefonoBancoEditar">
+												<input type="tel" style="width:350px;" class="form-control" name="TelefonoBancoEditar" id="TelefonoBancoEditar">
 											</div>
 										</div>
 									</div>

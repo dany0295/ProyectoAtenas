@@ -111,7 +111,7 @@
 				if($ResultadoConsulta['NombreInicioSesionUsuario'] = $Usuario){
 					if($ResultadoConsulta['ContraseniaUsuario'] == $password){
 						session_start();
-						$_SESSION['Usuario'] = $Usuario;
+						$_SESSION['Usuario'] = $ResultadoConsulta['NombreInicioSesionUsuario'];
 						$_SESSION['NombreUsuario'] = $ResultadoConsulta['NombreUsuario']." ".$ResultadoConsulta['ApellidoUsuario'];
 						$_SESSION['ContrasenaUsuario'] = $password;
 						$_SESSION['PrivilegioUsuario'] = $ResultadoConsulta['idRol'];

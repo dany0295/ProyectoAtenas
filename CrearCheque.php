@@ -359,15 +359,15 @@
 							</div>
 						<?php
 						// Registramos el intento fallido de insersión
-						//$HoraBitacora=;
-						//$FechaBitacora=;
-						//$HostBitacora=;
-						//$TipoMovimientoBitacora=;
-						//$UsuarioBitacora=$_SESSION["Usuario"];
+						$HoraBitacora=date('H:i:s');
+						$FechaBitacora=date('Y-m-d');
+						$HostBitacora=gethostname();
+						$TipoMovimientoBitacora='GeneracionChequeFueraRangoAutorizado';
+						$UsuarioBitacora=$_SESSION["Usuario"];
 						
 						// Creamos la consulta para la insersión de los datos
-						$Consulta = "INSERT INTO  bitacoratransacciones(CodigoProveedor, NombreProveedor) 
-													Values('".$CodigoProveedor."', '".$NombreProveedor."');";
+						$Consulta = "INSERT INTO  bitacoratransacciones(HoraBitacora, FechaBitacora, HostBitacora, TipoMovimientoBitacora, UsuarioBitacora) 
+													Values('".$HoraBitacora."', '".$FechaBitacora."', '".$HostBitacora."', '".$TipoMovimientoBitacora."', '".$UsuarioBitacora."');";
 							
 						if(!$resultado = $mysqli->query($Consulta)){
 							echo "Error: La ejecución de la consulta falló debido a: \n";

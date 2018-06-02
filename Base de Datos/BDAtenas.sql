@@ -178,13 +178,9 @@ CREATE OR REPLACE TABLE Deposito(
 -- Creación de la tabla que contiene la bitácora de las transacciones de la base de datos
 CREATE OR REPLACE TABLE BitacoraTransacciones(
 	idBitacora			INTEGER			NOT NULL			PRIMARY KEY			AUTO_INCREMENT,
-	CodigoBitacora		INTEGER			NOT NULL,
-	SaldoActualBitacora	DECIMAL			NOT NULL,
-	MontoDepositarBitacora	DECIMAL			NOT NULL,
-	SaldoFinalBitacora	DECIMAL			NOT NULL,
 	HoraBitacora		TIME			NOT NULL,
 	FechaBitacora		DATE			NOT NULL,
 	HostBitacora		VARCHAR(20)		NOT NULL,
-	TipoMovimientoBitacora		VARCHAR(15)		NOT NULL,
-	UsuarioBitacora		TINYINT
+	TipoMovimientoBitacora		VARCHAR(40)		NOT NULL,
+	UsuarioBitacora		VARCHAR(20)
 );
