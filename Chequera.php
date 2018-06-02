@@ -79,10 +79,6 @@
 										<li><a href="ImpresionCheque.php">Impresión de cheques</a></li>
 									</ul>
 								</li>
-								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Reportes<span class="caret"></span></a>
-									<ul class="dropdown-menu" role="menu">
-									</ul>
-								</li>
 								<li class="dropdown"><a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Gestión de Usuarios<span class="caret"></span></a>
 									<ul class="dropdown-menu" role="menu">
 										<li><a href="CrearUsuario.php">Crear usuario</a></li>
@@ -164,8 +160,8 @@
 																<tr>
 																<td><span id="idChequera<?php echo $row['idChequera'];?>"><?php echo $row['idChequera'] ?></span></td>
 																<td><span id="NombreChequera<?php echo $row['idChequera'];?>"><?php echo $row['NombreChequera'] ?></span></td>
-																<td><span id="RangoMinimoChe<?php echo $row['idChequera'];?>"><?php echo $row['RangoMinimoChequera'] ?></span></td>
-																<td><span id="RangoMaximoChequera2<?php echo $row['idChequera'];?>"><?php echo $row['RangoMaximoChequera'] ?></span></td>
+																<td><span id="RangoMinimoChequera<?php echo $row['idChequera'];?>"><?php echo $row['RangoMinimoChequera'] ?></span></td>
+																<td><span id="RangoMaximoChequera<?php echo $row['idChequera'];?>"><?php echo $row['RangoMaximoChequera'] ?></span></td>
 																<td>
 																	<!-- Edición -->
 																	<div>
@@ -263,8 +259,8 @@
 						// Guardamos La información proveniente del formulario
 						$idChequeraEditar = $_POST['idChequeraEditar'];
 						$NombreChequeraEditar = $_POST['NombreChequeraEditar'];
-						$RangoMinimoChequeraEditar = $_POST['RangoMinimoChe'];
-						$RangoMaximoChequeraEditar = $_POST['RangoMaximo'];
+						$RangoMinimoChequeraEditar = $_POST['RangoMinimoChequera'];
+						$RangoMaximoChequeraEditar = $_POST['RangoMaximoChequera'];
 						
 						// Preparamos las consultas
 						$ConsultaEditarChequera = "UPDATE chequera
@@ -306,7 +302,7 @@
 					// Termina código para editar una cuenta
 				?>
 				<!-- Edit Modal-->
-				<div class="modal fade" id="frmEditarchequeras2" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+				<div class="modal fade" id="frmEditarchequera" tabindex="-2" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<div class="modal-header">
@@ -326,11 +322,11 @@
 										</div>
 										<div class="form-group input-group">
 											<span class="input-group-addon" style="width:200px;">Rango minimo de chequera</span>
-											<input type="text" style="width:350px;" class="form-control" name="RangoMinimoChe" id="RangoMinimoChe">
+											<input type="text" style="width:350px;" class="form-control" name="RangoMinimoChequera" id="RangoMinimoChequera">
 										</div>
 										<div class="form-group input-group">
 											<span class="input-group-addon" style="width:200px;">Rango maximo de chequera</span>
-											<input type="text" style="width:350px;" class="form-control" name="RangoMaximo" id="RangoMaximo">
+											<input type="text" style="width:350px;" class="form-control" name="RangoMaximoChequera" id="RangoMaximoChequera">
 										</div>
 								</div>
 								</div>
